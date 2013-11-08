@@ -5,7 +5,7 @@
 package ptut;
 
 /**
- *
+ * @author Jérôme
  * @author Ludovic
  */
 public class PTut {
