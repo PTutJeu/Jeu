@@ -7,7 +7,8 @@ package a_renommer;
 /**
  *
  * @author Ludovic
+ * @author Jérôme
  */
 public class Personnage {
-    
+    private int vie;
 }
