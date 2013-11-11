@@ -2,6 +2,8 @@ package Carte;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 
 /*
  * Enumération : Liste de valeurs constantes que pourra prendre l'attribut contenu
@@ -106,7 +108,11 @@ public class Cellule {
     }
     
     //Permet d'afficher la cellule à l'écran
-    public void affiche(GameContainer gc, Graphics g) {
-        //JE SAIS PAS ENCORE COMMENT QU'ON FAIT
+    public void affiche(GameContainer gc, Graphics g) throws SlickException {
+        //JE SAIS PAS ENCORE COMMENT QU'ON FAIT, CA DOIT ETRE UN TRUC DE CE STYLE
+        Image img = new Image(cheminAccesImage);
+        int posX = coord.getX() * TAILLE_CELL;
+        int posY = coord.getY() * TAILLE_CELL;
+        g.drawImage(img, posX, posY);
     }
 }
