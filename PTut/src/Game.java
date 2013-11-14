@@ -1,10 +1,11 @@
 
 import Carte.Cellule;
+import Carte.ContenuCellule;
+import Carte.CoordonneeException;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-
-enum ContenuCell { VIDE, PLANETE, INACTIVE };
+import org.newdawn.slick.SlickException;
 
 public class Game extends BasicGame {
     private Cellule c;
@@ -14,8 +15,8 @@ public class Game extends BasicGame {
     }
     
     @Override
-    public void render(GameContainer gc, Graphics g) {
-        
+    public void render(GameContainer gc, Graphics g) throws SlickException {
+        c.affiche(gc, g);
     }
     
     @Override
@@ -25,6 +26,10 @@ public class Game extends BasicGame {
     
     @Override
     public void init(GameContainer gc) {
-        c = new Cellule(0, 0, Carte.ContenuCell.PLANETE);
+        try {
+            c = new Cellule(0, 0, ContenuCellule.PLANETE);
+        } catch (CoordonneeException ex) {
+            ex.printStackTrace();
+        }
     }
 }

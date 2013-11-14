@@ -7,7 +7,11 @@ public enum ContenuCellule {
     
     private int valeur;
     
-    public ContenuCellule(int val) {
+    private ContenuCellule(int val) {
         valeur = val;
+    }
+    
+    public String toString() {
+        return Integer.toString(valeur);
     }
 }

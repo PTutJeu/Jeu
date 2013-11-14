@@ -14,29 +14,29 @@ import org.newdawn.slick.SlickException;
  * LISTE A COMPLETER (on pourra par exemple rajouter TELEPORTEUR pour une case permettant de se
  * déplacer sur la map suivante)
  */
-enum ContenuCell { VIDE, PLANETE, INACTIVE };
+//enum ContenuCell { VIDE, PLANETE, INACTIVE };
 
 public class Cellule {
     private Coordonnee coord; //Coordonnées de la cellule
-    private ContenuCell contenu; //Contenu de la cellule (voir enum)
+    private ContenuCellule contenu; //Contenu de la cellule (voir enum)
     private String cheminAccesImage; //Chemin d'accès de l'image à charger lors de l'affichage
     final int TAILLE_CELL = 20; //Constante : taille d'une cellule (en pixel)
     
     //Constructeur par défaut
     public Cellule() throws CoordonneeException {
         coord = new Coordonnee();
-        contenu = ContenuCell.VIDE;
+        contenu = ContenuCellule.VIDE;
         cheminAccesImage = recupCheminAcces();
     }
     
     //Plusieurs constructeurs, on peut en avoir besoin, on verra
     public Cellule(int x, int y) throws CoordonneeException {
         coord = new Coordonnee(x, y);
-        contenu = ContenuCell.VIDE;
+        contenu = ContenuCellule.VIDE;
         cheminAccesImage = recupCheminAcces();
     }
     
-    public Cellule(int x, int y, ContenuCell cont) throws CoordonneeException {
+    public Cellule(int x, int y, ContenuCellule cont) throws CoordonneeException {
         coord = new Coordonnee(x, y);
         contenu = cont;
         cheminAccesImage = recupCheminAcces();
@@ -44,11 +44,11 @@ public class Cellule {
     
     public Cellule(Coordonnee c) throws CoordonneeException {
         coord = new Coordonnee(c);
-        contenu = ContenuCell.VIDE;
+        contenu = ContenuCellule.VIDE;
         cheminAccesImage = recupCheminAcces();
     }
     
-    public Cellule(Coordonnee c, ContenuCell cont) throws CoordonneeException {
+    public Cellule(Coordonnee c, ContenuCellule cont) throws CoordonneeException {
         coord = new Coordonnee(c);
         contenu = cont;
         cheminAccesImage = recupCheminAcces();
@@ -67,7 +67,7 @@ public class Cellule {
     
     //Getters
     public Coordonnee getCoordonnee() { return coord; }
-    public ContenuCell getContenu() { return contenu; }
+    public ContenuCellule getContenu() { return contenu; }
     public String getCheminAccesImage() { return cheminAccesImage; }
     
     //Récupère le chemin d'accès de l'image correspondant au contenu de la cellule
@@ -85,7 +85,7 @@ public class Cellule {
     }
     
     //Setters
-    public void setContenu(ContenuCell cont) {
+    public void setContenu(ContenuCellule cont) {
         //On change le contenu et on met à jour le chemin d'accès vers l'image à afficher
         contenu = cont;
         cheminAccesImage = recupCheminAcces(); 
