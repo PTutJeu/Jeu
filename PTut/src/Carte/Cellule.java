@@ -5,17 +5,6 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-/*
- * Enumération : Liste de valeurs constantes que pourra prendre l'attribut contenu
- * Vide signifie une case accessible, où il n'y a rien
- * Planete signifie une case contenant une planete
- * Inactive signifie une case qui n'est pas accessible par le joueur
- * 
- * LISTE A COMPLETER (on pourra par exemple rajouter TELEPORTEUR pour une case permettant de se
- * déplacer sur la map suivante)
- */
-//enum ContenuCell { VIDE, PLANETE, INACTIVE };
-
 public class Cellule {
     private Coordonnee coord; //Coordonnées de la cellule
     private ContenuCellule contenu; //Contenu de la cellule (voir enum)
@@ -24,9 +13,9 @@ public class Cellule {
     
     //Constructeur par défaut
     public Cellule() throws CoordonneeException {
-        coord = new Coordonnee();
-        contenu = ContenuCellule.VIDE;
-        cheminAccesImage = recupCheminAcces();
+        coord = new Coordonnee(); //Coordonnee avec valeurs par défaut
+        contenu = ContenuCellule.VIDE; //Par défaut, on décide que c'est une case vide
+        cheminAccesImage = recupCheminAcces(); //On recup l'image à afficher en fonction du contenu
     }
     
     //Plusieurs constructeurs, on peut en avoir besoin, on verra
@@ -56,6 +45,10 @@ public class Cellule {
     
     //Constructeur par recopie
     public Cellule(Object o) throws CelluleException, CoordonneeException {
+        /*
+         * Si l'objet passé en paramètre n'est pas de type cellule, on génère une exception
+         * sinon on converti l'objet en cellule et on recopie les valeurs
+         */
         if (!(o instanceof Cellule))
             throw new CelluleException("L'objet n'est pas une cellule.");
         
@@ -109,10 +102,18 @@ public class Cellule {
     
     //Permet d'afficher la cellule à l'écran
     public void affiche(GameContainer gc, Graphics g) throws SlickException {
-        //JE SAIS PAS ENCORE COMMENT QU'ON FAIT, CA DOIT ETRE UN TRUC DE CE STYLE
-        Image img = new Image(cheminAccesImage);
-        int posX = coord.getX() * TAILLE_CELL;
+        /*
+         * JE SAIS PAS ENCORE COMMENT QU'ON FAIT, CA DOIT ETRE UN TRUC DE CE STYLE.
+         * APRES QUELQUES TEST VISIBLEMENT CA MARCHE, A VERIFIER QUAND MEME, POSSIBLE SOURCE
+         * D'ERREURS !
+         */
+        //On charge l'image correspondant à la cellule (grâce au chemin d'accès)
+        Image img = new Image(cheminAccesImage); 
+        //On défini les positions en X et en Y (en pixel), en multipliant la coordonnée de la case
+        //par la taille d'une case
+        int posX = coord.getX() * TAILLE_CELL; 
         int posY = coord.getY() * TAILLE_CELL;
+        //On affiche l'image à la position voulue
         g.drawImage(img, posX, posY);
     }
 }
