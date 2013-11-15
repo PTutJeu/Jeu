@@ -85,4 +85,16 @@ public class Coordonnee {
         Coordonnee c = (Coordonnee) o;
         this.setCoordonnee(c.getX(), c.getY());
     }
+    
+    public boolean equals(Object o) {
+        if (!(o instanceof Coordonnee))
+            return false;
+        
+        Coordonnee c = (Coordonnee)o;
+        return c.getX() == x && c.getY() == y;
+    }
+    
+    public boolean equals(int x, int y) {
+        return this.x == x && this.y == y;
+    }
 }

@@ -1,4 +1,5 @@
 
+import Carte.CarteGalaxie;
 import Carte.Cellule;
 import Carte.ContenuCellule;
 import Carte.CoordonneeException;
@@ -13,7 +14,7 @@ import org.newdawn.slick.SlickException;
  * je crois, si j'ai bien compris le tuto)
  */
 public class Game extends BasicGame {
-    private Cellule c; //Variable qui sert juste à tester, non définitive
+    private CarteGalaxie c; //Variable qui sert juste à tester, non définitive
     
     //Constructeur : on initialise en donnant le nom de la fenêtre (à changer)
     public Game() {
@@ -48,7 +49,7 @@ public class Game extends BasicGame {
      */
     public void init(GameContainer gc) {
         try {
-            c = new Cellule(0, 0, ContenuCellule.PLANETE);
+            c = new CarteGalaxie();
         } catch (CoordonneeException ex) {
             ex.printStackTrace();
         }
