@@ -1,4 +1,5 @@
 
+import BDD.Requete;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.SlickException;
 
