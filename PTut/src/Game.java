@@ -1,7 +1,5 @@
 
 import Carte.CarteGalaxie;
-import Carte.Cellule;
-import Carte.ContenuCellule;
 import Carte.CoordonneeException;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
