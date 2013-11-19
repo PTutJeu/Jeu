@@ -1,8 +1,6 @@
 
 package Personnage;
 
-import Carte.ContenuCellule;
-import Carte.Coordonnee;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -10,15 +8,14 @@ import org.newdawn.slick.SlickException;
 
 
 public class Vaisseau extends Personnage{
-        private Coordonnee coord;//coordonnées du vaisseau
-        private ContenuCellule cont;//Contenu de la cellule ou se trouve le vaisseau
-        final int TAILLE_CELL = 20; //Constante : taille d'une cellule (en pixel)
+        private int x;//coordonnée en x du vaisseau
+        private int y;//coordonnée en y du vaisseau
         
         public Vaisseau(){
             super();
-            coord= new Coordonnee();
+            x = 0;
+            y = 0;
         }
-        public Vaisseau(int v,int x,int n, Coordonnee c){}
         
         public void affiche(GameContainer gc, Graphics g) throws SlickException {
         /*
@@ -27,16 +24,8 @@ public class Vaisseau extends Personnage{
          * D'ERREURS !
          */
         //On charge l'image correspondant à la cellule (grâce au chemin d'accès)
-        Image img = new Image("ressources/images/vaisseau.png"); 
-        //On défini les positions en X et en Y (en pixel), en multipliant la coordonnée de la case
-        //par la taille d'une case
-        int posX = coord.getX() * TAILLE_CELL;
-        int posY = coord.getY() * TAILLE_CELL;
+        Image img = new Image("ressources/images/vaisseau.png");
         //On affiche l'image à la position voulue
-        g.drawImage(img, posX, posY);
+        g.drawImage(img, x, y);
     }
-        
-        public ContenuCellule getCont(){ return cont;}
-        
-        public Coordonnee getCoord() { return coord;}
 }
