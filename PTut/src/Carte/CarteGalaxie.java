@@ -16,6 +16,10 @@ public class CarteGalaxie {
         nbPlanete = 0;
     }
     
+    public CarteGalaxie(int id) {
+        this.id = id;
+    }
+    
     //Méthode pour afficher
     public void affiche(GameContainer gc, Graphics g) throws SlickException {
         Image img = new Image(caImg);
