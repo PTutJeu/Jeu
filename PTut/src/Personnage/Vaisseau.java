@@ -1,7 +1,6 @@
 
 package Personnage;
 
-import java.awt.RenderingHints.Key;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -10,13 +9,11 @@ import org.newdawn.slick.SlickException;
 
 
 public class Vaisseau extends Personnage{
-        private int x;//coordonnée en x du vaisseau
-        private int y;//coordonnée en y du vaisseau
         
         public Vaisseau(){
             super();
-            x = 50;
-            y = 50;
+            x = 250;
+            y = 250;
         }
         
         public void affiche(GameContainer gc, Graphics g) throws SlickException {
