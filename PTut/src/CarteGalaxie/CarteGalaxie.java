@@ -14,7 +14,7 @@ public class CarteGalaxie {
     private int id; //Identifiant de la carte
     private String caImg; //Chemin d'acces de l'image du fond de la carte
     private int nbPlanete; //Nombre de planete se trouvant sur la carte
-    private List<Planete> planetes = new ArrayList<Planete>();
+    private List<Planete> planetes = new ArrayList<>();
     
     public CarteGalaxie() throws SQLException, ClassNotFoundException {
         id = 0;
