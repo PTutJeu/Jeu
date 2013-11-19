@@ -11,6 +11,7 @@ public abstract class Personnage {
     protected int vie; //Vie actuelle du personnage
     protected int xp; //expérience du personnage
     protected int niveau; //Niveau du Personnage
+    protected String nom; // Nom du personnage
     private List<String> Objets = new ArrayList<>(); //On établit une liste d'objets que possède le Personnage
     
     
@@ -35,6 +36,7 @@ public abstract class Personnage {
     public int getNiveau(){ return niveau;}
     public int getX(){ return x; }
     public int getY(){ return y;}
+    public String getNom(){return nom;}
     
     //Setters
     public void setVie(int v){ vie=v; }
@@ -42,6 +44,7 @@ public abstract class Personnage {
     public void setNiveau(int n){ niveau=n;}
     public void setX(int x){ this.x=x;}
     public void setY(int y){ this.y=y;}
+    public void setNom(String nom){ this.nom = nom;}
     
 
     
