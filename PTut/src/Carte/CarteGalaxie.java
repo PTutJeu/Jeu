@@ -1,24 +1,24 @@
 package Carte;
 
-import java.util.ArrayList;
-import java.util.List;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 public class CarteGalaxie {
     private int id; //Identifiant de la carte
-    final int MAX_ABSCISSE = 50; //Nombre de cellule en largeur sur la carte
-    final int MAX_ORDONNEE = 30; //Nombre de cellule en hauteur sur la carte
-    final int NB_CELLULE = MAX_ABSCISSE * MAX_ORDONNEE; //Nombre de cellule sur la carte
+    private String caImg; //Chemin d'acces de l'image du fond de la carte
+    private int nbPlanete; //Nombre de planete se trouvant sur la carte
     
     public CarteGalaxie() {
-        //On initialise les coordonnees de la carte
         id = 0;
+        caImg = "ressources/images/fondcarte.jpg";
+        nbPlanete = 0;
     }
     
     //Méthode pour afficher
-    public void affiche(GameContainer gc, Graphics g) {
-        
+    public void affiche(GameContainer gc, Graphics g) throws SlickException {
+        Image img = new Image(caImg);
+        g.drawImage(img, 0, 0);
     }
 }
