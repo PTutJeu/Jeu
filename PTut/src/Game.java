@@ -19,6 +19,7 @@ import org.newdawn.slick.SlickException;
  */
 public class Game extends BasicGame {
     private CarteGalaxie c; //Variable qui sert juste à tester, non définitive
+    private Planete p0, p1;
     private Vaisseau v1;
     private Heros heros;
     //Constructeur : on initialise en donnant le nom de la fenêtre (à changer)
@@ -33,6 +34,8 @@ public class Game extends BasicGame {
      */
     public void render(GameContainer gc, Graphics g) throws SlickException {
         c.affiche(gc, g);
+        p0.affiche(gc, g);
+        p1.affiche(gc, g);
     //    v1.affiche(gc, g);
         //heros.affiche(gc, g);
     }
@@ -57,6 +60,8 @@ public class Game extends BasicGame {
     public void init(GameContainer gc) {
         try {
             c = new CarteGalaxie();
+            p0 = new Planete(0);
+            p1 = new Planete(1);
             //heros = new Heros();
             //heros = new Heros();
         } catch (SQLException ex) {
