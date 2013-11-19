@@ -11,8 +11,6 @@ import org.newdawn.slick.SlickException;
  * @author Tanbi
  */
 public class Heros extends Personnage {
-    private int x; // Coordonnée en x du héros
-    private int y; // Coordonnée en y du héros
     
     public Heros(){ // Constructeur du héros
         super();
@@ -25,7 +23,6 @@ public class Heros extends Personnage {
         Image img = new Image("ressources/images/heros.png");
         g.drawImage(img, x, y);
     }
-    
    
     public void déplacements(GameContainer gc){
         Input input = gc.getInput(); //Variable de type entrée
