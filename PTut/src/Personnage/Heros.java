@@ -15,7 +15,7 @@ public class Heros extends Personnage {
     public Heros(){ // Constructeur du héros
         super();
         x = 100;
-        y = 500;
+        y = 00;
     }
     
     //Méthode d'affichage de l'image du héros
@@ -24,6 +24,11 @@ public class Heros extends Personnage {
         g.drawImage(img, x, y);
     }
    
+    public void tomber(GameContainer gc){
+        Input input = gc.getInput();
+        if (getY() <= 570){
+            y += 4;}          
+    }
     public void déplacements(GameContainer gc){
         Input input = gc.getInput(); //Variable de type entrée
         
@@ -33,7 +38,7 @@ public class Heros extends Personnage {
         
         if( input.isKeyDown(Input.KEY_LEFT) ){ // Si la variable pressée est flèche gauche alors on déplace le héros à gauche
             x = x-4;
-        }
+        }       
 
       }
         

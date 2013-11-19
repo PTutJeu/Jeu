@@ -37,7 +37,7 @@ public class Game extends BasicGame {
         p0.affiche(gc, g);
         p1.affiche(gc, g);
     //    v1.affiche(gc, g);
-        //heros.affiche(gc, g);
+        heros.affiche(gc, g);
     }
     
     @Override
@@ -47,7 +47,8 @@ public class Game extends BasicGame {
      * Idem, c'est pour tester
      */
     public void update(GameContainer gc, int t) {
-        //heros.déplacements(gc);
+        heros.déplacements(gc);
+        heros.tomber(gc);
     }
     
     @Override
@@ -62,7 +63,7 @@ public class Game extends BasicGame {
             c = new CarteGalaxie();
             p0 = new Planete(0);
             p1 = new Planete(1);
-            //heros = new Heros();
+            heros = new Heros();
             //heros = new Heros();
         } catch (SQLException ex) {
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
