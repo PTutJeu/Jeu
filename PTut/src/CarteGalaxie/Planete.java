@@ -1,4 +1,4 @@
-package Carte;
+package CarteGalaxie;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -11,6 +11,7 @@ public class Planete {
     private int x; //Position en x de la planete sur la map
     private int y; //Position en y de la planete sur la map
     private String caImg; //Chemin d'accès de l'image de la planete
+    private int larg; //
     
     public Planete() {
         id = 0;
