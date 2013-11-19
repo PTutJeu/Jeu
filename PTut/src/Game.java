@@ -1,6 +1,5 @@
 
 import Carte.CarteGalaxie;
-import Carte.CoordonneeException;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -46,10 +45,6 @@ public class Game extends BasicGame {
      * De même que les autres fonction, c'est juste un test pour le moment
      */
     public void init(GameContainer gc) {
-        try {
-            c = new CarteGalaxie();
-        } catch (CoordonneeException ex) {
-            ex.printStackTrace();
-        }
+        c = new CarteGalaxie();
     }
 }
