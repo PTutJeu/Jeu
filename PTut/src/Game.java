@@ -1,8 +1,12 @@
 
 
 import CarteGalaxie.CarteGalaxie;
+import CarteGalaxie.Planete;
 import Personnage.Vaisseau;
 import Personnage.Heros;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -15,6 +19,7 @@ import org.newdawn.slick.SlickException;
  */
 public class Game extends BasicGame {
     private CarteGalaxie c; //Variable qui sert juste à tester, non définitive
+    private Planete p0, p1, p2;
     private Vaisseau v1;
     private Heros heros;
     //Constructeur : on initialise en donnant le nom de la fenêtre (à changer)
@@ -28,9 +33,12 @@ public class Game extends BasicGame {
      * De même ici le contenu de la fonction est un test, rien à voir avec le code définitif
      */
     public void render(GameContainer gc, Graphics g) throws SlickException {
-    //    c.affiche(gc, g);
+        c.affiche(gc, g);
+        p0.affiche(gc, g);
+        p1.affiche(gc, g);
+        p2.affiche(gc, g);
     //    v1.affiche(gc, g);
-        heros.affiche(gc, g);
+        //heros.affiche(gc, g);
     }
     
     @Override
@@ -40,7 +48,7 @@ public class Game extends BasicGame {
      * Idem, c'est pour tester
      */
     public void update(GameContainer gc, int t) {
-        heros.déplacements(gc);
+        //heros.déplacements(gc);
     }
     
     @Override
@@ -51,8 +59,17 @@ public class Game extends BasicGame {
      * De même que les autres fonction, c'est juste un test pour le moment
      */
     public void init(GameContainer gc) {
-     //   c = new CarteGalaxie();
-     //   v1= new Vaisseau();
-        heros = new Heros();
+        try {
+            c = new CarteGalaxie();
+            p0 = new Planete(0);
+            p1 = new Planete(1);
+            p2 = new Planete(2);
+            //heros = new Heros();
+            //heros = new Heros();
+        } catch (SQLException ex) {
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
