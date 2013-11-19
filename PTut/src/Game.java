@@ -1,6 +1,6 @@
 
 
-import Carte.CarteGalaxie;
+import CarteGalaxie.CarteGalaxie;
 import Personnage.Vaisseau;
 import Personnage.Heros;
 import org.newdawn.slick.BasicGame;

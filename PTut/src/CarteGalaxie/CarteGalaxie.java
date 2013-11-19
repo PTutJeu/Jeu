@@ -1,4 +1,4 @@
-package Carte;
+package CarteGalaxie;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
