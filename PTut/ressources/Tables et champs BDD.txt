@@ -1,0 +1,11 @@
+Table CARTEGALAXIE:
+	ID NUMBER // Identifiant de la planete (primary key)
+	IMG VARCHAR2(40) // Chemin d'accès de l'image a afficher
+	NBPLANETE NUMBER // Nombre de planete que contient la map
+
+Table PLANETE:
+	ID NUMBER // Identifiant de la planete (primary key)
+	MAP NUMBER // Identifiant de la map sur laquelle elle se trouve (foreign key)
+	X NUMBER // Position en x sur la map
+	Y NUMBER // Position en y sur la map
+	IMG VARCHAR2(40) // Chemin d'accès de l'image a afficher
