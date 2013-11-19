@@ -8,6 +8,8 @@ import java.util.List;
 public abstract class Personnage {
     protected int x; //Coordonnée en x du héros
     protected int y; //Coordonnée en y du héros
+    protected int x1; //coordonnée du coin inférieur de l'image
+    protected int y1; //coordonnée du coin inférieur de l'image
     protected int vie; //Vie actuelle du personnage
     protected int xp; //expérience du personnage
     protected int niveau; //Niveau du Personnage
@@ -35,6 +37,8 @@ public abstract class Personnage {
     public int getNiveau(){ return niveau;}
     public int getX(){ return x; }
     public int getY(){ return y;}
+    public int getX1(){ return x1; }
+    public int getY1(){ return y1;}
     
     //Setters
     public void setVie(int v){ vie=v; }

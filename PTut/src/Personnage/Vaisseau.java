@@ -14,6 +14,8 @@ public class Vaisseau extends Personnage{
             super();
             x = 250;
             y = 250;
+            x1 = x + Image.BOTTOM_RIGHT;
+            y1 = y + Image.BOTTOM_RIGHT;
         }
         
         public void affiche(GameContainer gc, Graphics g) throws SlickException {
@@ -41,6 +43,19 @@ public class Vaisseau extends Personnage{
         if( input.isKeyDown(Input.KEY_DOWN) ){ // Si la variable pressée est flèche gauche alors on déplace le héros à gauche
             y = y+4;
         }
+    }
+        // Collision
+    /**
+     *
+     * @param v
+     * @return 
+     */
+    public boolean collision ( int x, int y )
+	{
+	if( y > getY1() ) return false;
+	if( x > getX1() ) return false;
+	return true;
+	}
 
-      }
+      
 }
