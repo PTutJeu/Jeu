@@ -12,7 +12,7 @@ public class CarteGalaxie {
     
     public CarteGalaxie() {
         id = 0;
-        caImg = "ressources/images/fondcarte.jpg";
+        caImg = "ressources/images/fondcartegal.png";
         nbPlanete = 0;
     }
     
