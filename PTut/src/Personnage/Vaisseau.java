@@ -18,14 +18,10 @@ public class Vaisseau extends Personnage{
         }
         
         public void affiche(GameContainer gc, Graphics g) throws SlickException {
-        /*
-         * JE SAIS PAS ENCORE COMMENT QU'ON FAIT, CA DOIT ETRE UN TRUC DE CE STYLE.
-         * APRES QUELQUES TEST VISIBLEMENT CA MARCHE, A VERIFIER QUAND MEME, POSSIBLE SOURCE
-         * D'ERREURS !
-         */
+        
         //On charge l'image correspondant à la cellule (grâce au chemin d'accès)
         Image img = new Image("ressources/images/vaisseau.png");
         //On affiche l'image à la position voulue
-        g.drawImage(img, x, y);
+        g.drawImage(img, 25, 25);
     }
 }

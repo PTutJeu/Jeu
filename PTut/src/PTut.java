@@ -1,5 +1,6 @@
 
 import BDD.Requete;
+import Personnage.Vaisseau;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.SlickException;
 
@@ -13,5 +14,6 @@ public class PTut {
         app.setTargetFrameRate(60); //On fixe le max fps a 60
         app.setShowFPS(false); //On affiche pas les fps a l'ecran
         app.start(); //On démarre le jeu
+      
     }
 }

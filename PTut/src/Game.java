@@ -1,5 +1,6 @@
 
 import Carte.CarteGalaxie;
+import Personnage.Vaisseau;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -12,7 +13,7 @@ import org.newdawn.slick.SlickException;
  */
 public class Game extends BasicGame {
     private CarteGalaxie c; //Variable qui sert juste à tester, non définitive
-    
+    private Vaisseau v1;
     //Constructeur : on initialise en donnant le nom de la fenêtre (à changer)
     public Game() {
         super("Game");
@@ -25,6 +26,7 @@ public class Game extends BasicGame {
      */
     public void render(GameContainer gc, Graphics g) throws SlickException {
         c.affiche(gc, g);
+        v1.affiche(gc, g);
     }
     
     @Override
@@ -46,5 +48,6 @@ public class Game extends BasicGame {
      */
     public void init(GameContainer gc) {
         c = new CarteGalaxie();
+        v1= new Vaisseau();
     }
 }
