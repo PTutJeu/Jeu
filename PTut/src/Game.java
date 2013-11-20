@@ -48,7 +48,8 @@ public class Game extends BasicGame {
      */
     public void update(GameContainer gc, int t) {
         heros.déplacements(gc);
-        heros.tomber(gc);
+        heros.tomber(gc, heros.getSauter());
+        heros.sauter(gc, heros.getSauter());
     }
     
     @Override
