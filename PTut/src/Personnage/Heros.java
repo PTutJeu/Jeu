@@ -13,7 +13,7 @@ import org.newdawn.slick.SlickException;
 public class Heros extends Personnage {
     
     private boolean sauter;
-    private int test= 0;
+    private float vitesseVertical = 0.0f;
     
     public boolean getSauter(){
         return sauter;
@@ -32,28 +32,8 @@ public class Heros extends Personnage {
         g.drawImage(img, x, y);
     }
    
-    public void tomber(GameContainer gc, boolean sauter) {
-        if ( !sauter ){
-            if( getY()<570 )
-                y += 4;
-            
-        }
-    }
-     public void sauter(GameContainer gc, boolean sauter){   
-             if(test < 200 && sauter == true){        
-                y -=4;
-                test++;
-             }
-             else{
-                    this.sauter = false;
-                    if(test >= 0)
-                    test--;
-             }
-             
-         
-     }
- 
-    public void déplacements(GameContainer gc){
+    
+    public void déplacements(GameContainer gc, int t){
         Input input = gc.getInput(); //Variable de type entrée
         
         if( input.isKeyDown(Input.KEY_RIGHT) ){ // Si la variable pressée est flèche droite alors on déplace le héros à droite
@@ -63,12 +43,19 @@ public class Heros extends Personnage {
         if( input.isKeyDown(Input.KEY_LEFT) ){ // Si la variable pressée est flèche gauche alors on déplace le héros à gauche
             x -= 4;
         }
-        if( input.isKeyDown(Input.KEY_UP) ){     
-            if(sauter == false && test == 0)
-                sauter = true;
+        if( input.isKeyDown(Input.KEY_UP) && !sauter ){
+            vitesseVertical = -0.001f* t;
+            y += vitesseVertical;
+            sauter = true;         
         }
-
-      }
+        if ( getY() < 570){
+            if (!sauter){
+                vitesseVertical += 0.01f *t;
+                y += vitesseVertical;
+            }
+        }
         
+      }
+       
     }
     /* A VENIR LES METHODES POUR ATTAQUER... */
