@@ -13,6 +13,7 @@ import org.newdawn.slick.SlickException;
 public class Heros extends Personnage {
     
     private boolean sauter;
+    private int test= 0;
     
     public boolean getSauter(){
         return sauter;
@@ -23,7 +24,7 @@ public class Heros extends Personnage {
         x = 100;
         y = 00;
         sauter = false;
-    }
+       }
     
     //Méthode d'affichage de l'image du héros
     public void affiche(GameContainer gc, Graphics g) throws SlickException {
@@ -38,14 +39,17 @@ public class Heros extends Personnage {
             
         }
     }
-     public void sauter(GameContainer gc, boolean sauter){
-         Input input = gc.getInput();
-         if( input.isKeyDown(Input.KEY_UP) ){
-             sauter = true;
-             if (sauter == true){
-                y -=100;
-         }
-         }
+     public void sauter(GameContainer gc, boolean sauter){   
+             if(test < 200 && sauter == true){        
+                y -=4;
+                test++;
+             }
+             else{
+                    this.sauter = false;
+                    if(test >= 0)
+                    test--;
+             }
+             
          
      }
  
@@ -58,7 +62,11 @@ public class Heros extends Personnage {
         
         if( input.isKeyDown(Input.KEY_LEFT) ){ // Si la variable pressée est flèche gauche alors on déplace le héros à gauche
             x -= 4;
-        }       
+        }
+        if( input.isKeyDown(Input.KEY_UP) ){     
+            if(sauter == false && test == 0)
+                sauter = true;
+        }
 
       }
         
