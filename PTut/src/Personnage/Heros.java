@@ -26,7 +26,10 @@ public class Heros extends Personnage {
    
     public void tomber(GameContainer gc){
         Input input = gc.getInput();
-        if (getY() <= 570){
+        if ( input.isKeyDown(Input.KEY_UP ) ){
+            y -= 10;
+        }
+        else if (getY() <= 570){
             y += 4;}          
     }
     public void déplacements(GameContainer gc){
