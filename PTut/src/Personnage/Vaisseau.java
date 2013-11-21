@@ -9,19 +9,19 @@ import org.newdawn.slick.SlickException;
 
 
 public class Vaisseau extends Personnage{
+        private Image img;
         
-        public Vaisseau(){
+        public Vaisseau() throws SlickException{
             super();
-            x = 250;
-            y = 250;
-            x1 = x + Image.BOTTOM_RIGHT;
-            y1 = y + Image.BOTTOM_RIGHT;
+            img = new Image("ressources/images/vaisseau.png");
+            x = 40;
+            y = 40;
+            x1 = x + img.getWidth();
+            y1 = y + img.getHeight();
         }
         
         public void affiche(GameContainer gc, Graphics g) throws SlickException {
         
-        //On charge l'image correspondant à la cellule (grâce au chemin d'accès)
-        Image img = new Image("ressources/images/vaisseau.png");
         //On affiche l'image à la position voulue
         g.drawImage(img, x, y);
     }
@@ -30,32 +30,60 @@ public class Vaisseau extends Personnage{
         Input input = gc.getInput(); //Variable de type entrée
         
         if( input.isKeyDown(Input.KEY_RIGHT) ){ // Si la variable pressée est flèche droite alors on déplace le héros à droite
-            x = x+4;
+            if(collisionW(input)==false)
+            {
+                x = x+2;
+                x1=x1+2;
+            }
         }
         
         if( input.isKeyDown(Input.KEY_LEFT) ){ // Si la variable pressée est flèche gauche alors on déplace le héros à gauche
-            x = x-4;
+            if(collisionW(input)==false)
+            {
+                x = x-2;
+                x1=x1-2;
+            }   
         }
          if( input.isKeyDown(Input.KEY_UP) ){ // Si la variable pressée est flèche droite alors on déplace le héros à droite
-            y = y-4;
+            if(collisionW(input)==false)
+            {
+                y = y-2;
+                y1=y1-2;
+            }
         }
         
         if( input.isKeyDown(Input.KEY_DOWN) ){ // Si la variable pressée est flèche gauche alors on déplace le héros à gauche
-            y = y+4;
+            if(collisionW(input)==false)
+            {
+                y = y+2;
+                y1=y1+2;
+            }
         }
     }
-        // Collision
-    /**
-     *
-     * @param v
-     * @return 
-     */
-    public boolean collision ( int x, int y )
-	{
-	if( y > getY1() ) return false;
-	if( x > getX1() ) return false;
-	return true;
-	}
-
+    public boolean collisionW(Input input)
+    {
+        boolean b=false;
+        if( input.isKeyDown(Input.KEY_LEFT) )
+        {
+            if(this.x-2<0)
+                b=true;
+        }
+        if( input.isKeyDown(Input.KEY_RIGHT))
+        {
+            if(this.x1+2>800)
+                b=true;
+        }
+        if( input.isKeyDown(Input.KEY_DOWN) )
+        {
+            if(this.y1+2>600)
+                b=true;
+        }
+        if( input.isKeyDown(Input.KEY_UP) )
+        {
+            if(this.y-2<0)
+               b=true;
+        }
+        return b;
+    }
       
 }
