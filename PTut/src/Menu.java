@@ -1,5 +1,9 @@
 
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
+import org.newdawn.slick.SlickException;
 
 
 /**
@@ -11,4 +15,23 @@ public class Menu {
     private int y;
     Image img;
     
-}
+    public Menu() throws SlickException
+    {
+        img = new Image("ressources/images/menu.png");
+        x=250;
+        y=100;
+              
+    }
+    
+    public void affiche(GameContainer gc, Graphics g) throws SlickException
+    {
+        Input input = gc.getInput();
+        if( input.isKeyDown(Input.KEY_ESCAPE))
+        {
+            g.drawImage(img, x, y); //On affiche l'image à la position voulue
+        }
+
+        }
+    }
+    
+

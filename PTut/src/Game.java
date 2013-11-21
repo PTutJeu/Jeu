@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 /*
@@ -22,6 +23,7 @@ public class Game extends BasicGame {
     private Vaisseau v;
     private Planete p0, p1;
     private Heros heros;
+    private Menu menu;
     //Constructeur : on initialise en donnant le nom de la fenêtre (à changer)
     public Game() {
         super("Game");
@@ -37,9 +39,8 @@ public class Game extends BasicGame {
         p0.affiche(gc, g);
         p1.affiche(gc, g);
         v.affiche(gc, g);
-
-        v.affiche(gc, g);
         //heros.affiche(gc, g);
+        menu.affiche(gc,g);
     }
     
     @Override
@@ -70,8 +71,7 @@ public class Game extends BasicGame {
             p1 = new Planete(1);
             //heros = new Heros();
             v = new Vaisseau();
-            //heros = new Heros();
-            //heros = new Heros();
+            menu = new Menu();
         } catch (SQLException ex) {
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {

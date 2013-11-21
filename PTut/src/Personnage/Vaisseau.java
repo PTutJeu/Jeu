@@ -1,6 +1,7 @@
 
 package Personnage;
 
+import CarteGalaxie.Planete;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -84,6 +85,34 @@ public class Vaisseau extends Personnage{
                b=true;
         }
         return b;
+    }
+    
+    public boolean collisionP(Input input , int id , int x , int y)
+    {
+        boolean b=false;        
+        if( input.isKeyDown(Input.KEY_LEFT) )
+        {
+            if(this.x-2<0)
+                b=true;
+        }
+        if( input.isKeyDown(Input.KEY_RIGHT))
+        {
+            if(this.x1+2>x)
+                b=true;
+        }
+        if( input.isKeyDown(Input.KEY_DOWN) )
+        {
+            if(this.y1+2>y)
+                b=true;
+        }
+        if( input.isKeyDown(Input.KEY_UP) )
+        {
+            if(this.y-2<0)
+               b=true;
+        }
+        
+        return b;
+        
     }
       
 }
