@@ -24,9 +24,12 @@ public class Planete {
     public Planete() throws SQLException, ClassNotFoundException, SlickException {
         id = 0;
         
+        //On crée une variable permettant de faire une requete sql et on récupère les 
+        //données concernant la planete
         Requete rq = new Requete();
         ResultSet rs = rq.select("SELECT * FROM PLANETE WHERE ID = " +id+ ";");
         
+        //On attribue les valeurs récupérées dans la BDD aux attributs
         idMap = rs.getInt("MAP");
         x = rs.getInt("X");
         y = rs.getInt("Y");
@@ -34,9 +37,11 @@ public class Planete {
         largeur = img.getWidth();
         hauteur = img.getHeight();
         
+        //On ferme la BDD
         rq.closeDB();
     }
     
+    //Cf constructeur par défaut
     public Planete(int id) throws SQLException, ClassNotFoundException, SlickException {
         this.id = id;
         
@@ -53,6 +58,7 @@ public class Planete {
         rq.closeDB();
     }
     
+    //Getters
     public int getId() { return id; }
     public int getIdMap() { return idMap; }
     public int getX() { return x; }
@@ -61,6 +67,7 @@ public class Planete {
     public int getLarg() { return largeur; }
     public int getHaut() { return hauteur; }
     
+    //Méthode d'affichage
     public void affiche(GameContainer gc, Graphics g) throws SlickException {
         g.drawImage(img, x, y);
     }
