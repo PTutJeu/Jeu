@@ -21,7 +21,6 @@ import org.newdawn.slick.SlickException;
 public class Game extends BasicGame {
     private CarteGalaxie c; //Variable qui sert juste à tester, non définitive
     private Vaisseau v;
-    private Planete p0, p1;
     private Heros heros;
     private Menu menu;
     //Constructeur : on initialise en donnant le nom de la fenêtre (à changer)
@@ -38,8 +37,6 @@ public class Game extends BasicGame {
         boolean b = false;
         Input input = gc.getInput();
         c.affiche(gc, g);
-        p0.affiche(gc, g);
-        p1.affiche(gc, g);
         v.affiche(gc, g);
         heros.affiche(gc, g);
         if(input.isKeyDown(Input.KEY_ESCAPE))
@@ -75,8 +72,6 @@ public class Game extends BasicGame {
     public void init(GameContainer gc) throws SlickException {
         try {
             c = new CarteGalaxie();
-            p0 = new Planete(0);
-            p1 = new Planete(1);
             heros = new Heros();
             v = new Vaisseau();
             menu = new Menu();

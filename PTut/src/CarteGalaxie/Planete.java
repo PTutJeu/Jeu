@@ -13,15 +13,13 @@ public class Planete {
     private int idMap; //Identifiant de la map sur laquelle elle se trouve
     private int x; //Position en x de la planete sur la map
     private int y; //Position en y de la planete sur la map
-    private String caImg; //Chemin d'accès de l'image de la planete
-    private int larg; //Largeur de l'image de la planete
-    private int haut; //Hauteur de l'image de la planete
+    private Image img; //Chemin d'accès de l'image de la planete
     
     /*
      * Constructeur : On crée une planete en prenant les informations dans la base de donnée
      * Par défaut, on prendra l'id = 0;
      */
-    public Planete() throws SQLException, ClassNotFoundException {
+    public Planete() throws SQLException, ClassNotFoundException, SlickException {
         id = 0;
         
         Requete rq = new Requete();
@@ -30,14 +28,12 @@ public class Planete {
         idMap = rs.getInt("MAP");
         x = rs.getInt("X");
         y = rs.getInt("Y");
-        caImg = rs.getString("IMG");
-        larg = rs.getInt("LARGEUR");
-        haut = rs.getInt("HAUTEUR");
+        img = new Image(rs.getString("IMG"));
         
         rq.closeDB();
     }
     
-    public Planete(int id) throws SQLException, ClassNotFoundException {
+    public Planete(int id) throws SQLException, ClassNotFoundException, SlickException {
         this.id = id;
         
         Requete rq = new Requete();
@@ -46,9 +42,7 @@ public class Planete {
         idMap = rs.getInt("MAP");
         x = rs.getInt("X");
         y = rs.getInt("Y");
-        caImg = rs.getString("IMG");
-        larg = rs.getInt("LARGEUR");
-        haut = rs.getInt("HAUTEUR");
+        img = new Image(rs.getString("IMG"));
         
         rq.closeDB();
     }
@@ -57,12 +51,9 @@ public class Planete {
     public int getIdMap() { return idMap; }
     public int getX() { return x; }
     public int getY() { return y; }
-    public String getCAImg() { return caImg; }
-    public int getLargeur() { return larg; }
-    public int getHauteur() { return haut; }
+    public Image getImg() { return img; }
     
     public void affiche(GameContainer gc, Graphics g) throws SlickException {
-        Image img = new Image(caImg);
         g.drawImage(img, x, y);
     }
 }
