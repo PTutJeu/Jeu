@@ -50,11 +50,8 @@ public class Game extends BasicGame {
      * Idem, c'est pour tester
      */
     public void update(GameContainer gc, int t) {
-
-        //heros.déplacements(gc);
         v.deplace(gc);
-        //heros.déplacements(gc, t);
-
+        heros.déplacements(gc, t);
     }
     
     @Override
@@ -69,7 +66,7 @@ public class Game extends BasicGame {
             c = new CarteGalaxie();
             p0 = new Planete(0);
             p1 = new Planete(1);
-            //heros = new Heros();
+            heros = new Heros();
             v = new Vaisseau();
             menu = new Menu();
         } catch (SQLException ex) {
