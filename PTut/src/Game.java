@@ -41,7 +41,7 @@ public class Game extends BasicGame {
         p0.affiche(gc, g);
         p1.affiche(gc, g);
         v.affiche(gc, g);
-        //heros.affiche(gc, g);
+        heros.affiche(gc, g);
         if(input.isKeyDown(Input.KEY_ESCAPE))
         {
             b = true;
