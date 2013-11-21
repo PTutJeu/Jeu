@@ -28,7 +28,7 @@ public class Heros extends Personnage {
         
         Input input = gc.getInput();
 
-        if( input.isKeyDown(Input.KEY_RIGHT) ){
+        if( input.isKeyDown(Input.KEY_SPACE) ){
             Image projec = new Image("ressources/images/projectile.png");
             g.drawImage(projec, x+=4, y);
         }
