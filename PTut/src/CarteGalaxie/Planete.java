@@ -14,6 +14,8 @@ public class Planete {
     private int x; //Position en x de la planete sur la map
     private int y; //Position en y de la planete sur la map
     private Image img; //Chemin d'accès de l'image de la planete
+    private int hauteur; //Hauteur de l'image
+    private int largeur; //Largeur de l'image
     
     /*
      * Constructeur : On crée une planete en prenant les informations dans la base de donnée
@@ -29,6 +31,8 @@ public class Planete {
         x = rs.getInt("X");
         y = rs.getInt("Y");
         img = new Image(rs.getString("IMG"));
+        largeur = img.getWidth();
+        hauteur = img.getHeight();
         
         rq.closeDB();
     }
@@ -43,6 +47,8 @@ public class Planete {
         x = rs.getInt("X");
         y = rs.getInt("Y");
         img = new Image(rs.getString("IMG"));
+        largeur = img.getWidth();
+        hauteur = img.getHeight();
         
         rq.closeDB();
     }
@@ -52,6 +58,8 @@ public class Planete {
     public int getX() { return x; }
     public int getY() { return y; }
     public Image getImg() { return img; }
+    public int getLarg() { return largeur; }
+    public int getHaut() { return hauteur; }
     
     public void affiche(GameContainer gc, Graphics g) throws SlickException {
         g.drawImage(img, x, y);
