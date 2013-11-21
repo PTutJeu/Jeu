@@ -23,15 +23,13 @@ public class Menu {
               
     }
     
-    public void affiche(GameContainer gc, Graphics g) throws SlickException
+    public boolean affiche(GameContainer gc, Graphics g) throws SlickException
     {
-        Input input = gc.getInput();
-        if( input.isKeyDown(Input.KEY_ESCAPE))
-        {
-            g.drawImage(img, x, y); //On affiche l'image à la position voulue
-        }
-
-        }
+        boolean b = false;
+        g.drawImage(img, x, y);
+        return b;
     }
+    
+}
     
 

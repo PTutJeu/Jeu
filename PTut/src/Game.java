@@ -35,12 +35,23 @@ public class Game extends BasicGame {
      * De même ici le contenu de la fonction est un test, rien à voir avec le code définitif
      */
     public void render(GameContainer gc, Graphics g) throws SlickException {
+        boolean b = false;
+        Input input = gc.getInput();
         c.affiche(gc, g);
         p0.affiche(gc, g);
         p1.affiche(gc, g);
         v.affiche(gc, g);
         //heros.affiche(gc, g);
-        menu.affiche(gc,g);
+        if(input.isKeyDown(Input.KEY_ESCAPE))
+        {
+            b = true;
+        }
+        if(b == true)
+        {
+            boolean c = menu.affiche(gc,g);
+        }
+            
+            
     }
     
     @Override

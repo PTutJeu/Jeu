@@ -1,7 +1,6 @@
 
 package Personnage;
 
-import CarteGalaxie.Planete;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -92,7 +91,7 @@ public class Vaisseau extends Personnage{
         boolean b=false;        
         if( input.isKeyDown(Input.KEY_LEFT) )
         {
-            if(this.x-2<0)
+            if(this.x-2<x)
                 b=true;
         }
         if( input.isKeyDown(Input.KEY_RIGHT))
