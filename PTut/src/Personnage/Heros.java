@@ -25,13 +25,6 @@ public class Heros extends Personnage {
     public void affiche(GameContainer gc, Graphics g) throws SlickException {
         Image img = new Image("ressources/images/heros.png");
         g.drawImage(img, x, y);
-        
-        Input input = gc.getInput();
-
-        if( input.isKeyDown(Input.KEY_SPACE) ){
-            Image projec = new Image("ressources/images/projectile.png");
-            g.drawImage(projec, x+=4, y);
-        }
     }
    
     
