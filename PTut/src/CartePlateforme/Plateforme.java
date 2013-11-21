@@ -14,15 +14,19 @@ public class Plateforme {
     private int y; // Coordonnée y de la plateforme
     private int x1;
     private int y1;
+    private Image img;
     
-    public Plateforme(){
-        
+    public Plateforme() throws SlickException{
+        img = new Image("ressources/images/plateforme.png");
+        x= 200;
+        y= 500;
+        x1 = x + img.getWidth();
+        y1 = y + img.getHeight();
     
     }
     
     public void affiche(GameContainer gc, Graphics g) throws SlickException{
-        
-       Image img = new Image("ressources/images/vaisseau.png");
+        g.drawImage(img, x, y);     
     }
     
     
