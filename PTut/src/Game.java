@@ -2,6 +2,7 @@
 
 import CarteGalaxie.CarteGalaxie;
 import CarteGalaxie.Planete;
+import CartePlateforme.Plateforme;
 import Personnage.Vaisseau;
 import Personnage.Heros;
 import java.sql.SQLException;
@@ -23,6 +24,7 @@ public class Game extends BasicGame {
     private Vaisseau v;
     private Heros heros;
     private Menu menu;
+    private Plateforme plate;
     //Constructeur : on initialise en donnant le nom de la fenêtre (à changer)
     public Game() {
         super("Game");
@@ -39,6 +41,7 @@ public class Game extends BasicGame {
         c.affiche(gc, g);
         v.affiche(gc, g);
         heros.affiche(gc, g);
+        plate.affiche(gc,g);
         if(input.isKeyDown(Input.KEY_ESCAPE))
         {
             b = true;
@@ -75,6 +78,7 @@ public class Game extends BasicGame {
             heros = new Heros();
             v = new Vaisseau();
             menu = new Menu();
+            plate = new Plateforme();
         } catch (SQLException ex) {
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
