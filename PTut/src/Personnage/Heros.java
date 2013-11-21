@@ -25,6 +25,13 @@ public class Heros extends Personnage {
     public void affiche(GameContainer gc, Graphics g) throws SlickException {
         Image img = new Image("ressources/images/heros.png");
         g.drawImage(img, x, y);
+        
+        Input input = gc.getInput();
+
+        if( input.isKeyDown(Input.KEY_RIGHT) ){
+            Image projec = new Image("ressources/images/projectile.png");
+            g.drawImage(projec, x+=4, y);
+        }
     }
    
     
@@ -62,7 +69,9 @@ public class Heros extends Personnage {
         // A SAVOIR QUE CETTE FONCTION SAUT MARCHE POUR LE MOMENT UNIQUEMENT POUR LE BAS DE LA FENETRE
         // IL ME RESTE A IMPLEMENTER CA POUR QUE CA MARCHE AVEC UNE PLATEFORME UNIVERSELLE
       }
+
 }
+
 
 
 
