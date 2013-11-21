@@ -62,7 +62,7 @@ public class Game extends BasicGame {
      */
     public void update(GameContainer gc, int t) {
         v.deplace(gc);
-        heros.déplacements(gc, t);
+        heros.déplacements(gc, t, plate);
     }
     
     @Override
