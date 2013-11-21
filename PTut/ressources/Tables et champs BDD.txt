@@ -9,5 +9,3 @@ Table PLANETE:
 	X NUMBER // Position en x sur la map
 	Y NUMBER // Position en y sur la map
 	IMG VARCHAR2(40) // Chemin d'accès de l'image a afficher
-	LARGEUR NUMBER // Largeur de l'image
-	HAUTEUR NUMBER // Hauteur de l'image
