@@ -5,6 +5,7 @@ import CarteGalaxie.Planete;
 import CartePlateforme.Plateforme;
 import Personnage.Vaisseau;
 import Personnage.Heros;
+import Personnage.Monstre;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,6 +26,7 @@ public class Game extends BasicGame {
     private Heros heros;
     private Menu menu;
     private Plateforme plate;
+    private Monstre monstre;
     //Constructeur : on initialise en donnant le nom de la fenêtre (à changer)
     public Game() {
         super("Game");
@@ -42,6 +44,7 @@ public class Game extends BasicGame {
         v.affiche(gc, g);
         heros.affiche(gc, g);
         plate.affiche(gc,g);
+        monstre.affiche(gc,g);
         if(input.isKeyDown(Input.KEY_ESCAPE))
         {
             b = true;
@@ -63,6 +66,7 @@ public class Game extends BasicGame {
     public void update(GameContainer gc, int t) {
         v.deplace(gc);
         heros.déplacements(gc, t, plate);
+        monstre.déplacements(gc, t, plate,heros);
     }
     
     @Override
@@ -79,6 +83,8 @@ public class Game extends BasicGame {
             v = new Vaisseau();
             menu = new Menu();
             plate = new Plateforme();
+            monstre = new Monstre();
+            
         } catch (SQLException ex) {
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {

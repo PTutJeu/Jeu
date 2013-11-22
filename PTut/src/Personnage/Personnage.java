@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Personnage {
-    protected int x; //Coordonnée en x du héros
-    protected int y; //Coordonnée en y du héros
-    protected int x1; //coordonnée du coin inférieur de l'image
-    protected int y1; //coordonnée du coin inférieur de l'image
+    protected float x; //Coordonnée en x du héros
+    protected float y; //Coordonnée en y du héros
+    protected float x1; //coordonnée du coin inférieur de l'image
+    protected float y1; //coordonnée du coin inférieur de l'image
     protected int vie; //Vie actuelle du personnage
     protected int xp; //expérience du personnage
     protected int niveau; //Niveau du Personnage
@@ -36,17 +36,17 @@ public abstract class Personnage {
     public int getVie(){ return vie; }
     public int getXp(){ return xp;}
     public int getNiveau(){ return niveau;}
-    public int getX(){ return x; }
-    public int getY(){ return y;}
-    public int getX1(){ return x1; }
-    public int getY1(){ return y1;}
+    public float getX(){ return x; }
+    public float getY(){ return y;}
+    public float getX1(){ return x1; }
+    public float getY1(){ return y1;}
     
     //Setters
     public void setVie(int v){ vie=v; }
     public void setXp(int x){ xp=x; }
     public void setNiveau(int n){ niveau=n;}
-    public void setX(int x){ this.x=x;}
-    public void setY(int y){ this.y=y;}
+    public void setX(float x){ this.x=x;}
+    public void setY(float y){ this.y=y;}
     public void setNom(String nom){ this.nom = nom;}
     
 

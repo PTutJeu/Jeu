@@ -24,7 +24,10 @@ public class Heros extends Personnage {
         y = 00;
         x1 = x + img.getWidth();
         y1 = y + img.getHeight();
+        
        }
+
+    public Image getImg(){return img;}
     
     //Méthode d'affichage de l'image du héros
     public void affiche(GameContainer gc, Graphics g) throws SlickException {
@@ -53,7 +56,7 @@ public class Heros extends Personnage {
         else                // Si la position du joueut n'est pas en 570 sauter est vrai
             sauter = true;
         
-        // Chanager la valeur avant le temps réduit la hauteur du saut.
+        // Changer la valeur avant le temps réduit la hauteur du saut.
         if( input.isKeyDown(Input.KEY_UP) && !sauter || input.isKeyDown(Input.KEY_UP) && !sauter && testCollision  ){// Si on presse ArrowUp et que sauter est faux le personnage peut sauter
             vitesseVertical = -0.5f * temps;     // Donc on créer une "Vitesse de déplacement" en fonction du temps
             y += vitesseVertical;                // Et la position de notre héros prend la valeur de la vitesse de déplacement

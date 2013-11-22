@@ -10,10 +10,10 @@ import org.newdawn.slick.SlickException;
  * @author Tanbi
  */
 public class Plateforme {
-    private int x; // Coordonnée x de la plateforme
-    private int y; // Coordonnée y de la plateforme
-    private int x1;
-    private int y1;
+    private float x; // Coordonnée x de la plateforme
+    private float y; // Coordonnée y de la plateforme
+    private float x1;
+    private float y1;
     private Image img;
     
     public Plateforme() throws SlickException{
@@ -31,10 +31,12 @@ public class Plateforme {
     
     
     
-    public int getX(){ return x; }
-    public int getY(){ return y; }
-    public int getX1(){ return x1; }
-    public int getY1(){ return y1; }
+    public float getX(){ return x; }
+    public float getY(){ return y; }
+    public float getX1(){ return x1; }
+    public float getY1(){ return y1; }
+    public Image getImg(){return img;}
+    
     
     public void setX(int x){ this.x=x ; }
     public void setY(int y){ this.y=y ; }

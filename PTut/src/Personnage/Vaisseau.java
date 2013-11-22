@@ -86,7 +86,7 @@ public class Vaisseau extends Personnage{
         return b;
     }
     
-    public boolean collisionP(Input input , int id , int x , int y)
+    public boolean collisionP(Input input , int id , float x , float y)
     {
         boolean b=false;        
         if( input.isKeyDown(Input.KEY_LEFT) )
