@@ -18,17 +18,17 @@ public class MenuInterface {
     private int yBouton;
     
     public MenuInterface(int id) throws SQLException, ClassNotFoundException, SlickException {
-        this.imgFond = new Image("fondMInterface.jpg");
+        this.imgFond = new Image("ressources/images/fondMInterface.jpg");
         idPlanete = id;
         
         Requete rq = new Requete();
-        ResultSet rs = rq.select("SELECT * FROM DETAILS_PLANETE WHERE ID = " +id+ ";");
+        /*ResultSet rs = rq.select("SELECT * FROM DETAILS_PLANETE WHERE ID = " +id+ ";");
         
         if (rs.getInt("POSSEDER") == 0)
             posseder = true;
         else
             posseder = false;
-        nom = rs.getString("NOM");
+        nom = rs.getString("NOM");*/
         
         rq.closeDB();
     }
