@@ -53,7 +53,7 @@ public class Game extends BasicGame {
         {
             b = true;
         }
-        menu.affiche(gc,g);
+        menu.affiche(gc,g,b);
             
             
     }
