@@ -13,23 +13,34 @@ import org.newdawn.slick.SlickException;
 public class Menu {
     private int x;
     private int y;
-    Image img;
+    private Image img;
+    private boolean b;
     
     public Menu() throws SlickException
     {
         img = new Image("ressources/images/menu.png");
         x=250;
         y=100;
-              
+        b = false;
     }
     
-    public boolean affiche(GameContainer gc, Graphics g) throws SlickException
+    public void affiche(GameContainer gc, Graphics g) throws SlickException
     {
-        boolean b = false;
-        g.drawImage(img, x, y);
-        return b;
+        if(b==true)            
+            g.drawImage(img, x, y);
+        
     }
     
+    public void testAffiche(Input input) {
+        if (input.isKeyPressed(Input.KEY_ESCAPE))
+            b = !b;
+        if (b) {
+            if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
+                if (input.getMouseX() > 300 && input.getMouseX() < 500 && input.getMouseY() > 150 && input.getMouseY() < 250)
+                    b = false;
+            }
+        }
+    }
 }
     
 

@@ -28,7 +28,7 @@ public class Game extends BasicGame {
     private Menu menu;
     private Plateforme plate;
     private Monstre monstre;
-    private MenuInterface minter;
+    private boolean b;
     //Constructeur : on initialise en donnant le nom de la fenêtre (à changer)
     public Game() {
         super("Game");
@@ -40,22 +40,18 @@ public class Game extends BasicGame {
      * De même ici le contenu de la fonction est un test, rien à voir avec le code définitif
      */
     public void render(GameContainer gc, Graphics g) throws SlickException {
-        boolean b = false;
-        Input input = gc.getInput();
         c.affiche(gc, g);
-        v.affiche(gc, g);
+        try {
+            v.affiche(gc, g);
+        } catch (SQLException ex) {
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+        }
         heros.affiche(gc, g);
         plate.affiche(gc,g);
         monstre.affiche(gc,g);
-        //minter.affiche(g, v);
-        if(input.isKeyDown(Input.KEY_ESCAPE))
-        {
-            b = true;
-        }
-        if(b == true)
-        {
-            boolean c = menu.affiche(gc,g);
-        }
+        menu.affiche(gc,g);
             
             
     }
@@ -67,9 +63,11 @@ public class Game extends BasicGame {
      * Idem, c'est pour tester
      */
     public void update(GameContainer gc, int t) {
-        v.deplace(gc);
+        Input input = gc.getInput();
+        v.deplace(gc, c);
         heros.déplacements(gc, t, plate);
         monstre.déplacements(gc, t, plate,heros);
+        menu.testAffiche(input);
     }
     
     @Override
@@ -87,12 +85,11 @@ public class Game extends BasicGame {
             menu = new Menu();
             plate = new Plateforme();
             monstre = new Monstre();
-            minter = new MenuInterface(0);
-            
         } catch (SQLException ex) {
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
         }
+        b = false;
     }
 }
