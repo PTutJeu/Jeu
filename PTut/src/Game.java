@@ -52,8 +52,6 @@ public class Game extends BasicGame {
         plate.affiche(gc,g);
         monstre.affiche(gc,g);
         menu.affiche(gc,g);
-            
-            
     }
     
     @Override
