@@ -42,11 +42,8 @@ public class Monstre extends Personnage{
         }
        // Ici je met en place le deplacement du monstre vers le joueur, le -25 devra etre remplacé par la taille de la HITBOX
        // Sinon pour l'instant il me suit normalement
-        while (x < (heros.getX()- heros.getImg().getWidth()-25) || x > (heros.getX()+ heros.getImg().getWidth()+25) )
-        {
-            if (x > (heros.getX()+ heros.getImg().getWidth()+25)) x-=0.5;
-            if (x < (heros.getX()- heros.getImg().getWidth()-25)) x+=0.5;
-        }
+       if (x > (heros.getX1()+25)) x-=2;
+       if (x < (heros.getX()-25)) x+=2;
    }
    public boolean collisions( Plateforme plate){
         if ( y1 < plate.getY() ) return false;
