@@ -28,7 +28,6 @@ public class Game extends BasicGame {
     private Menu menu;
     private Plateforme plate;
     private Monstre monstre;
-    private MenuInterface minter;
     private boolean b;
     //Constructeur : on initialise en donnant le nom de la fenêtre (à changer)
     public Game() {
@@ -54,7 +53,6 @@ public class Game extends BasicGame {
         heros.affiche(gc, g);
         plate.affiche(gc,g);
         monstre.affiche(gc,g);
-        //minter.affiche(g, v);
         if(input.isKeyDown(Input.KEY_ESCAPE))
         {
             b = true;
@@ -91,8 +89,6 @@ public class Game extends BasicGame {
             menu = new Menu();
             plate = new Plateforme();
             monstre = new Monstre();
-            minter = new MenuInterface(0);
-            
         } catch (SQLException ex) {
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
