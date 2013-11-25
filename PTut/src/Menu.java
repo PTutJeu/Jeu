@@ -23,10 +23,23 @@ public class Menu {
               
     }
     
-    public boolean affiche(GameContainer gc, Graphics g) throws SlickException
+    public void affiche(GameContainer gc, Graphics g, boolean b) throws SlickException
     {
-        boolean b = false;
-        g.drawImage(img, x, y);
+        if(b==true)            
+            g.drawImage(img, x, y);
+        
+    }
+    public boolean reprendrePartie(boolean b, Input input)
+    {
+        x = input.getMouseX();
+        y = input.getMouseY();
+        if(b==true)
+        {
+            if(x>300  && x<500  && y>150  && y<250)
+            {
+                b=false;
+            }
+        }
         return b;
     }
     

@@ -29,6 +29,7 @@ public class Game extends BasicGame {
     private Plateforme plate;
     private Monstre monstre;
     private MenuInterface minter;
+    private boolean b;
     //Constructeur : on initialise en donnant le nom de la fenêtre (à changer)
     public Game() {
         super("Game");
@@ -40,7 +41,7 @@ public class Game extends BasicGame {
      * De même ici le contenu de la fonction est un test, rien à voir avec le code définitif
      */
     public void render(GameContainer gc, Graphics g) throws SlickException {
-        boolean b = false;
+        b = false;
         Input input = gc.getInput();
         c.affiche(gc, g);
         v.affiche(gc, g);
@@ -52,10 +53,7 @@ public class Game extends BasicGame {
         {
             b = true;
         }
-        if(b == true)
-        {
-            boolean c = menu.affiche(gc,g);
-        }
+        menu.affiche(gc,g);
             
             
     }
