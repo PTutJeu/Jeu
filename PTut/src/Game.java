@@ -51,7 +51,7 @@ public class Game extends BasicGame {
         heros.affiche(gc, g);
         plate.affiche(gc,g);
         monstre.affiche(gc,g);
-        menu.affiche(gc,g,b);
+        menu.affiche(gc,g);
             
             
     }
@@ -67,10 +67,7 @@ public class Game extends BasicGame {
         v.deplace(gc, c);
         heros.déplacements(gc, t, plate);
         monstre.déplacements(gc, t, plate,heros);
-        if(input.isKeyPressed(Input.KEY_ESCAPE))
-        {
-            b = !b;
-        }
+        menu.testAffiche(input);
     }
     
     @Override
