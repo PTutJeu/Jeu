@@ -66,9 +66,10 @@ public class CarteGalaxie {
     }
     
     //Getters
-    public int getId() { return id; };
-    public Image getImg() { return img; };
-    public int getNbPlanete() { return nbPlanete; };
+    public int getId() { return id; }
+    public Image getImg() { return img; }
+    public int getNbPlanete() { return nbPlanete; }
+    public List<Planete> getPlanetes() { return planetes; }
     
     //Méthode pour afficher
     public void affiche(GameContainer gc, Graphics g) throws SlickException {

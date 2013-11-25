@@ -43,7 +43,13 @@ public class Game extends BasicGame {
         boolean b = false;
         Input input = gc.getInput();
         c.affiche(gc, g);
-        v.affiche(gc, g);
+        try {
+            v.affiche(gc, g);
+        } catch (SQLException ex) {
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+        }
         heros.affiche(gc, g);
         plate.affiche(gc,g);
         monstre.affiche(gc,g);
@@ -67,7 +73,7 @@ public class Game extends BasicGame {
      * Idem, c'est pour tester
      */
     public void update(GameContainer gc, int t) {
-        v.deplace(gc);
+        v.deplace(gc, c);
         heros.déplacements(gc, t, plate);
         monstre.déplacements(gc, t, plate,heros);
     }
