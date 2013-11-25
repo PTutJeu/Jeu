@@ -40,8 +40,6 @@ public class Game extends BasicGame {
      * De même ici le contenu de la fonction est un test, rien à voir avec le code définitif
      */
     public void render(GameContainer gc, Graphics g) throws SlickException {
-        b = false;
-        Input input = gc.getInput();
         c.affiche(gc, g);
         try {
             v.affiche(gc, g);
@@ -53,10 +51,6 @@ public class Game extends BasicGame {
         heros.affiche(gc, g);
         plate.affiche(gc,g);
         monstre.affiche(gc,g);
-        if(input.isKeyDown(Input.KEY_ESCAPE))
-        {
-            b = true;
-        }
         menu.affiche(gc,g,b);
             
             
@@ -69,9 +63,14 @@ public class Game extends BasicGame {
      * Idem, c'est pour tester
      */
     public void update(GameContainer gc, int t) {
+        Input input = gc.getInput();
         v.deplace(gc, c);
         heros.déplacements(gc, t, plate);
         monstre.déplacements(gc, t, plate,heros);
+        if(input.isKeyPressed(Input.KEY_ESCAPE))
+        {
+            b = !b;
+        }
     }
     
     @Override
@@ -94,5 +93,6 @@ public class Game extends BasicGame {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
         }
+        b = false;
     }
 }

@@ -72,7 +72,9 @@ public class Vaisseau extends Personnage{
             }
         }
         
-        isOnPlanete = false;
+        isOnPlanete = false; //On suppose que le vaisseau n'est pas sur une planete
+        //On test ensuite toute les planetes, si il est sur une, on met la variable a true 
+        //et on récupère l'id de la planete sur laquelle il se trouve
         for (Planete p : c.getPlanetes()) {
             if (collisionP(p)) {
                 isOnPlanete = true;
@@ -108,7 +110,7 @@ public class Vaisseau extends Personnage{
     
     public boolean collisionP(Planete p)
     {
-        boolean b=false;        
+        boolean b=false;      
         if (this.x > p.getX() && this.x1 < p.getX() + p.getLarg()&& this.y > p.getY() && this.y1 < p.getY() + p.getHaut())
             b = true;
         
