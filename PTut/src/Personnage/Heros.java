@@ -51,6 +51,7 @@ public class Heros extends Personnage {
         
         // PHASE DE SAUT
         boolean testCollision = collisions(plate);
+        
         if ( getY() == 570 || getY()== plate.getY()-30 && testCollision) // Si la position du joueur est en 570 sauter est faux
             sauter = false;
         else                // Si la position du joueut n'est pas en 570 sauter est vrai
@@ -62,7 +63,7 @@ public class Heros extends Personnage {
             y += vitesseVertical;                // Et la position de notre héros prend la valeur de la vitesse de déplacement
             y1 = y + img.getHeight();
         }
-        if ( !testCollision ){
+        if ( !testCollision || testCollision && plate.getY1() >= getY() && getY() >= plate.getY()  ){
             vitesseVertical += 0.01f * temps; // Même procédé que pour le saut mais fait en sorte de faire tomber le héros tout le temps
             y += vitesseVertical;
             y1 = y + img.getHeight();
