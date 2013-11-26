@@ -19,7 +19,7 @@ public class Plateforme {
     public Plateforme() throws SlickException{
         img = new Image("ressources/images/plateforme.png");
         x= 200;
-        y= 500;
+        y= 420;
         x1 = x + img.getWidth();
         y1 = y + img.getHeight();
     
