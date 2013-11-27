@@ -61,7 +61,7 @@ public class Heros extends Personnage {
         
         // Changer la valeur avant le temps réduit la hauteur du saut.
         if( input.isKeyDown(Input.KEY_UP) && !sauter ){// Si on presse ArrowUp et que sauter est faux le personnage peut sauter
-            vitesseVertical = -0.5f * temps;     // Donc on créer une "Vitesse de déplacement" en fonction du temps
+            vitesseVertical += -0.3f * temps;     // Donc on créer une "Vitesse de déplacement" en fonction du temps
             y += vitesseVertical;                // Et la position de notre héros prend la valeur de la vitesse de déplacement
             y1 = y + img.getHeight();
         }
@@ -87,7 +87,7 @@ public class Heros extends Personnage {
         }
         
         if ( testCollision && getY() >= plate.getY() && getY() <= plate.getY1() || testCollision && getY() >= plate.getY1() ){
-            setY( plate.getY1() +10 );
+            setY( plate.getY1() + 0.1f );
         }   
         // A SAVOIR QUE CETTE FONCTION SAUT MARCHE POUR LE MOMENT UNIQUEMENT POUR LE BAS DE LA FENETRE
         // IL ME RESTE A IMPLEMENTER CA POUR QUE CA MARCHE AVEC UNE PLATEFORME UNIVERSELLE
