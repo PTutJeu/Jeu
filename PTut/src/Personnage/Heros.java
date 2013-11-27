@@ -21,7 +21,7 @@ public class Heros extends Personnage {
         super();
         img = new Image("ressources/images/heros.png");
         x = 100;
-        y = 00;
+        y = 0;
         x1 = x + img.getWidth();
         y1 = y + img.getHeight();
         
@@ -37,7 +37,7 @@ public class Heros extends Personnage {
     
     public void déplacements(GameContainer gc, int temps, Plateforme plate){
         Input input = gc.getInput(); //Variable de type entrée
-        boolean testCollision = collisions(plate);
+        
         
         if( input.isKeyDown(Input.KEY_RIGHT) ){ // Si la variable pressée est flèche droite alors on déplace le héros à droite
             if ( getX1() < 799){
@@ -54,6 +54,8 @@ public class Heros extends Personnage {
         }
         
         // PHASE DE SAUT
+        boolean testCollision = collisions(plate);
+        
         if ( getY() == 570 || getY()== plate.getY()-30 && testCollision) // Si la position du joueur est en 570 sauter est faux
             sauter = false;
         else                // Si la position du joueut n'est pas en 570 sauter est vrai
@@ -61,7 +63,7 @@ public class Heros extends Personnage {
         
         // Changer la valeur avant le temps réduit la hauteur du saut.
         if( input.isKeyDown(Input.KEY_UP) && !sauter ){// Si on presse ArrowUp et que sauter est faux le personnage peut sauter
-            vitesseVertical += -0.3f * temps;     // Donc on créer une "Vitesse de déplacement" en fonction du temps
+            vitesseVertical = -0.5f * temps;     // Donc on créer une "Vitesse de déplacement" en fonction du temps
             y += vitesseVertical;                // Et la position de notre héros prend la valeur de la vitesse de déplacement
             y1 = y + img.getHeight();
         }
@@ -87,7 +89,7 @@ public class Heros extends Personnage {
         }
         
         if ( testCollision && getY() >= plate.getY() && getY() <= plate.getY1() || testCollision && getY() >= plate.getY1() ){
-            setY( plate.getY1() + 0.1f );
+            setY( plate.getY1() + 01 );
         }   
         // A SAVOIR QUE CETTE FONCTION SAUT MARCHE POUR LE MOMENT UNIQUEMENT POUR LE BAS DE LA FENETRE
         // IL ME RESTE A IMPLEMENTER CA POUR QUE CA MARCHE AVEC UNE PLATEFORME UNIVERSELLE
