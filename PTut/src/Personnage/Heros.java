@@ -100,8 +100,10 @@ public class Heros extends Personnage {
         if ( y1 < plate.getY() ) return false;
         if ( x1 < plate.getX() ) return false;
         if ( y > plate.getY1() ) return false;
-        if ( x > plate.getX1() ) return false;
+        if ( x > plate.getX1() ) return false; 
+        vitesseVertical=0;
         return true;
+
     }
 
 }
