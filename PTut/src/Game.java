@@ -1,8 +1,6 @@
 
 
 import CarteGalaxie.CarteGalaxie;
-import CarteGalaxie.MenuInterface;
-import CarteGalaxie.Planete;
 import CartePlateforme.Plateforme;
 import Personnage.Vaisseau;
 import Personnage.Heros;
@@ -10,7 +8,6 @@ import Personnage.Monstre;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -44,9 +41,7 @@ public class Game extends BasicGame {
         c.affiche(gc, g);
         try {
             v.affiche(gc, g);
-        } catch (SQLException ex) {
-            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
+         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
         }
         heros.affiche(gc, g);
@@ -60,12 +55,13 @@ public class Game extends BasicGame {
      * éléments à afficher
      * Idem, c'est pour tester
      */
-    public void update(GameContainer gc, int t,AppGameContainer app) {
+    @Override
+    public void update(GameContainer gc, int t) throws SlickException {
         Input input = gc.getInput();
         v.deplace(gc, c);
         heros.déplacements(gc, t, plate);
         monstre.déplacements(gc, t, plate,heros);
-        menu.testAffiche(input, app);
+        menu.testAffiche(input, gc);
     }
     
     @Override
@@ -83,16 +79,17 @@ public class Game extends BasicGame {
             menu = new Menu();
             plate = new Plateforme("plateforme", 200, 450);
             monstre = new Monstre();
-        } catch (SQLException ex) {
-            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
+        } catch (    SQLException | ClassNotFoundException ex) {
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
         }
         b = false;
     }
 
-    @Override
-    public void update(GameContainer gc, int i) throws SlickException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    /**
+     *
+     * @param gc
+     * @param i
+     * @throws SlickException
+     */
+
 }

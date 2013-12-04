@@ -32,25 +32,25 @@ public class Menu {
         
     }
     
-    public void testAffiche(Input input,AppGameContainer app) {
+    public void testAffiche(Input input, GameContainer gc) {
         if (input.isKeyPressed(Input.KEY_ESCAPE)){
             b = !b;
-            if (b)
+            /*if (b)
                 app.pause();
             if (!b)
-                app.resume();
+                app.resume();*/
         }
         if (b) {
             if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
                 if (input.getMouseX() > 300 && input.getMouseX() < 500 && input.getMouseY() > 150 && input.getMouseY() < 250)
                     b = false;
-            }
-            if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)){
-                if (input.getMouseX() > 300 && input.getMouseX() < 500 && input.getMouseY() > 300 && input.getMouseY() < 400)
-                    app.exit();
+                if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)){
+                    if (input.getMouseX() > 0 && input.getMouseX() < 20 && input.getMouseY() > 0 && input.getMouseY() < 20)
+                        gc.isFullscreen();
             }
         }
     }
+ }
 }
     
 
