@@ -10,6 +10,7 @@ import Personnage.Monstre;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -56,18 +57,17 @@ public class Game extends BasicGame {
             
     }
     
-    @Override
-    /*
+        /*
      * Méthode qui sert à récupérer les évènements générés par l'utilisateur, et à modifié les
      * éléments à afficher
      * Idem, c'est pour tester
      */
-    public void update(GameContainer gc, int t) {
+    public void update(GameContainer gc, int t,AppGameContainer app) {
         Input input = gc.getInput();
         v.deplace(gc, c);
         heros.déplacements(gc, t, plate);
         monstre.déplacements(gc, t, plate,heros);
-        menu.testAffiche(input);
+        menu.testAffiche(input, app);
     }
     
     @Override
@@ -91,5 +91,10 @@ public class Game extends BasicGame {
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
         }
         b = false;
+    }
+
+    @Override
+    public void update(GameContainer gc, int i) throws SlickException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
