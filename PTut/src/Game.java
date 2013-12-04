@@ -53,8 +53,6 @@ public class Game extends BasicGame {
         plate.affiche(gc,g);
         monstre.affiche(gc,g);
         menu.affiche(gc,g);
-            
-            
     }
     
         /*
@@ -83,7 +81,7 @@ public class Game extends BasicGame {
             heros = new Heros();
             v = new Vaisseau();
             menu = new Menu();
-            plate = new Plateforme();
+            plate = new Plateforme("plateforme", 200, 450);
             monstre = new Monstre();
         } catch (SQLException ex) {
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);

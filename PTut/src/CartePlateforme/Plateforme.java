@@ -16,10 +16,10 @@ public class Plateforme {
     private float y1;
     private Image img;
     
-    public Plateforme() throws SlickException{
-        img = new Image("ressources/images/plateforme.png");
-        x= 200;
-        y= 500;
+    public Plateforme(String nomImage,float x,float y) throws SlickException{
+        img = new Image("ressources/images/"+nomImage+".png");
+        this.x=x;
+        this.y=y;
         x1 = x + img.getWidth();
         y1 = y + img.getHeight();
     

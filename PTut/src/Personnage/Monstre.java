@@ -14,23 +14,31 @@ import org.newdawn.slick.SlickException;
 public class Monstre extends Personnage{
     private Image img;
     private float vitesseVertical = 0.0f;
+    private long t;
+    private boolean isSpawn;
     
     public Monstre() throws SlickException{ // Constructeur du héros
         super();
+        this.t = System.currentTimeMillis();
         img = new Image("ressources/images/monstre.png");
         x = 550;
         y = 550;
         x1 = x + img.getWidth();
         y1 = y + img.getHeight();
+        isSpawn = false;
        }
     
      public void affiche(GameContainer gc, Graphics g) throws SlickException {
-        g.drawImage(img, x, y);
+         if (System.currentTimeMillis() - this.t > 5000) {
+             g.drawImage(img, x, y);
+             isSpawn = true;
+         }
      }
    public void déplacements(GameContainer gc, int temps, Plateforme plate,Heros heros){
-       boolean testCollision = collisions(plate);
-       
-       if ( !testCollision ){
+      if (isSpawn) {
+          boolean testCollision = collisions(plate);
+          
+          if ( !testCollision ){
             vitesseVertical += 0.01f * temps; // Même procédé que pour le saut mais fait en sorte de faire tomber le héros tout le temps
             y += vitesseVertical;
             y1 = y + img.getHeight();
@@ -39,14 +47,20 @@ public class Monstre extends Personnage{
                 setY( getY() - (getY() - 570)); // On le replace au bord.
             }
             
-        }
-       // Ici je met en place le deplacement du monstre vers le joueur, le -25 devra etre remplacé par la taille de la HITBOX
-       // Sinon pour l'instant il me suit normalement
-        while (x < (heros.getX()- heros.getImg().getWidth()-25) || x > (heros.getX()+ heros.getImg().getWidth()+25) )
-        {
-            if (x > (heros.getX()+ heros.getImg().getWidth()+25)) x-=0.5;
-            if (x < (heros.getX()- heros.getImg().getWidth()-25)) x+=0.5;
-        }
+            }
+           // Ici je met en place le deplacement du monstre vers le joueur, le -25 devra etre remplacé par la taille de la HITBOX
+           // Sinon pour l'instant il me suit normalement
+           if (x > (heros.getX1()+25)) {
+               x-=2;
+               x1-=2;
+           }
+           if (x1 < (heros.getX()-25)) {
+               x+=2;
+               x1+=2;
+           }
+      }
+       
+       
    }
    public boolean collisions( Plateforme plate){
         if ( y1 < plate.getY() ) return false;
