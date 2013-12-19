@@ -4,7 +4,7 @@ import CarteGalaxie.CarteGalaxie;
 import CartePlateforme.Plateforme;
 import Personnage.Vaisseau;
 import Personnage.Heros;
-import Personnage.Monstre;
+import Personnage.MobSpawner;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,7 +25,7 @@ public class Game extends BasicGame {
     private Heros heros;
     private Menu menu;
     private Plateforme plate;
-    private Monstre monstre;
+    private MobSpawner MobList;
     private boolean b;
     //Constructeur : on initialise en donnant le nom de la fenêtre (à changer)
     public Game() {
@@ -46,7 +46,7 @@ public class Game extends BasicGame {
         }
         heros.affiche(gc, g);
         plate.affiche(gc,g);
-        monstre.affiche(gc,g);
+        MobList.affiche(gc,g);
         menu.affiche(gc,g);
     }
     
@@ -60,7 +60,8 @@ public class Game extends BasicGame {
         Input input = gc.getInput();
         v.deplace(gc, c);
         heros.déplacements(gc, t, plate);
-        monstre.déplacements(gc, t, plate,heros);
+        MobList.apparition();
+        MobList.déplacements(gc, t, plate,heros);
         menu.testAffiche(input, gc);
     }
     
@@ -78,7 +79,7 @@ public class Game extends BasicGame {
             v = new Vaisseau();
             menu = new Menu();
             plate = new Plateforme("plateforme", 200, 450);
-            monstre = new Monstre();
+            MobList = new MobSpawner();
         } catch (    SQLException | ClassNotFoundException ex) {
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -4,7 +4,6 @@ import CartePlateforme.Plateforme;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 /**
@@ -12,14 +11,14 @@ import org.newdawn.slick.SlickException;
  * @author Wazaa
  */
 public class Monstre extends Personnage{
+    private int vie; //Vie actuelle du monstre
     private Image img;
     private float vitesseVertical = 0.0f;
-    private long t;
     private boolean isSpawn;
+    
     
     public Monstre() throws SlickException{ // Constructeur du héros
         super();
-        this.t = System.currentTimeMillis();
         img = new Image("ressources/images/monstre.png");
         x = 550;
         y = 550;
@@ -27,14 +26,23 @@ public class Monstre extends Personnage{
         y1 = y + img.getHeight();
         isSpawn = false;
        }
+    public Monstre(int vie) throws SlickException{
+        super();
+        this.vie = vie;
+        img = new Image("ressources/images/monstre.png");
+        x=550;
+        y = 550;
+        x1 = x + img.getWidth();
+        y1 = y + img.getHeight();
+        isSpawn = false;
+    }
     
-     public void affiche(GameContainer gc, Graphics g) throws SlickException {
-         if (System.currentTimeMillis() - this.t > 5000) {
-             g.drawImage(img, x, y);
-             isSpawn = true;
-         }
+    public void affiche(GameContainer gc, Graphics g) throws SlickException {
+        g.drawImage(img, x, y);
+        isSpawn = true;
      }
-   public void déplacements(GameContainer gc, int temps, Plateforme plate,Heros heros){
+    public void déplacements(GameContainer gc, int temps, Plateforme plate,Heros heros)
+    {
       if (isSpawn) {
           boolean testCollision = collisions(plate);
           
@@ -68,7 +76,19 @@ public class Monstre extends Personnage{
         if ( y > plate.getY1() ) return false;
         if ( x > plate.getX1() ) return false;
         return true;
-   }      
-       
+   }
+
+    //Getters
+    public Image getImg() {return img;}
+    public float getVitesseVertical() {return vitesseVertical;}
+    public boolean isIsSpawn() {return isSpawn;}
+
+    //Setters
+    public void setImg(Image img) {this.img = img;}
+    public void setVitesseVertical(float vitesseVertical) {this.vitesseVertical = vitesseVertical;}
+    public void setIsSpawn(boolean isSpawn) {this.isSpawn = isSpawn;}
+    
+   
+    
 }
 
