@@ -2,12 +2,13 @@ package CarteGalaxie;
 
 import BDD.Requete;
 import Personnage.Vaisseau;
+import java.awt.Font;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import org.newdawn.slick.Font;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.TrueTypeFont;
 
 public class MenuInterface {
     private int idPlanete;
@@ -51,5 +52,16 @@ public class MenuInterface {
     public void affiche(Graphics g, Vaisseau v) {        
         setCoordFond(v);
         g.drawImage(imgFond, xFond, yFond);
+        
+        Font f = new Font("Verdana", Font.BOLD, 32);
+        TrueTypeFont ttf = new TrueTypeFont(f, true);
+        g.drawString("Test", xFond + 10, yFond + 10);
+        //if (posseder)
+            g.drawString("Possédée : Oui", xFond + 10, yFond + 40);
+        //else
+            //g.drawString("Possédée : Non", xFond + 10, yFond + 40);
+        g.drawString("Température : ", xFond + 10, yFond + 60);
+        g.drawString("Oxygène : ", xFond + 10, yFond + 80);
+        g.drawString("Attaquer (A)", xFond + 70, yFond + imgFond.getHeight() - 30);
     }
 } 
