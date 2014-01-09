@@ -6,7 +6,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-
+import Armes.Projectile;
 /**
  *
  * @author Tanbi
@@ -106,9 +106,16 @@ public class Heros extends Personnage {
 
     }
 
-}
+
 
 
 
 
     /* A VENIR LES METHODES POUR ATTAQUER... */
+
+    public void tirer (GameContainer gc){
+         Input input = gc.getInput(); //Variable de type entrée
+         
+    }
+    
+}
