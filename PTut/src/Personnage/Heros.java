@@ -6,10 +6,10 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import Armes.ListeProjectile;
 
 import Armes.Projectile;
-import java.util.ArrayList;
-import java.util.List;
+
 /**
  *
  * @author Tanbi
@@ -19,9 +19,7 @@ public class Heros extends Personnage {
     private float vitesseVertical = 0.0f;
     private boolean sauter = false;
     private Image img;
-    
-    private int idProjectile;
-    private List<Projectile> projectile = new ArrayList<>();
+    private ListeProjectile proj;
 
     public Heros() throws SlickException{ // Constructeur du héros
         super();
@@ -119,15 +117,12 @@ public class Heros extends Personnage {
 
     /* A VENIR LES METHODES POUR ATTAQUER... */
 
-    public void tirer (GameContainer gc) throws SlickException{
+    public void tirer (GameContainer gc, Projectile p) throws SlickException{
          Input input = gc.getInput(); //Variable de type entrée
-         
-         idProjectile = 0;
-         
-         if ( input.isKeyDown(Input.KEY_SPACE) ){
-             Projectile p = new Projectile(getX(), getY());
-             p.deplacements();
+           if (input.isKeyPressed(Input.KEY_SPACE)){
+               proj.add();
+           }
          }
-    }
+    
     
 }

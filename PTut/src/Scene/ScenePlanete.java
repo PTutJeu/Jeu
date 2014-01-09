@@ -1,5 +1,6 @@
 package Scene;
 
+import Armes.ListeProjectile;
 import CartePlateforme.Plateforme;
 import Main.Game;
 import Main.Menu;
@@ -17,11 +18,11 @@ public class ScenePlanete extends Scene
 {
     
     private Heros heros;
-    private Projectile projectile;
     private Menu menu;
     private Plateforme plate;
     private MobSpawner MobList;
     private boolean b;
+    private ListeProjectile listeProjectile;
     
         public ScenePlanete ()
 	{
@@ -35,7 +36,9 @@ public class ScenePlanete extends Scene
             heros.affiche(gc, g);
             plate.affiche(gc,g);
             MobList.affiche(gc,g);
+            listeProjectile.affiche(gc,g);
             menu.affiche(gc,g);
+           
 	}
 	
         @Override
@@ -46,6 +49,7 @@ public class ScenePlanete extends Scene
                 MobList.apparition();
                 MobList.déplacements(gc, t, plate,heros);
                 menu.testAffiche(input, gc);
+               // listeProjectile.deplacements(gc);
             
                     if( gc.getInput().isKeyPressed(Input.KEY_TAB) ) 
                     {
@@ -61,6 +65,7 @@ public class ScenePlanete extends Scene
                     menu = new Menu();
                     plate = new Plateforme("plateforme", 200, 450);
                     MobList = new MobSpawner();
+                    listeProjectile = new ListeProjectile();
                     b = false;
 	}
 	

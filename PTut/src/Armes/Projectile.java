@@ -6,6 +6,9 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import Personnage.Heros;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  *
@@ -18,10 +21,13 @@ public class Projectile {
     protected float y1; //coordonnée du coin inférieur de l'image
     private Image img;
     
-    public Projectile (float x,float y) throws SlickException{
+    private int idProjectile;
+   
+    
+    public Projectile () throws SlickException{
         img = new Image("ressources/images/projectile.png");
-        this.x=x;
-        this.y=y;
+        this.x=0;
+        this.y=0;
         x1 = x + img.getWidth();
         y1 = y + img.getHeight();
     
@@ -31,7 +37,10 @@ public class Projectile {
         g.drawImage(img, x, y);     
     }
      
-     public void deplacements (){
-         x +=4;
+     public void deplacements(){
+         x+=4;
      }
+     
+    public void setX(float x){ this.x=x;}
+    public void setY(float y){ this.y=y;}
 }
