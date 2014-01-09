@@ -1,17 +1,12 @@
+package Main;
 
 
-import CarteGalaxie.CarteGalaxie;
-import CartePlateforme.Plateforme;
-import Personnage.Vaisseau;
-import Personnage.Heros;
-import Personnage.MobSpawner;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import Scene.SceneGalaxie;
+import Scene.SceneManager;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 /*
@@ -20,13 +15,8 @@ import org.newdawn.slick.SlickException;
  * je crois, si j'ai bien compris le tuto)
  */
 public class Game extends BasicGame {
-    private CarteGalaxie c; //Variable qui sert juste à tester, non définitive
-    private Vaisseau v;
-    private Heros heros;
-    private Menu menu;
-    private Plateforme plate;
-    private MobSpawner MobList;
-    private boolean b;
+
+    public static SceneManager manager;
     //Constructeur : on initialise en donnant le nom de la fenêtre (à changer)
     public Game() {
         super("Game");
@@ -38,16 +28,7 @@ public class Game extends BasicGame {
      * De même ici le contenu de la fonction est un test, rien à voir avec le code définitif
      */
     public void render(GameContainer gc, Graphics g) throws SlickException {
-        c.affiche(gc, g);
-        try {
-            v.affiche(gc, g);
-         } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        heros.affiche(gc, g);
-        plate.affiche(gc,g);
-        MobList.affiche(gc,g);
-        menu.affiche(gc,g);
+        manager.render(gc, g);
     }
     
         /*
@@ -57,12 +38,7 @@ public class Game extends BasicGame {
      */
     @Override
     public void update(GameContainer gc, int t) throws SlickException {
-        Input input = gc.getInput();
-        v.deplace(gc, c);
-        heros.déplacements(gc, t, plate);
-        MobList.apparition();
-        MobList.déplacements(gc, t, plate,heros);
-        menu.testAffiche(input, gc);
+        manager.update(gc, t);
     }
     
     @Override
@@ -73,17 +49,8 @@ public class Game extends BasicGame {
      * De même que les autres fonction, c'est juste un test pour le moment
      */
     public void init(GameContainer gc) throws SlickException {
-        try {
-            c = new CarteGalaxie();
-            heros = new Heros();
-            v = new Vaisseau();
-            menu = new Menu();
-            plate = new Plateforme("plateforme", 200, 450);
-            MobList = new MobSpawner();
-        } catch (    SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        b = false;
+     		manager = new SceneManager(gc);
+		manager.addSence( new SceneGalaxie () );
     }
 
     /**
