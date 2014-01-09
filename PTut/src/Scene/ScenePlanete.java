@@ -6,6 +6,7 @@ import Main.Menu;
 import Personnage.Heros;
 import Personnage.MobSpawner;
 import Personnage.Vaisseau;
+import Armes.Projectile;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -16,6 +17,7 @@ public class ScenePlanete extends Scene
 {
     
     private Heros heros;
+    private Projectile projectile;
     private Menu menu;
     private Plateforme plate;
     private MobSpawner MobList;
