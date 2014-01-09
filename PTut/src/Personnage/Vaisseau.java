@@ -14,7 +14,7 @@ import org.newdawn.slick.SlickException;
 
 public class Vaisseau extends Personnage{
         private Image img;
-        private boolean isOnPlanete;
+        public static boolean isOnPlanete;
         private int idPlanete;
         
         public Vaisseau() throws SlickException{

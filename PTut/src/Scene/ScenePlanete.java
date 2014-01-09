@@ -5,6 +5,7 @@ import Main.Game;
 import Main.Menu;
 import Personnage.Heros;
 import Personnage.MobSpawner;
+import Personnage.Vaisseau;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -44,13 +45,11 @@ public class ScenePlanete extends Scene
                 MobList.déplacements(gc, t, plate,heros);
                 menu.testAffiche(input, gc);
             
-		// If Space is pressed
-		if( gc.getInput().isKeyPressed(Input.KEY_TAB) ) 
-		{
-			// Add a new Sence2 instance to the SenceManager
-			Game.manager.addSence( new SceneGalaxie() );
-                        Main.Game.manager.removeSence(this);
-		}
+                    if( gc.getInput().isKeyPressed(Input.KEY_TAB) ) 
+                    {
+                            Game.manager.addSence( new SceneGalaxie() );
+                            Main.Game.manager.removeSence(this);
+                    }
 	}
 	
         @Override

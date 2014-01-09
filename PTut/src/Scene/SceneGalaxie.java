@@ -42,13 +42,14 @@ public class SceneGalaxie extends Scene
         @Override
 	protected void CustomUpdate(GameContainer gc, int t) throws SlickException 
 	{
-		// If Space is pressed
-		if( gc.getInput().isKeyPressed(Input.KEY_TAB) ) 
-		{
-			// Add a new Sence2 instance to the SenceManager
-			Main.Game.manager.addSence( new ScenePlanete() );
-			Main.Game.manager.removeSence(this);
-		}
+            if(Vaisseau.isOnPlanete)
+                {
+                    if( gc.getInput().isKeyDown(Input.KEY_A) ) 
+                    {
+                            Main.Game.manager.addSence( new ScenePlanete() );
+                            Main.Game.manager.removeSence(this);
+                    }
+                }
                 Input input = gc.getInput();
                 v.deplace(gc, c);
                 menu.testAffiche(input, gc);
