@@ -17,7 +17,8 @@ public class MenuInterface {
     private String nom;
     private float temp;
     private float ox;
-    private String itemNeed;
+    private String itemNeed1;
+    private String itemNeed2;
     
     private Image imgFond;
     private Image imgBouton;
@@ -40,10 +41,12 @@ public class MenuInterface {
         nom = rs.getString("NOM");
         temp = rs.getFloat("TEMPERATURE");
         ox = rs.getFloat("OXYGENE");
-        itemNeed = rs.getString("ITEMNEED");*/
+        itemNeed1 = rs.getString("PITEMNEED");
+        itemNeed2 = rs.getString("DITEMNEED");*/
         ox = 10;
         temp = 25.2F;
-        itemNeed = "";
+        itemNeed1 = "";
+        itemNeed2 = "";
         
         rq.closeDB();
     }
@@ -71,10 +74,16 @@ public class MenuInterface {
             //g.drawString("Possédée : Non", xFond + 10, yFond + 40);
         g.drawString("Température : " +temp+ "°C", xFond + 10, yFond + 60);
         g.drawString("Oxygène : " +ox+ "%", xFond + 10, yFond + 80);
-        if (!itemNeed.isEmpty())
-            g.drawString("Item nécessaire : " +itemNeed, xFond + 10, yFond + 100);
-        else
-            g.drawString("Item nécessaire : Aucun", xFond + 10, yFond + 100);
+        if (!itemNeed1.isEmpty()) {
+            g.drawString("Item nécessaire : ", xFond + 10, yFond + 100);
+            g.drawString(itemNeed1, xFond + 20, yFond + 120);
+            if (!itemNeed2.isEmpty())
+                g.drawString(itemNeed2, xFond + 20, yFond + 140);
+        }
+        else {
+            g.drawString("Item nécessaire :", xFond + 10, yFond + 100);
+            g.drawString("Aucun", xFond + 10, yFond + 120);
+        }
         g.drawString("Attaquer (A)", xFond + 70, yFond + imgFond.getHeight() - 30);
     }
 } 
