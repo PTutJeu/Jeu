@@ -2,12 +2,9 @@ package Scene;
 
 import Armes.ListeProjectile;
 import CartePlateforme.Plateforme;
-import Main.Game;
 import Main.Menu;
 import Personnage.Heros;
 import Personnage.MobSpawner;
-import Personnage.Vaisseau;
-import Armes.Projectile;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -27,7 +24,7 @@ public class ScenePlanete extends Scene
         public ScenePlanete ()
 	{
             super();
-            setPriority(2);
+            setPriority(1);
 	}
 	
         @Override
@@ -71,7 +68,7 @@ public class ScenePlanete extends Scene
         @Override
 	public String toString()
 	{
-		return "Sence1";
+		return "Planète";
 	}
 }
 
