@@ -19,9 +19,10 @@ public class PTut {
         app.start(); //On démarre le jeu
         /*try {
             Requete rq = new Requete();
-            rq.request("CREATE TABLE CARTEGALAXIE(ID NUMBER, IMG VARCHAR2(40), NBPLANETE NUMBER, "
-                    + "CONSTRAINT PK_CARTEGALAXIE PRIMARY KEY (ID));");
-            rq.closeDB();
+            rq.request("DROP TABLE CARTE_GALAXIE;");
+            rq.request("CREATE TABLE CARTE_GALAXIE(ID NUMBER, IMG VARCHAR2(40), NBPLANETE NUMBER, "
+                    + "CONSTRAINT PK_PLANETE PRIMARY KEY (ID));");
+            rq.request("INSERT INTO CARTE_GALAXIE VALUES(0, 'ressources/images/fondcartegal1.jpg', 5);");
         } catch (SQLException ex) {
             Logger.getLogger(PTut.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {

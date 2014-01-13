@@ -1,0 +1,8 @@
+rq.request("CREATE TABLE DETAILS_PLANETE(ID NUMBER, OXYGENE NUMBER, TEMPERATURE NUMBER, "
+                    + "PITEMNEED VARCHAR2(40), DITEMNEED VARCHAR2(40), NOM VARCHAR2(40), POSSEDEE NUMBER, "
+                    + "CONSTRAINT PK_DETAILSPLANETE PRIMARY KEY (ID));");
+            rq.request("INSERT INTO DETAILS_PLANETE VALUES(0, 23, 25, '', '', 'Cartez', 0);");
+            rq.request("INSERT INTO DETAILS_PLANETE VALUES(1, 23, 56, 'Combinaison Refroidissante', '', 'Chalr', 0);");
+            rq.request("INSERT INTO DETAILS_PLANETE VALUES(2, 23, -15, 'Combinaison Chauffante', '', 'Fraom', 0);");
+            rq.request("INSERT INTO DETAILS_PLANETE VALUES(3, 23, 25, '', '', 'Gorphei', 0);");
+            rq.request("INSERT INTO DETAILS_PLANETE VALUES(4, 2, 25, 'Masque à Oxygène', 'Bouteille d''Oxygène', 'Gazos', 0);");
