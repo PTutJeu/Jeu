@@ -38,7 +38,7 @@ public class Vaisseau extends Personnage{
         }
     }
         
-    public void deplace(GameContainer gc, CarteGalaxie c){
+    public void deplace(GameContainer gc, CarteGalaxie c) throws SlickException{
         Input input = gc.getInput(); //Variable de type entrée
         
         if( input.isKeyDown(Input.KEY_RIGHT) ){ // Si la variable pressée est flèche droite alors on déplace le héros à droite
@@ -46,6 +46,8 @@ public class Vaisseau extends Personnage{
             {
                 x = x+2;
                 x1=x1+2;
+                img = new Image("ressources/images/VaisseauDroite.png");
+
             }
         }
         
@@ -54,6 +56,7 @@ public class Vaisseau extends Personnage{
             {
                 x = x-2;
                 x1=x1-2;
+                img = new Image("ressources/images/VaisseauGauche.png");
             }   
         }
          if( input.isKeyDown(Input.KEY_UP) ){ // Si la variable pressée est flèche droite alors on déplace le héros à droite
@@ -61,6 +64,8 @@ public class Vaisseau extends Personnage{
             {
                 y = y-2;
                 y1=y1-2;
+                img = new Image("ressources/images/VaisseauHaut.png");
+
             }
         }
         
@@ -69,6 +74,8 @@ public class Vaisseau extends Personnage{
             {
                 y = y+2;
                 y1=y1+2;
+                img = new Image("ressources/images/VaisseauBas.png");
+
             }
         }
         
