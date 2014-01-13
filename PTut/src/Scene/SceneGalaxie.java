@@ -1,7 +1,6 @@
 package Scene;
 
 import CarteGalaxie.CarteGalaxie;
-import Main.Menu;
 import Personnage.Vaisseau;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -17,7 +16,7 @@ public class SceneGalaxie extends Scene
 {
          private Vaisseau v;
          private CarteGalaxie c;
-         private Menu menu;
+         private SceneMenu menu;
          private boolean b;
     
 	public SceneGalaxie ()
@@ -35,7 +34,6 @@ public class SceneGalaxie extends Scene
          } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
         }
-        menu.affiche(gc,g);
 	}
 	
         @Override
@@ -51,7 +49,10 @@ public class SceneGalaxie extends Scene
                 }
                 Input input = gc.getInput();
                 v.deplace(gc, c);
-                menu.testAffiche(input, gc);
+                if(gc.getInput().isKeyPressed(Input.KEY_ESCAPE))
+                {
+                    Main.Game.manager.addSence(new SceneMenu());                  
+                }
 	}
 	
         @Override
@@ -60,7 +61,6 @@ public class SceneGalaxie extends Scene
             try {
                     c = new CarteGalaxie();
                     v = new Vaisseau();
-                    menu = new Menu();
             }   
             catch (    SQLException | ClassNotFoundException ex) {
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
