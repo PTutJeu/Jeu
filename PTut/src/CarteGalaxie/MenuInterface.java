@@ -13,7 +13,7 @@ import org.newdawn.slick.TrueTypeFont;
 public class MenuInterface {
     private int idPlanete;
     
-    private boolean posseder;
+    private boolean possedee;
     private String nom;
     private float temp;
     private float ox;
@@ -32,21 +32,19 @@ public class MenuInterface {
         idPlanete = id;
         
         Requete rq = new Requete();
-        /*ResultSet rs = rq.select("SELECT * FROM DETAILS_PLANETE WHERE ID = " +id+ ";");
+        ResultSet rs = rq.select("SELECT * FROM DETAILS_PLANETE WHERE ID = " +id+ ";");
         
-        if (rs.getInt("POSSEDER") == 0)
-            posseder = true;
-        else
-            posseder = false;
-        nom = rs.getString("NOM");
-        temp = rs.getFloat("TEMPERATURE");
-        ox = rs.getFloat("OXYGENE");
-        itemNeed1 = rs.getString("PITEMNEED");
-        itemNeed2 = rs.getString("DITEMNEED");*/
-        ox = 10;
-        temp = 25.2F;
-        itemNeed1 = "";
-        itemNeed2 = "";
+        while (rs.next()) {
+            if (rs.getInt("POSSEDEE") == 0)
+                possedee = false;
+            else
+                possedee = true;
+            nom = rs.getString("NOM");
+            temp = rs.getFloat("TEMPERATURE");
+            ox = rs.getFloat("OXYGENE");
+            itemNeed1 = rs.getString("PITEMNEED");
+            itemNeed2 = rs.getString("DITEMNEED");
+        }
         
         rq.closeDB();
     }
@@ -67,11 +65,11 @@ public class MenuInterface {
         setCoordFond(v);
         g.drawImage(imgFond, xFond, yFond);
         
-        g.drawString("Test", xFond + 10, yFond + 10);
-        //if (!posseder)
+        g.drawString(nom, xFond + 10, yFond + 10);
+        if (possedee)
+            g.drawString("Possédée : Oui", xFond + 10, yFond + 40);
+        else
             g.drawString("Possédée : Non", xFond + 10, yFond + 40);
-        //else
-            //g.drawString("Possédée : Oui", xFond + 10, yFond + 40);
         g.drawString("Température : " +temp+ "°C", xFond + 10, yFond + 60);
         g.drawString("Oxygène : " +ox+ "%", xFond + 10, yFond + 80);
         if (!itemNeed1.isEmpty()) {

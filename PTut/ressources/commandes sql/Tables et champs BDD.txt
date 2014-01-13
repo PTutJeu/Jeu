@@ -17,4 +17,3 @@ Table DETAILS_PLANETE:
 	PITEMNEED VARCHAR2(40) // Premier item nécessaire pour aller sur la planète
 	DITEMNEED VARCHAR2(40) // Deuxieme item nécessaire pour aller sur la planète
 	NOM VARCHAR2(40) // Nom de la planète
-	POSSEDEE NUMBER // 0 si planete non possedee, 1 si planete possedee
