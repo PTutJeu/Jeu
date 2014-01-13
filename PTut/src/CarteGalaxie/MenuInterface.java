@@ -68,10 +68,10 @@ public class MenuInterface {
         g.drawImage(imgFond, xFond, yFond);
         
         g.drawString("Test", xFond + 10, yFond + 10);
-        //if (posseder)
-            g.drawString("Possédée : Oui", xFond + 10, yFond + 40);
+        //if (!posseder)
+            g.drawString("Possédée : Non", xFond + 10, yFond + 40);
         //else
-            //g.drawString("Possédée : Non", xFond + 10, yFond + 40);
+            //g.drawString("Possédée : Oui", xFond + 10, yFond + 40);
         g.drawString("Température : " +temp+ "°C", xFond + 10, yFond + 60);
         g.drawString("Oxygène : " +ox+ "%", xFond + 10, yFond + 80);
         if (!itemNeed1.isEmpty()) {
