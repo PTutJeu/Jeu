@@ -21,7 +21,7 @@ public class Menu {
     
     public Menu() throws SlickException
     {
-        img = new Image("ressources/images/menu.png");
+        img = new Image("ressources/images/menu.jpg");
         x=250;
         y=100;
         b = false;
