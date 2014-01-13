@@ -2,7 +2,6 @@ package Scene;
 
 import Armes.ListeProjectile;
 import CartePlateforme.Plateforme;
-import Main.Menu;
 import Personnage.Heros;
 import Personnage.MobSpawner;
 import org.newdawn.slick.GameContainer;
@@ -15,7 +14,7 @@ public class ScenePlanete extends Scene
 {
     
     private Heros heros;
-    private Menu menu;
+    private SceneMenu menu;
     private Plateforme plate;
     private MobSpawner MobList;
     private boolean b;
@@ -59,7 +58,7 @@ public class ScenePlanete extends Scene
 	public void init(GameContainer gc) throws SlickException 
 	{
                     heros = new Heros();
-                    menu = new Menu();
+                    menu = new SceneMenu();
                     plate = new Plateforme("plateforme", 200, 450);
                     MobList = new MobSpawner();
                     listeProjectile = new ListeProjectile();
