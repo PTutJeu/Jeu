@@ -26,8 +26,8 @@ public class ScenePlanete extends Scene
     
         public ScenePlanete ()
 	{
-		super();
-		setPriority(2);
+            super();
+            setPriority(2);
 	}
 	
         @Override
