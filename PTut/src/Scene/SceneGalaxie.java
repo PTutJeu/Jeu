@@ -15,7 +15,6 @@ import org.newdawn.slick.SlickException;
 
 public class SceneGalaxie extends Scene 
 {
-    
          private Vaisseau v;
          private CarteGalaxie c;
          private Menu menu;

@@ -53,8 +53,6 @@ public class MenuInterface {
         setCoordFond(v);
         g.drawImage(imgFond, xFond, yFond);
         
-        Font f = new Font("Verdana", Font.BOLD, 32);
-        TrueTypeFont ttf = new TrueTypeFont(f, true);
         g.drawString("Test", xFond + 10, yFond + 10);
         //if (posseder)
             g.drawString("Possédée : Oui", xFond + 10, yFond + 40);
