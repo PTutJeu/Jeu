@@ -53,7 +53,6 @@ public class ScenePlanete extends Scene
             
                     if( gc.getInput().isKeyPressed(Input.KEY_TAB) ) 
                     {
-                            Game.manager.addSence( new SceneGalaxie() );
                             Main.Game.manager.removeSence(this);
                     }
 	}
