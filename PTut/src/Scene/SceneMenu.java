@@ -43,22 +43,44 @@ public class SceneMenu extends Scene
         protected void CustomUpdate(GameContainer gc, int t) throws SlickException 
 	{
             if (gc.getInput().isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
-                if (gc.getInput().getMouseX() > 300 && gc.getInput().getMouseX() < 500 && gc.getInput().getMouseY() > 150 && gc.getInput().getMouseY() < 250)   
+                if (gc.getInput().getMouseX() > 300 && gc.getInput().getMouseX() < 500 && gc.getInput().getMouseY() > 150 && gc.getInput().getMouseY() < 250)
+                {
                     Main.Game.manager.removeSence(this);
-                if (gc.getInput().isMousePressed(Input.MOUSE_LEFT_BUTTON)){
-                    if (gc.getInput().getMouseX() > 300 && gc.getInput().getMouseX() < 500 && gc.getInput().getMouseY() > 300 && gc.getInput().getMouseY() < 400)
-                        Main.Game.manager.addSence(new SceneMenuPrincipal());
+                if(Main.Game.manager.getSence("Planète") != null)
+                {
+                     Main.Game.manager.getSence("Planète").setState(STATE.ON);
                 }
+                else
+                    Main.Game.manager.getSence("Galaxie").setState(STATE.ON);
+                }
+                else if (gc.getInput().getMouseX() > 300 && gc.getInput().getMouseX() < 500 && gc.getInput().getMouseY() > 300 && gc.getInput().getMouseY() < 400)
+                    {
+                        Main.Game.manager.removeAll();
+                        Main.Game.manager.addSence(new SceneMenuPrincipal());
+                        
+                    }
             }
-           if(gc.getInput().isKeyPressed(Input.KEY_ESCAPE))
+
+           if(gc.getInput().isKeyPressed(Input.KEY_R))
            {
                Main.Game.manager.removeSence(this);
-               Main.Game.manager.getSence("Galaxie").setState(STATE.ON);
+               if(Main.Game.manager.getSence("Planète") != null)
+               {
+                    Main.Game.manager.getSence("Planète").setState(STATE.ON);
+               }
+               else
+                    Main.Game.manager.getSence("Galaxie").setState(STATE.ON);
+
+           }
+           if(gc.getInput().isKeyPressed(Input.KEY_Q))
+           {
+               Main.Game.manager.removeAll();
+               Main.Game.manager.addSence(new SceneMenuPrincipal());
            }
 	}
 	
     @Override
-        	public void init(GameContainer gc) throws SlickException 
+        public void init(GameContainer gc) throws SlickException 
 	{
         
         }

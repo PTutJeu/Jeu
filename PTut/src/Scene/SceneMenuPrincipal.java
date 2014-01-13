@@ -41,6 +41,10 @@ public class SceneMenuPrincipal extends Scene {
                Main.Game.manager.addSence( new SceneGalaxie() );
                Main.Game.manager.removeSence(this);
            }
+           if(gc.getInput().isKeyDown(Input.KEY_ESCAPE))
+           {
+               gc.exit();
+           }
 	}
 	
         @Override

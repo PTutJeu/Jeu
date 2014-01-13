@@ -19,7 +19,7 @@ public class Vaisseau extends Personnage{
         
         public Vaisseau() throws SlickException{
             super();
-            img = new Image("ressources/images/vaisseau.png");
+            img = new Image("ressources/images/VaisseauBas.png");
             x = 40;
             y = 40;
             x1 = x + img.getWidth();

@@ -44,9 +44,10 @@ public class ScenePlanete extends Scene
                 MobList.apparition();
                 MobList.déplacements(gc, t, plate,heros);
                // listeProjectile.deplacements(gc);
-                if(gc.getInput().isKeyPressed(Input.KEY_ESCAPE))
+                if(gc.getInput().isKeyDown(Input.KEY_ESCAPE))
                 {
-                    Main.Game.manager.addSence(new SceneMenu());                  
+                    setState(STATE.FREEZE_NEXT);
+                    Main.Game.manager.addSence(new SceneMenu());
                 }
             
                     if( gc.getInput().isKeyPressed(Input.KEY_TAB) ) 
