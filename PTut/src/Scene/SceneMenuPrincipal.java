@@ -1,6 +1,13 @@
 
 package Scene;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -11,7 +18,7 @@ import org.newdawn.slick.SlickException;
  *
  * @author Jérôme
  */
-public class SceneMenuPrincipal extends Scene {
+public class SceneMenuPrincipal extends Scene implements Serializable{
     
     private Image img;
     
@@ -43,7 +50,27 @@ public class SceneMenuPrincipal extends Scene {
            }
            if(gc.getInput().isKeyDown(Input.KEY_ESCAPE))
            {
-               gc.exit();
+               try 
+               {
+                   gc.exit();
+                   Main.Game.manager.setTotalTime(System.currentTimeMillis());               
+                   ObjectOutputStream oos = null;
+                   FileOutputStream fichier;
+                   fichier = new FileOutputStream("time.txt");
+                   oos = new ObjectOutputStream(fichier);
+                   oos.writeObject(Main.Game.manager.getTotalTime());
+                   oos.flush();
+                   oos.close();
+                   oos.close();
+               } 
+               catch (FileNotFoundException ex) 
+               {
+                   Logger.getLogger(SceneMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+               } 
+               catch (IOException ex) 
+               {
+                   Logger.getLogger(SceneMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+               }
            }
 	}
 	

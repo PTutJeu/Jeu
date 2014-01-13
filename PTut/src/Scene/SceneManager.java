@@ -19,12 +19,28 @@ public class SceneManager
 	private List<Scene> sences ;
 	// Le Gamecontainer pour gérer la méthode init
 	private GameContainer gc;
+        private long time;
+        private long totalTime;
 	
 	public SceneManager ( GameContainer gc ) throws SlickException
 	{
 		this.gc = gc;
 		sences = new ArrayList<>();
+                time = System.currentTimeMillis();
 	}
+        
+        public long getTime()
+        {
+            return time;
+        }
+        public long getTotalTime()
+        {
+            return totalTime;
+        }
+        public void setTotalTime(long t)
+        {
+            totalTime = t - time;
+        }
 	
 	// Ajouter une scene à la liste et lancer la méthode init
 	public void addSence ( Scene sence )

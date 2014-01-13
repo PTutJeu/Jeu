@@ -16,11 +16,11 @@ import org.newdawn.slick.SlickException;
  */
 public class Game extends BasicGame {
 
+    
     public static SceneManager manager;
     //Constructeur : on initialise en donnant le nom de la fenêtre (à changer)
     public Game() {
         super("Galaxy Conquest");
-        
     }
     
     @Override
