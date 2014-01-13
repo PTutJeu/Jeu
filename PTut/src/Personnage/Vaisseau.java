@@ -76,7 +76,23 @@ public class Vaisseau extends Personnage{
                 y1=y1+2;
                 img = new Image("ressources/images/VaisseauBas.png");
 
-            }
+            }            
+        }
+        if( input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_RIGHT) )
+        {
+            img = new Image("ressources/images/VaisseauHautDroite.png");
+        }
+        if( input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_LEFT) )
+        {
+            img = new Image("ressources/images/VaisseauHautGauche.png");
+        }
+        if( input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_RIGHT))
+        {
+            img = new Image("ressources/images/VaisseauBasDroite.png");
+        }
+        if( input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_LEFT) )
+        {
+            img = new Image("ressources/images/VaisseauBasGauche.png");
         }
         
         isOnPlanete = false; //On suppose que le vaisseau n'est pas sur une planete
