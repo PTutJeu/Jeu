@@ -19,10 +19,16 @@ public class PTut {
         app.start(); //On démarre le jeu
         /*try {
             Requete rq = new Requete();
-            rq.request("DROP TABLE CARTE_GALAXIE;");
-            rq.request("CREATE TABLE CARTE_GALAXIE(ID NUMBER, IMG VARCHAR2(40), NBPLANETE NUMBER, "
-                    + "CONSTRAINT PK_PLANETE PRIMARY KEY (ID));");
-            rq.request("INSERT INTO CARTE_GALAXIE VALUES(0, 'ressources/images/fondcartegal1.jpg', 5);");
+            rq.request("DROP TABLE PLANETE;");
+            rq.request("CREATE TABLE PLANETE(ID NUMBER, MAP NUMBER, X NUMBER, Y NUMBER, "
+                    + "IMG VARCHAR2(40), "
+                    + "CONSTRAINT PK_PLANETE PRIMARY KEY (ID), "
+                    + "CONSTRAINT FK_PLANETE FOREIGN KEY (MAP) REFERENCES CARTE_GALAXIE(ID));");
+            rq.request("INSERT INTO PLANETE VALUES(0, 0, 50, 50, 'ressources/images/p0.png');");
+            rq.request("INSERT INTO PLANETE VALUES(1, 0, 200, 10, 'ressources/images/p1.png');");
+            rq.request("INSERT INTO PLANETE VALUES(2, 0, 600, 100, 'ressources/images/p2.png');");
+            rq.request("INSERT INTO PLANETE VALUES(3, 0, 300, 400, 'ressources/images/p3.png');");
+            rq.request("INSERT INTO PLANETE VALUES(4, 0, 10, 500, 'ressources/images/p4.png');");
         } catch (SQLException ex) {
             Logger.getLogger(PTut.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
