@@ -61,7 +61,8 @@ public class SceneMenuPrincipal extends Scene implements Serializable{
                    oos.writeObject(Main.Game.manager.getTotalTime());
                    oos.flush();
                    oos.close();
-                   oos.close();
+                   System.out.println(Main.Game.manager.getTotalTime());
+                   
                } 
                catch (FileNotFoundException ex) 
                {
