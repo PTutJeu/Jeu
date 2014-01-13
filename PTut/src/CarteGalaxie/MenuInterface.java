@@ -41,6 +41,9 @@ public class MenuInterface {
         temp = rs.getFloat("TEMPERATURE");
         ox = rs.getFloat("OXYGENE");
         itemNeed = rs.getString("ITEMNEED");*/
+        ox = 10;
+        temp = 25.2F;
+        itemNeed = "";
         
         rq.closeDB();
     }
@@ -66,10 +69,12 @@ public class MenuInterface {
             g.drawString("Possédée : Oui", xFond + 10, yFond + 40);
         //else
             //g.drawString("Possédée : Non", xFond + 10, yFond + 40);
-        g.drawString("Température : " +temp, xFond + 10, yFond + 60);
-        g.drawString("Oxygène : " +ox, xFond + 10, yFond + 80);
+        g.drawString("Température : " +temp+ "°C", xFond + 10, yFond + 60);
+        g.drawString("Oxygène : " +ox+ "%", xFond + 10, yFond + 80);
         if (!itemNeed.isEmpty())
             g.drawString("Item nécessaire : " +itemNeed, xFond + 10, yFond + 100);
+        else
+            g.drawString("Item nécessaire : Aucun", xFond + 10, yFond + 100);
         g.drawString("Attaquer (A)", xFond + 70, yFond + imgFond.getHeight() - 30);
     }
 } 
