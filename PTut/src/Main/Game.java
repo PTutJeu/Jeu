@@ -4,6 +4,7 @@ package Main;
 
 import Scene.SceneGalaxie;
 import Scene.SceneManager;
+import Scene.SceneMenuPrincipal;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -50,7 +51,7 @@ public class Game extends BasicGame {
      */
     public void init(GameContainer gc) throws SlickException {
      		manager = new SceneManager(gc);
-		manager.addSence( new SceneGalaxie () );
+		manager.addSence( new SceneMenuPrincipal() );
     }
 
     /**

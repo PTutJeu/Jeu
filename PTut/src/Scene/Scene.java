@@ -106,7 +106,11 @@ public abstract class Scene implements Comparable<Scene>
 	{
 		return prio;
 	}
-	
+        //Le getteur pour l'état
+        public STATE getState()
+        {
+            return state;
+        }
 	// Le compareTo pour la liste
         @Override
 	public int compareTo(Scene compareObject)
