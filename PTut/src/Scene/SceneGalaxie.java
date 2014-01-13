@@ -71,6 +71,6 @@ public class SceneGalaxie extends Scene
         @Override
 	public String toString()
 	{
-		return "Sence1";
+		return "Galaxie";
 	}
 }

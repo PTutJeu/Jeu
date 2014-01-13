@@ -27,7 +27,7 @@ public class ScenePlanete extends Scene
         public ScenePlanete ()
 	{
             super();
-            setPriority(2);
+            setPriority(1);
 	}
 	
         @Override
@@ -54,6 +54,7 @@ public class ScenePlanete extends Scene
                     if( gc.getInput().isKeyPressed(Input.KEY_TAB) ) 
                     {
                             Main.Game.manager.removeSence(this);
+                            Main.Game.manager.getSence("Galaxie").setState(STATE.ON);
                     }
 	}
 	
@@ -71,7 +72,7 @@ public class ScenePlanete extends Scene
         @Override
 	public String toString()
 	{
-		return "Sence1";
+		return "Planete";
 	}
 }
 
