@@ -42,6 +42,13 @@ public class SceneManager
 	{
 		sences.remove(sence);
 	}
+        public void removeAll()
+        {
+            while(!sences.isEmpty())
+                    {
+                        sences.remove(0);
+                    }
+        }
 	
 	// Supprimer une scène en fonction de son nom
 	public boolean removeSence ( String sence )
