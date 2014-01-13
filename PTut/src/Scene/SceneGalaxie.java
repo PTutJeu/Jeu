@@ -43,11 +43,11 @@ public class SceneGalaxie extends Scene
 	{
             if(Vaisseau.isOnPlanete)
                 {
-                    if( gc.getInput().isKeyPressed(Input.KEY_A) ) 
-                    {
-                            Main.Game.manager.addSence( new ScenePlanete() );
-                            setState(STATE.INVISIBLE);
-                    }
+                        if( gc.getInput().isKeyDown(Input.KEY_A) ) 
+                        {
+                                Main.Game.manager.addSence( new ScenePlanete() );
+                                setState(STATE.INVISIBLE);
+                        }
                 }
                 Input input = gc.getInput();
                 v.deplace(gc, c);
