@@ -28,7 +28,7 @@ public class MenuInterface {
     private float yFond;
     
     public MenuInterface(int id) throws SQLException, ClassNotFoundException, SlickException {
-        this.imgFond = new Image("ressources/images/fondMInterface.jpg");
+        this.imgFond = new Image("ressources/images/fondInterface.png");
         idPlanete = id;
         
         Requete rq = new Requete();
