@@ -17,7 +17,6 @@ public class SceneGalaxie extends Scene
          private Vaisseau v;
          private CarteGalaxie c;
          private SceneMenu menu;
-         private boolean b;
     
 	public SceneGalaxie ()
 	{
@@ -67,7 +66,6 @@ public class SceneGalaxie extends Scene
             catch (    SQLException | ClassNotFoundException ex) {
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
             }
-            b = false;
 	}
 	
         @Override
