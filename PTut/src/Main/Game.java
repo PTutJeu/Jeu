@@ -2,7 +2,6 @@ package Main;
 
 
 
-import Scene.SceneGalaxie;
 import Scene.SceneManager;
 import Scene.SceneMenuPrincipal;
 import org.newdawn.slick.BasicGame;
@@ -20,7 +19,8 @@ public class Game extends BasicGame {
     public static SceneManager manager;
     //Constructeur : on initialise en donnant le nom de la fenêtre (à changer)
     public Game() {
-        super("Game");
+        super("Galaxy Conquest");
+        
     }
     
     @Override

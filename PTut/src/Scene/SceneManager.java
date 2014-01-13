@@ -20,7 +20,7 @@ public class SceneManager
 	// Le Gamecontainer pour gérer la méthode init
 	private GameContainer gc;
 	
-	public SceneManager ( GameContainer gc )
+	public SceneManager ( GameContainer gc ) throws SlickException
 	{
 		this.gc = gc;
 		sences = new ArrayList<>();
