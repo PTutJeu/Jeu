@@ -33,7 +33,6 @@ public class ScenePlanete extends Scene
             plate.affiche(gc,g);
             MobList.affiche(gc,g);
             listeProjectile.affiche(gc,g);
-            menu.affiche(gc,g);
            
 	}
 	
@@ -44,8 +43,11 @@ public class ScenePlanete extends Scene
                 heros.déplacements(gc, t, plate);
                 MobList.apparition();
                 MobList.déplacements(gc, t, plate,heros);
-                menu.testAffiche(input, gc);
                // listeProjectile.deplacements(gc);
+                if(gc.getInput().isKeyPressed(Input.KEY_ESCAPE))
+                {
+                    Main.Game.manager.addSence(new SceneMenu());                  
+                }
             
                     if( gc.getInput().isKeyPressed(Input.KEY_TAB) ) 
                     {
@@ -58,7 +60,6 @@ public class ScenePlanete extends Scene
 	public void init(GameContainer gc) throws SlickException 
 	{
                     heros = new Heros();
-                    menu = new SceneMenu();
                     plate = new Plateforme("plateforme", 200, 450);
                     MobList = new MobSpawner();
                     listeProjectile = new ListeProjectile();

@@ -22,7 +22,7 @@ public class SceneMenu extends Scene
     public SceneMenu() throws SlickException
     {
         super();
-        setPriority(1);
+        setPriority(2);
         img = new Image("ressources/images/menu.jpg");
         x=250;
         y=100;
@@ -59,16 +59,18 @@ public class SceneMenu extends Scene
         protected void CustomUpdate(GameContainer gc, int t,Input input) throws SlickException 
 	{
             if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
-                if (input.getMouseX() > 300 && input.getMouseX() < 500 && input.getMouseY() > 150 && input.getMouseY() < 250)
+                if (input.getMouseX() > 300 && input.getMouseX() < 500 && input.getMouseY() > 150 && input.getMouseY() < 250)   
                     Main.Game.manager.removeSence(this);
                 if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)){
                     if (input.getMouseX() > 300 && input.getMouseX() < 500 && input.getMouseY() > 300 && input.getMouseY() < 400)
                         Main.Game.manager.addSence(new SceneMenuPrincipal());
                 }
             }
-           if(gc.getInput().isKeyDown(Input.KEY_ESCAPE))
+           if(gc.getInput().isKeyPressed(Input.KEY_ESCAPE))
            {
-               Main.Game.manager.removeSence(this);
+               //Main.Game.manager.removeSence(this);
+               setState(STATE.FREEZE);
+               Main.Game.manager.getSence("Galaxie").setState(STATE.ON);
            }
 	}
 	

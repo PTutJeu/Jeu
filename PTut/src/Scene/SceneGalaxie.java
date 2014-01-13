@@ -49,10 +49,12 @@ public class SceneGalaxie extends Scene
                 }
                 Input input = gc.getInput();
                 v.deplace(gc, c);
-                if(gc.getInput().isKeyPressed(Input.KEY_ESCAPE))
-                {
-                    Main.Game.manager.addSence(new SceneMenu());                  
-                }
+            if(gc.getInput().isKeyPressed(Input.KEY_ESCAPE))
+            {
+                setState(STATE.FREEZE_NEXT);
+                Main.Game.manager.addSence(new SceneMenu());                  
+            }
+              
 	}
 	
         @Override
