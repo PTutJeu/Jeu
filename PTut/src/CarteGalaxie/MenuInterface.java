@@ -12,8 +12,13 @@ import org.newdawn.slick.TrueTypeFont;
 
 public class MenuInterface {
     private int idPlanete;
+    
     private boolean posseder;
     private String nom;
+    private float temp;
+    private float ox;
+    private String itemNeed;
+    
     private Image imgFond;
     private Image imgBouton;
     private float xBouton;
@@ -32,7 +37,10 @@ public class MenuInterface {
             posseder = true;
         else
             posseder = false;
-        nom = rs.getString("NOM");*/
+        nom = rs.getString("NOM");
+        temp = rs.getFloat("TEMPERATURE");
+        ox = rs.getFloat("OXYGENE");
+        itemNeed = rs.getString("ITEMNEED");*/
         
         rq.closeDB();
     }
@@ -58,8 +66,10 @@ public class MenuInterface {
             g.drawString("Possédée : Oui", xFond + 10, yFond + 40);
         //else
             //g.drawString("Possédée : Non", xFond + 10, yFond + 40);
-        g.drawString("Température : ", xFond + 10, yFond + 60);
-        g.drawString("Oxygène : ", xFond + 10, yFond + 80);
+        g.drawString("Température : " +temp, xFond + 10, yFond + 60);
+        g.drawString("Oxygène : " +ox, xFond + 10, yFond + 80);
+        if (!itemNeed.isEmpty())
+            g.drawString("Item nécessaire : " +itemNeed, xFond + 10, yFond + 100);
         g.drawString("Attaquer (A)", xFond + 70, yFond + imgFond.getHeight() - 30);
     }
 } 
