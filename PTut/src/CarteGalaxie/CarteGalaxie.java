@@ -23,7 +23,7 @@ public class CarteGalaxie {
         //On crée une variable permettant de faire une requete sql et on récupère les 
         //données concernant la carte
         Requete rq = new Requete();
-        ResultSet rs = rq.select("SELECT * FROM CARTEGALAXIE WHERE ID = " +id+ ";");
+        ResultSet rs = rq.select("SELECT * FROM CARTE_GALAXIE WHERE ID = " +id+ ";");
         
         //On attribue les valeurs récupérées dans la BDD aux attributs
         img = new Image(rs.getString("IMG"));
@@ -50,7 +50,7 @@ public class CarteGalaxie {
         this.id = id;
         
         Requete rq = new Requete();
-        ResultSet rs = rq.select("SELECT * FROM CARTEGALAXIE WHERE ID = " +this.id+ ";");
+        ResultSet rs = rq.select("SELECT * FROM CARTE_GALAXIE WHERE ID = " +this.id+ ";");
         
         img = new Image(rs.getString("IMG"));
         nbPlanete = rs.getInt("NBPLANETE");

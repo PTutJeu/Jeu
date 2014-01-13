@@ -19,15 +19,10 @@ public class PTut {
         app.start(); //On démarre le jeu
         /*try {
             Requete rq = new Requete();
-            rq.request("DROP TABLE DETAILS_PLANETE;");
-            rq.request("CREATE TABLE DETAILS_PLANETE(ID NUMBER, OXYGENE NUMBER, TEMPERATURE NUMBER, "
-                    + "PITEMNEED VARCHAR2(40), DITEMNEED VARCHAR2(40), NOM VARCHAR2(40), POSSEDEE NUMBER, "
-                    + "CONSTRAINT PK_DETAILSPLANETE PRIMARY KEY (ID));");
-            rq.request("INSERT INTO DETAILS_PLANETE VALUES(0, 23, 25, '', '', 'Cartez', 0);");
-            rq.request("INSERT INTO DETAILS_PLANETE VALUES(1, 23, 56, 'Combinaison Refroidissante', '', 'Chalr', 0);");
-            rq.request("INSERT INTO DETAILS_PLANETE VALUES(2, 23, -15, 'Combinaison Chauffante', '', 'Fraom', 0);");
-            rq.request("INSERT INTO DETAILS_PLANETE VALUES(3, 23, 25, '', '', 'Gorphei', 0);");
-            rq.request("INSERT INTO DETAILS_PLANETE VALUES(4, 2, 25, 'Masque à Oxygène', 'Bouteille d''Oxygène', 'Gazos', 0);");
+            rq.request("DROP TABLE CARTE_GALAXIE;");
+            rq.request("CREATE TABLE CARTE_GALAXIE(ID NUMBER, IMG VARCHAR2(40), NBPLANETE NUMBER, "
+                    + "CONSTRAINT PK_PLANETE PRIMARY KEY (ID));");
+            rq.request("INSERT INTO CARTE_GALAXIE VALUES(0, 'ressources/images/fondcartegal1.jpg', 5);");
         } catch (SQLException ex) {
             Logger.getLogger(PTut.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
