@@ -1,11 +1,10 @@
 
 package Scene;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import BDD.Requete;
 import java.io.Serializable;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.newdawn.slick.GameContainer;
@@ -50,28 +49,23 @@ public class SceneMenuPrincipal extends Scene implements Serializable{
            }
            if(gc.getInput().isKeyDown(Input.KEY_ESCAPE))
            {
-               try 
-               {
-                   gc.exit();
-                   Main.Game.manager.setTotalTime(System.currentTimeMillis());               
-                   ObjectOutputStream oos = null;
-                   FileOutputStream fichier;
-                   fichier = new FileOutputStream("time.txt");
-                   oos = new ObjectOutputStream(fichier);
-                   oos.writeObject(Main.Game.manager.getTotalTime());
-                   oos.flush();
-                   oos.close();
-                   System.out.println(Main.Game.manager.getTotalTime());
-                   
-               } 
-               catch (FileNotFoundException ex) 
-               {
-                   Logger.getLogger(SceneMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-               } 
-               catch (IOException ex) 
-               {
-                   Logger.getLogger(SceneMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-               }
+               try {
+                    Requete rq = new Requete();
+                    ResultSet rs = rq.select("SELECT * FROM SAVE WHERE ID_PERSO = 1;");
+                    long timeBDD = rs.getLong("TEMPS");
+                    Main.Game.manager.setTotalTime(System.currentTimeMillis());
+                    long ttime = Main.Game.manager.getTotalTime()+ timeBDD;
+                    System.out.println(ttime);
+                    rq.request("DROP TABLE SAVE");
+                    rq.request("CREATE TABLE SAVE(ID_PERSO NUMBER, TEMPS NUMBER, BOIS NUMBER, FER NUMBER, "
+                            + "CONSTRAINT PK_SAVE PRIMARY KEY (ID_PERSO));");
+                    rq.request("INSERT INTO SAVE VALUES(1, "+ttime+", 0, 0);");
+                 } 
+                catch (       SQLException | ClassNotFoundException ex) 
+                {
+                Logger.getLogger(SceneMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+                gc.exit();
            }
 	}
 	
