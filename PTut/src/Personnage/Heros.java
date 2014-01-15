@@ -20,6 +20,7 @@ public class Heros extends Personnage {
     
     private SpriteSheet herosSheet;
     private Animation herosAnimation;
+    
     private float vitesseVertical = 0.0f;
     private boolean sauter = false;
     private Image img;
@@ -27,25 +28,26 @@ public class Heros extends Personnage {
 
     public Heros() throws SlickException{ // Constructeur du héros
         super();
+        //herosSheet = new SpriteSheet("ressources/images/sprite_heros.png",30,30);
+        //herosAnimation = new Animation(herosSheet, 200);
         img = new Image("ressources/images/heros.png");
         x = 100;
         y = 0;
         x1 = x + img.getWidth();
-        y1 = y + img.getHeight();
-        
+        y1 = y + img.getHeight();       
        }
 
     public Image getImg(){return img;}
     
     //Méthode d'affichage de l'image du héros
     public void affiche(GameContainer gc, Graphics g) throws SlickException {
+        //herosAnimation.draw(x, y);
         g.drawImage(img, x, y);
     }
    
     
     public void déplacements(GameContainer gc, int temps, Plateforme plate){
         Input input = gc.getInput(); //Variable de type entrée
-        
         
         if( input.isKeyDown(Input.KEY_RIGHT) ){ // Si la variable pressée est flèche droite alors on déplace le héros à droite
             if ( getX1() < 799){
