@@ -44,8 +44,10 @@ public class ScenePlanete extends Scene
                 heros.tirer(gc, listeProjectile);
                 MobList.apparition();
                 MobList.déplacements(gc, t, plate,heros);
+                
                 listeProjectile.deplacements(gc, heros);
                 listeProjectile.collisions();
+                
                 if(gc.getInput().isKeyDown(Input.KEY_ESCAPE))
                 {
                     setState(STATE.FREEZE_NEXT);
