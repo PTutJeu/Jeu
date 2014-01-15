@@ -121,7 +121,7 @@ public class Heros extends Personnage {
 
     public void tirer (GameContainer gc, ListeProjectile lp) throws SlickException{
          Input input = gc.getInput(); //Variable de type entrée
-           if (input.isKeyPressed(Input.KEY_SPACE)){
+           if (input.isKeyPressed(Input.KEY_SPACE)){  //input.isMousePressed(Input.MOUSE_LEFT_BUTTON)
                lp.add(this);
            }
          }
