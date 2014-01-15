@@ -19,7 +19,7 @@ public class Heros extends Personnage {
     private float vitesseVertical = 0.0f;
     private boolean sauter = false;
     private Image img;
-    private ListeProjectile proj;
+    public boolean vue = true; // Vraie si le héro regarde à droite
 
     public Heros() throws SlickException{ // Constructeur du héros
         super();
@@ -47,6 +47,7 @@ public class Heros extends Personnage {
             if ( getX1() < 799){
                 x += 4;
                 x1 = x + img.getWidth();;
+                vue = true;
             }
         }
         
@@ -54,6 +55,7 @@ public class Heros extends Personnage {
             if ( getX() > 1){
                 x -= 4;
                 x1 = x + img.getWidth();
+                vue = false;
             }
         }
         
@@ -117,10 +119,10 @@ public class Heros extends Personnage {
 
     /* A VENIR LES METHODES POUR ATTAQUER... */
 
-    public void tirer (GameContainer gc, Projectile p) throws SlickException{
+    public void tirer (GameContainer gc, ListeProjectile lp) throws SlickException{
          Input input = gc.getInput(); //Variable de type entrée
            if (input.isKeyPressed(Input.KEY_SPACE)){
-               proj.add();
+               lp.add(this);
            }
          }
     

@@ -41,9 +41,10 @@ public class ScenePlanete extends Scene
 	{
                 Input input = gc.getInput();
                 heros.déplacements(gc, t, plate);
+                heros.tirer(gc, listeProjectile);
                 MobList.apparition();
                 MobList.déplacements(gc, t, plate,heros);
-               // listeProjectile.deplacements(gc);
+                listeProjectile.deplacements(gc, heros);
                 if(gc.getInput().isKeyDown(Input.KEY_ESCAPE))
                 {
                     setState(STATE.FREEZE_NEXT);
