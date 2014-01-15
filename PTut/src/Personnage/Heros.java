@@ -9,6 +9,8 @@ import org.newdawn.slick.SlickException;
 import Armes.ListeProjectile;
 
 import Armes.Projectile;
+import org.newdawn.slick.Animation;
+import org.newdawn.slick.SpriteSheet;
 
 /**
  *
@@ -16,6 +18,8 @@ import Armes.Projectile;
  */
 public class Heros extends Personnage {
     
+    private SpriteSheet herosSheet;
+    private Animation herosAnimation;
     private float vitesseVertical = 0.0f;
     private boolean sauter = false;
     private Image img;

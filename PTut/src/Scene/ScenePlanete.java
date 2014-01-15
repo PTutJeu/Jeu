@@ -4,10 +4,12 @@ import Armes.ListeProjectile;
 import CartePlateforme.Plateforme;
 import Personnage.Heros;
 import Personnage.MobSpawner;
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.SpriteSheet;
 
 
 public class ScenePlanete extends Scene 
@@ -19,6 +21,8 @@ public class ScenePlanete extends Scene
     private MobSpawner MobList;
     private boolean b;
     private ListeProjectile listeProjectile;
+    
+    
     
         public ScenePlanete ()
 	{
@@ -33,7 +37,6 @@ public class ScenePlanete extends Scene
             plate.affiche(gc,g);
             MobList.affiche(gc,g);
             listeProjectile.affiche(gc,g);
-           
 	}
 	
         @Override
