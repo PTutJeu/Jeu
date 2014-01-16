@@ -204,10 +204,9 @@ public class Heros extends Personnage {
     public void armeSelection(GameContainer gc, ListeArme listeArmes){
         Input input = gc.getInput(); //Variable de type entrée
         
-        if (input.isKeyPressed(Input.KEY_RSHIFT)){
+        if (input.isKeyPressed(Input.KEY_RSHIFT) && recharge != true){
             listeArmes.selectionArme();
             munitions = listeArmes.getArme().getChargeur();
-            System.out.println(listeArmes.index);
         }
         chargeur = listeArmes.getArme().getChargeur();
         
