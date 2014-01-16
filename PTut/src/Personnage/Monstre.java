@@ -60,7 +60,6 @@ public class Monstre {
     
     public void deplacements(GameContainer gc, int temps, Plateforme plate, Heros heros)
     {
-        
         boolean testCollision = collisions(plate);
         
         if (!testCollision) {
