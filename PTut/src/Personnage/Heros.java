@@ -1,5 +1,7 @@
 package Personnage;
 
+import Armes.Arme;
+import Armes.ListeArme;
 import CartePlateforme.Plateforme;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
@@ -9,6 +11,8 @@ import org.newdawn.slick.SlickException;
 import Armes.ListeProjectile;
 
 import Armes.Projectile;
+import java.util.ArrayList;
+import java.util.List;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.SpriteSheet;
 
@@ -22,7 +26,7 @@ public class Heros extends Personnage {
     private Animation herosAnimation;
     private SpriteSheet rechargeSheet;
     private Animation rechargeAnimation;
-    
+      
     private int munitions, chargeur;
     private long timeRechargement;  
     private float vitesseVertical = 0.0f;
@@ -42,8 +46,7 @@ public class Heros extends Personnage {
         x1 = x + img.getWidth();
         y1 = y + img.getHeight();
         setVie(3);
-        chargeur = 30;
-        munitions = chargeur;
+        munitions = 12;
        }
 
     public Image getImg(){return img;}
@@ -62,7 +65,7 @@ public class Heros extends Personnage {
        
        if ( recharge == true){
            rechargeAnimation.draw(x, y-40);
-       }    
+       }  
     }
     
     public void vieHeros() throws SlickException{
@@ -159,12 +162,12 @@ public class Heros extends Personnage {
 
     /* A VENIR LES METHODES POUR ATTAQUER... */
 
-    public void tirer (GameContainer gc, ListeProjectile lp) throws SlickException{
+    public void tirer (GameContainer gc, ListeProjectile lp, ListeArme la) throws SlickException{
          Input input = gc.getInput(); //Variable de type entrée
          
              // Le joueur ne peut tirer si il recharge
              if (input.isKeyPressed(Input.KEY_SPACE) && recharge != true){  //input.isMousePressed(Input.MOUSE_LEFT_BUTTON)
-                lp.add(this); //Ajout d'un projectile
+                lp.add(this,la.getArme()); //Ajout d'un projectile
                 munitions--;  //Enlève 1 munition / tir
              }
              
@@ -183,8 +186,7 @@ public class Heros extends Personnage {
             }
 
             if (input.isKeyPressed(Input.KEY_E)){
-                  this.setVie(getVie()-1);
-                  
+                  this.setVie(getVie()-1);      
             }
             
             // Si il s'est écoulé 3 sec depuis le début du rechargement alors le joueur peut de nouveau tirer
@@ -198,7 +200,16 @@ public class Heros extends Personnage {
                 else
                     recharge = false;
          }
-         
-         
+     
+    public void armeSelection(GameContainer gc, ListeArme listeArmes){
+        Input input = gc.getInput(); //Variable de type entrée
+        
+        if (input.isKeyPressed(Input.KEY_RSHIFT)){
+            listeArmes.selectionArme();
+            munitions = listeArmes.getArme().getChargeur();
+        }
+        chargeur = listeArmes.getArme().getChargeur();
+        
+    }
     
 }

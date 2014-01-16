@@ -19,14 +19,16 @@ public class Projectile {
     protected float y; //Coordonnée en y du projectile
     protected float x1; //coordonnée du coin inférieur de l'image
     protected float y1; //coordonnée du coin inférieur de l'image
+    protected int degats;
     private Image img;
     public boolean mvt;
     
     private int idProjectile;
    
     
-    public Projectile (float x, float y, boolean mvt) throws SlickException{
-        img = new Image("ressources/images/projectile2.png");
+    public Projectile (float x, float y, boolean mvt, Arme a) throws SlickException{
+        img = new Image("ressources/images/projectile"+a.getNom()+".png");
+        degats = a.getDegats();
         this.x=x;
         this.y=y;
         x1 = x + img.getWidth();
@@ -50,8 +52,9 @@ public class Projectile {
      
     public void setX(float x){ this.x=x;}
     public void setY(float y){ this.y=y;}
+    public void setDegats(int degats){this.degats=degats;}
     
-    
+    public int getDegats(){return degats;}
     public float getX(){ return x; }
     public float getY(){ return y;}
     public float getX1(){ return x1; }

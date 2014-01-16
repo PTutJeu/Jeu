@@ -35,12 +35,12 @@ public class ListeProjectile {
    
     }
     
-    public void add(Heros heros) throws SlickException{
+    public void add(Heros heros, Arme a) throws SlickException{
         if ( heros.vue==true){
-            listeProjectile.add(new Projectile(heros.getX(), heros.getY(), true));
+            listeProjectile.add(new Projectile(heros.getX(), heros.getY(), true, a));
         }
         else if (heros.vue==false){
-            listeProjectile.add(new Projectile(heros.getX(), heros.getY(), false));
+            listeProjectile.add(new Projectile(heros.getX(), heros.getY(), false, a));
         }
         
     }

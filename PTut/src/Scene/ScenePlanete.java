@@ -1,5 +1,6 @@
 package Scene;
 
+import Armes.ListeArme;
 import Armes.ListeProjectile;
 import CartePlateforme.Plateforme;
 import Personnage.Heros;
@@ -15,14 +16,14 @@ import org.newdawn.slick.SpriteSheet;
 
 public class ScenePlanete extends Scene 
 {
-    
+
     private Heros heros;
     private SceneMenu menu;
     private Plateforme plate;
     private MobSpawner MobList;
     private boolean b;
     private ListeProjectile listeProjectile;
-    
+    private ListeArme listeArmes;
     
         private Image img;
         public ScenePlanete () throws SlickException
@@ -45,6 +46,7 @@ public class ScenePlanete extends Scene
             plate.affiche(gc,g);
             MobList.affiche(gc,g);
             listeProjectile.affiche(gc,g);
+            listeArmes.affiche(gc, g);
            
 	}
 	
@@ -53,10 +55,12 @@ public class ScenePlanete extends Scene
 	{
                 Input input = gc.getInput();
                 heros.déplacements(gc, t, plate);
-                heros.tirer(gc, listeProjectile);
+                heros.tirer(gc, listeProjectile, listeArmes);
                 heros.vieHeros();
+                heros.armeSelection(gc, listeArmes);
                 MobList.apparition();
                 MobList.déplacements(gc, t, plate,heros);
+                
                 listeProjectile.deplacements(gc, heros);
                 listeProjectile.collisions();
                 
@@ -80,6 +84,7 @@ public class ScenePlanete extends Scene
                     plate = new Plateforme("plateforme", 200, 450);
                     MobList = new MobSpawner();
                     listeProjectile = new ListeProjectile();
+                    listeArmes = new ListeArme();
                     b = false;
 	}
 	
