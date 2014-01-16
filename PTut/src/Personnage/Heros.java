@@ -175,15 +175,16 @@ public class Heros extends Personnage {
             sauter = false;
         else{                // Si la position du joueut n'est pas en 570 sauter est vrai
             sauter = true;
-            if (vue == true){
-                herosAnimation = droiteSaut;
-                herosAnimation.update(temps);
-            }
-            else if ( vue ==false){
-                herosAnimation = gaucheSaut;
-                herosAnimation.update(temps);
-            }
             
+        if (vue == true){
+            herosAnimation = droiteSaut;
+            herosAnimation.update(temps);
+        }
+        else if ( vue ==false){
+            herosAnimation = gaucheSaut;
+            herosAnimation.update(temps);
+        }
+
         }
         
         // Changer la valeur avant le temps réduit la hauteur du saut.
