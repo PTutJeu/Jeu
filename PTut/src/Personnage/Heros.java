@@ -39,8 +39,8 @@ public class Heros extends Personnage {
 
     public Heros() throws SlickException{ // Constructeur du héros
         super();
-        //herosSheet = new SpriteSheet("ressources/images/test.png",30,30);
-        //herosAnimation = new Animation(herosSheet, 200);
+        herosSheet = new SpriteSheet("ressources/images/test.png",30,30);
+        herosAnimation = new Animation(herosSheet, 200);
         img = new Image("ressources/images/heros.png");
         x = 100;
         y = 0;
@@ -55,8 +55,8 @@ public class Heros extends Personnage {
     
     //Méthode d'affichage de l'image du héros
     public void affiche(GameContainer gc, Graphics g) throws SlickException {
-       // herosAnimation.draw(x, y);
-       g.drawImage(img, x, y);
+        herosAnimation.draw(x, y);
+       //g.drawImage(img, x, y);
        g.drawImage(imgVie, 10, 10);
        
        g.drawString(munitions+"/"+chargeur,10,80);
