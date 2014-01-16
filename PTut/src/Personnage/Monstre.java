@@ -101,6 +101,8 @@ public class Monstre {
     public float getVitesseVertical() { return vitesseVertical; }
     public float getX() { return x; }
     public float getY() { return y; }
+    public float getX1() { return img.getWidth(); }
+    public float getY1() { return img.getHeight(); }
     public int getVie() { return vie; }
 
     //Setters
