@@ -39,6 +39,7 @@ public class Heros extends Personnage {
 
     public Heros() throws SlickException{ // Constructeur du héros
         super();
+        /*
         herosD = new SpriteSheet("ressources/images/sprite_heros_arret_droite.png",48,59);
         herosG = new SpriteSheet("ressources/images/sprite_heros_arret_gauche.png",48,59);
         mvtD = new SpriteSheet("ressources/images/sprite_heros_droite.png",48,59);
@@ -48,7 +49,7 @@ public class Heros extends Personnage {
         herosMort = new SpriteSheet("ressources/images/heros_cadavre.png",48,44);
         sautD = new SpriteSheet("ressources/images/heros_saut_droite.png",48,51);
         sautG = new SpriteSheet("ressources/images/heros_saut_gauche.png",48,51);
-        /*
+        */
         herosD = new SpriteSheet("ressources/images/test/sprite_heros_arret_droite.png",30,30);
         herosG = new SpriteSheet("ressources/images/test/sprite_heros_arret_gauche.png",30,30);
         mvtD = new SpriteSheet("ressources/images/test/sprite_heros_droite.png",30,30);
@@ -58,7 +59,7 @@ public class Heros extends Personnage {
         herosMort = new SpriteSheet("ressources/images/test/heros_cadavre.png",30,30);
         sautD = new SpriteSheet("ressources/images/test/heros_saut_droite.png",30,30);
         sautG = new SpriteSheet("ressources/images/test/heros_saut_gauche.png",30,30);
-        */
+        
         gameOver = new SpriteSheet("ressources/images/gameOver.png",501,59);
         gameOverAnimation= new Animation(gameOver,200);
         droiteSaut = new Animation(sautD,200);
