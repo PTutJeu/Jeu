@@ -62,7 +62,7 @@ public class Heros extends Personnage {
        
        if ( recharge == true){
            rechargeAnimation.draw(x, y-40);
-       }
+       }    
     }
     
     public void vieHeros() throws SlickException{
@@ -172,9 +172,13 @@ public class Heros extends Personnage {
              // Si le joueur tombe à cours de munitions et qu'il n'est pas en train de recharger => rechargement du chargeur
              // On ajoute une petite animation lors du rechargement du chargeur
             if (input.isKeyPressed(Input.KEY_R) && recharge != true || munitions <=0 && recharge !=true){
-                timeRechargement = System.currentTimeMillis();
-                rechargeSheet = new SpriteSheet("ressources/images/barillet.png",30,30);
-                rechargeAnimation = new Animation(rechargeSheet, 200);
+                if (munitions == chargeur){                                  
+                }
+                else{
+                    timeRechargement = System.currentTimeMillis();
+                    rechargeSheet = new SpriteSheet("ressources/images/barillet.png",30,30);
+                    rechargeAnimation = new Animation(rechargeSheet, 200);
+                }
      
             }
 

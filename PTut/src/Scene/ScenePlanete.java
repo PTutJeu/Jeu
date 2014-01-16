@@ -57,7 +57,6 @@ public class ScenePlanete extends Scene
                 heros.vieHeros();
                 MobList.apparition();
                 MobList.déplacements(gc, t, plate,heros);
-                
                 listeProjectile.deplacements(gc, heros);
                 listeProjectile.collisions();
                 

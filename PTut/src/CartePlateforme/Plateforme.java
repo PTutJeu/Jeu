@@ -15,6 +15,7 @@ public class Plateforme {
     private float x1;
     private float y1;
     private Image img;
+    private boolean test=false;
     
     public Plateforme(String nomImage,float x,float y) throws SlickException{
         img = new Image("ressources/images/"+nomImage+".png");
@@ -28,8 +29,7 @@ public class Plateforme {
     public void affiche(GameContainer gc, Graphics g) throws SlickException{
         g.drawImage(img, x, y);     
     }
-    
-    
+
     
     public float getX(){ return x; }
     public float getY(){ return y; }
