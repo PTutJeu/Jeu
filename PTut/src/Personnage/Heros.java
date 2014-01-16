@@ -22,8 +22,8 @@ import org.newdawn.slick.SpriteSheet;
  */
 public class Heros extends Personnage {
     
-    private SpriteSheet herosSheet;
-    private Animation herosAnimation;
+    private SpriteSheet herosD, herosG, mvtD, mvtG, tirD, tirG, herosMort, sautD, sautG;
+    private Animation herosAnimation, droite, gauche, droiteArret, gaucheArret, droiteTir, gaucheTir, mort, droiteSaut, gaucheSaut;
     private SpriteSheet rechargeSheet;
     private Animation rechargeAnimation;
       
@@ -35,17 +35,34 @@ public class Heros extends Personnage {
     private boolean recharge =false;
     private Image img;
     private Image imgVie;
-    public boolean vue = true; // Vraie si le héro regarde à droite
+    public boolean vue = true, enMarche=false; // Vraie si le héro regarde à droite
 
     public Heros() throws SlickException{ // Constructeur du héros
         super();
-        herosSheet = new SpriteSheet("ressources/images/test.png",30,30);
-        herosAnimation = new Animation(herosSheet, 200);
+        herosD = new SpriteSheet("ressources/images/sprite_heros_arret_droite.png",48,59);
+        herosG = new SpriteSheet("ressources/images/sprite_heros_arret_gauche.png",48,59);
+        mvtD = new SpriteSheet("ressources/images/sprite_heros_droite.png",48,59);
+        mvtG = new SpriteSheet("ressources/images/sprite_heros_gauche.png",48,59);
+        tirD = new SpriteSheet("ressources/images/sprite_heros_tir_droite.png",64,43);
+        tirG = new SpriteSheet("ressources/images/sprite_heros_tir_gauche.png",64,43);
+        herosMort = new SpriteSheet("ressources/images/heros_cadavre.png",48,44);
+        sautD = new SpriteSheet("ressources/images/heros_saut_droite.png",48,51);
+        sautG = new SpriteSheet("ressources/images/heros_saut_gauche.png",48,51);
+        droiteSaut = new Animation(sautD,200);
+        gaucheSaut = new Animation(sautG,200);
+        droite = new Animation(mvtD, 200);
+        gauche = new Animation(mvtG, 200);
+        droiteArret = new Animation(herosD, 200);
+        gaucheArret = new Animation(herosG, 200);
+        droiteTir = new Animation(tirD,200);
+        gaucheTir = new Animation(tirG,200);
+        mort = new Animation(herosMort,200);
+        herosAnimation = new Animation(herosD, 200);
         img = new Image("ressources/images/heros.png");
         x = 100;
         y = 0;
-        x1 = x + img.getWidth();
-        y1 = y + img.getHeight();
+        x1 = x + herosAnimation.getWidth();
+        y1 = y + herosAnimation.getHeight();
         setVie(3);
         munitions = 12;
         timeInvincible = System.currentTimeMillis();
@@ -83,6 +100,7 @@ public class Heros extends Personnage {
         else if (getVie()<=0 ){
             imgVie = new Image("ressources/images/vie0.png");
             VieMort = false;
+            herosAnimation = mort;
         }
     }
 
@@ -91,21 +109,42 @@ public class Heros extends Personnage {
     public void déplacements(GameContainer gc, int temps, Plateforme plate){
         Input input = gc.getInput(); //Variable de type entrée
         
-        if( input.isKeyDown(Input.KEY_RIGHT) ){ // Si la variable pressée est flèche droite alors on déplace le héros à droite
+        if( input.isKeyDown(Input.KEY_RIGHT) && VieMort ==true ){ // Si la variable pressée est flèche droite alors on déplace le héros à droite
             if ( getX1() < 799){
                 x += 4;
                 x1 = x + img.getWidth();;
                 vue = true;
+                herosAnimation = droite;
+                herosAnimation.update(temps);
+                enMarche = true;
             }
         }
         
-        if( input.isKeyDown(Input.KEY_LEFT) ){ // Si la variable pressée est flèche gauche alors on déplace le héros à gauche
+        else if( input.isKeyDown(Input.KEY_LEFT) && VieMort ==true  ){ // Si la variable pressée est flèche gauche alors on déplace le héros à gauche
             if ( getX() > 1){
                 x -= 4;
                 x1 = x + img.getWidth();
                 vue = false;
+                herosAnimation = gauche;
+                herosAnimation.update(temps);
+                enMarche = true;
             }
         }
+        else
+                enMarche = false;
+        
+        if (vue == true && enMarche == false){
+            herosAnimation = droiteArret;
+            herosAnimation.update(temps);
+        }
+        if (vue == false && enMarche == false){
+            herosAnimation = gaucheArret;
+            herosAnimation.update(temps);
+        
+        }
+            
+            
+        
         
         // PHASE DE SAUT
         boolean testCollision = collisions(plate);
@@ -116,7 +155,7 @@ public class Heros extends Personnage {
             sauter = true;
         
         // Changer la valeur avant le temps réduit la hauteur du saut.
-        if( input.isKeyDown(Input.KEY_UP) && !sauter ){// Si on presse ArrowUp et que sauter est faux le personnage peut sauter
+        if( input.isKeyDown(Input.KEY_UP) && !sauter && VieMort ==true  ){// Si on presse ArrowUp et que sauter est faux le personnage peut sauter
             vitesseVertical = -0.5f * temps;     // Donc on créer une "Vitesse de déplacement" en fonction du temps
             y += vitesseVertical;                // Et la position de notre héros prend la valeur de la vitesse de déplacement
             y1 = y + img.getHeight();
@@ -134,7 +173,7 @@ public class Heros extends Personnage {
         }
        
         if ( testCollision && plate.getY1() >= getY1() && getY1() >= plate.getY() ){ //Recalibration
-            setY( getY() - ( getY() - plate.getY() ) - 30 );
+            setY( getY() - ( getY() - plate.getY() ) - 30);
         }
         
         // Empêche de passer au milieu de la plateforme
@@ -146,7 +185,7 @@ public class Heros extends Personnage {
             setY( plate.getY1() + 01 );
         }   
         // A SAVOIR QUE CETTE FONCTION SAUT MARCHE POUR LE MOMENT UNIQUEMENT POUR LE BAS DE LA FENETRE
-        // IL ME RESTE A IMPLEMENTER CA POUR QUE CA MARCHE AVEC UNE PLATEFORME UNIVERSELLE
+        // IL ME RESTE A IMPLEMENTER CA POUR QUE CA MARCHE AVEC UNE PLATEFORME UNIVERSELLE           
       }
     
     
@@ -168,7 +207,7 @@ public class Heros extends Personnage {
          Input input = gc.getInput(); //Variable de type entrée
          
              // Le joueur ne peut tirer si il recharge
-             if (input.isKeyPressed(Input.KEY_SPACE) && recharge != true){  //input.isMousePressed(Input.MOUSE_LEFT_BUTTON)
+             if (input.isKeyPressed(Input.KEY_SPACE) && recharge != true && VieMort ==true ){  //input.isMousePressed(Input.MOUSE_LEFT_BUTTON)
                 lp.add(this,la.getArme()); //Ajout d'un projectile
                 munitions--;  //Enlève 1 munition / tir
              }
