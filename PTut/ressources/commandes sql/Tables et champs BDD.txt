@@ -17,3 +17,8 @@ Table DETAILS_PLANETE:
 	PITEMNEED VARCHAR2(40) // Premier item nécessaire pour aller sur la planète
 	DITEMNEED VARCHAR2(40) // Deuxieme item nécessaire pour aller sur la planète
 	NOM VARCHAR2(40) // Nom de la planète
+
+Table MOB:
+	ID NUMBER // Identifiant du mob (primary key)
+	VIE NUMBER // Vie maximal du mob
+	IMG VARCHAR2(40) // Image du mob

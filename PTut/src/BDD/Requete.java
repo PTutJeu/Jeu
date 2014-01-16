@@ -15,7 +15,7 @@ public class Requete {
     //On aura qu'une BDD donc un constructeur par défaut suffit, il y aura toujours la même connection
     public Requete() throws SQLException, ClassNotFoundException {
         Class.forName("org.sqlite.JDBC");
-        c = DriverManager.getConnection("jdbc:sqlite:test.db");
+        c = DriverManager.getConnection("jdbc:sqlite:bdd.db");
         stmt = c.createStatement();
     }
             
