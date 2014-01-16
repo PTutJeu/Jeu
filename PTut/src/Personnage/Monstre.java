@@ -78,7 +78,7 @@ public class Monstre {
         
         if (collisionsHeros(heros))
         {
-            heros.setVie(heros.getVie()-1); 
+            heros.perdVie(1); 
         }
          // Ici je met en place le deplacement du monstre vers le joueur, le -25 devra etre remplacé par la taille de la HITBOX
          // Sinon pour l'instant il me suit normalement

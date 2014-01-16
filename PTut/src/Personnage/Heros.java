@@ -29,6 +29,7 @@ public class Heros extends Personnage {
       
     private int munitions, chargeur;
     private long timeRechargement;  
+    private long timeInvincible;
     private float vitesseVertical = 0.0f;
     private boolean sauter = false;
     private boolean recharge =false;
@@ -47,6 +48,7 @@ public class Heros extends Personnage {
         y1 = y + img.getHeight();
         setVie(3);
         munitions = 12;
+        timeInvincible = System.currentTimeMillis();
        }
 
     public Image getImg(){return img;}
@@ -201,6 +203,14 @@ public class Heros extends Personnage {
                     recharge = false;
          }
      
+    public void perdVie(int degats)
+    {
+        if (System.currentTimeMillis() - timeInvincible > 3000)
+        {
+            setVie(getVie() -1);
+            timeInvincible = System.currentTimeMillis();
+        }
+    }
     public void armeSelection(GameContainer gc, ListeArme listeArmes){
         Input input = gc.getInput(); //Variable de type entrée
         
