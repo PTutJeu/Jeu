@@ -1,0 +1,4 @@
+rq.request("CREATE TABLE MOB(ID NUMBER, VIE NUMBER, IMG VARCHAR2(40), "
+                    + "CONSTRAINT MOB PRIMARY KEY (ID));");
+            rq.request("INSERT INTO MOB VALUES(0, 100, 'ressources/images/mob1.png');");
+            rq.request("INSERT INTO MOB VALUES(4, 2, 25, 'ressources/images/mob2.png');");

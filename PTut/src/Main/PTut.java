@@ -1,11 +1,15 @@
 package Main;
 
+import BDD.Requete;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.SlickException;
 
 //Classe main
 public class PTut {
-    public static void main(String[] args) throws SlickException {
+    public static void main(String[] args) throws SlickException, SQLException {
         // /!\Pas très bonnes explication, voir tuto au pire/!\
         //On crée une application qui contiendra le jeu
         AppGameContainer app = new AppGameContainer(new Game());
@@ -16,19 +20,12 @@ public class PTut {
         app.start(); //On démarre le jeu
         /*try {
             Requete rq = new Requete();
-            rq.request("DROP TABLE PLANETE;");
-            rq.request("CREATE TABLE PLANETE(ID NUMBER, MAP NUMBER, X NUMBER, Y NUMBER, "
-                    + "IMG VARCHAR2(40), "
-                    + "CONSTRAINT PK_PLANETE PRIMARY KEY (ID), "
-                    + "CONSTRAINT FK_PLANETE FOREIGN KEY (MAP) REFERENCES CARTE_GALAXIE(ID));");
-            rq.request("INSERT INTO PLANETE VALUES(0, 0, 50, 50, 'ressources/images/p0.png');");
-            rq.request("INSERT INTO PLANETE VALUES(1, 0, 200, 10, 'ressources/images/p1.png');");
-            rq.request("INSERT INTO PLANETE VALUES(2, 0, 600, 100, 'ressources/images/p2.png');");
-            rq.request("INSERT INTO PLANETE VALUES(3, 0, 300, 400, 'ressources/images/p3.png');");
-            rq.request("INSERT INTO PLANETE VALUES(4, 0, 10, 500, 'ressources/images/p4.png');");
-        } catch (SQLException ex) {
-            Logger.getLogger(PTut.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
+            rq.request("DROP TABLE MOB;");
+            rq.request("CREATE TABLE MOB(ID NUMBER, VIE NUMBER, IMG VARCHAR2(40), "
+                    + "CONSTRAINT MOB PRIMARY KEY (ID));");
+            rq.request("INSERT INTO MOB VALUES(0, 100, 'ressources/images/mob1.png');");
+            rq.request("INSERT INTO MOB VALUES(1, 80, 'ressources/images/mob2.png');");
+        } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(PTut.class.getName()).log(Level.SEVERE, null, ex);
         }*/
         
