@@ -24,7 +24,6 @@ public class Monstre extends Personnage{
         y = 550;
         x1 = x + img.getWidth();
         y1 = y + img.getHeight();
-        isSpawn = false;
        }
     public Monstre(int vie) throws SlickException{
         super();
@@ -34,16 +33,13 @@ public class Monstre extends Personnage{
         y = 550;
         x1 = x + img.getWidth();
         y1 = y + img.getHeight();
-        isSpawn = false;
     }
     
     public void affiche(GameContainer gc, Graphics g) throws SlickException {
         g.drawImage(img, x, y);
-        isSpawn = true;
      }
     public void déplacements(GameContainer gc, int temps, Plateforme plate,Heros heros)
-    {
-      if (isSpawn) {
+    {    
           boolean testCollision = collisions(plate);
           
           if ( !testCollision ){
@@ -51,9 +47,9 @@ public class Monstre extends Personnage{
             y += vitesseVertical;
             y1 = y + img.getHeight();
             
-            if (getY() > 570){                  //Si en tombant le heros sort de la map,
+                if (getY() > 570){                  //Si en tombant le heros sort de la map,
                 setY( getY() - (getY() - 570)); // On le replace au bord.
-            }
+                }
             
             }
            // Ici je met en place le deplacement du monstre vers le joueur, le -25 devra etre remplacé par la taille de la HITBOX
@@ -65,7 +61,7 @@ public class Monstre extends Personnage{
            if (x1 < (heros.getX()-25)) {
                x+=2;
                x1+=2;
-           }
+           
       }
        
        

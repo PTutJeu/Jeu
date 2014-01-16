@@ -1,6 +1,8 @@
 package Armes;
 
 import Personnage.Heros;
+import Personnage.MobSpawner;
+import Personnage.Monstre;
 import java.util.ArrayList;
 import java.util.List;
 import org.newdawn.slick.GameContainer;
@@ -37,15 +39,15 @@ public class ListeProjectile {
     
     public void add(Heros heros, Arme a) throws SlickException{
         if ( heros.vue==true){
-            listeProjectile.add(new Projectile(heros.getX(), heros.getY(), true, a));
+            listeProjectile.add(new Projectile(heros.getX(), heros.getY()+10, true, a));
         }
         else if (heros.vue==false){
-            listeProjectile.add(new Projectile(heros.getX(), heros.getY(), false, a));
+            listeProjectile.add(new Projectile(heros.getX(), heros.getY()+10, false, a));
         }
         
     }
     
-    public void collisions () {
+    public void collisions (List<Monstre> MobList) {
         // Pour gérer les collisions en dehors de l'écran et donc supprimer un projectile lorsqu'il
         // dépasse les limites de l'écran, il faut rechercher dans l'ArrayList des projectiles,
         // le ou les projectiles qui sont en dehors des limites, et ensuite ajouter ces projectiles
@@ -56,7 +58,10 @@ public class ListeProjectile {
                if(p.getX() >= 800 || p.getX() <=0 ){
                    suppression.add(p); //Ajout des projectiles à supprimer a l'Array de suppression
                }
-               
+               for (Monstre m : MobList)
+               {
+                   
+               }
         //System.out.println(listeProjectile.size());
            }
         // Suppression des projectiles contenu dans l'Array de suppression
