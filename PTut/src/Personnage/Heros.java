@@ -20,10 +20,16 @@ public class Heros extends Personnage {
     
     private SpriteSheet herosSheet;
     private Animation herosAnimation;
+    private SpriteSheet rechargeSheet;
+    private Animation rechargeAnimation;
     
+    private int munitions, chargeur;
+    private long timeRechargement;  
     private float vitesseVertical = 0.0f;
     private boolean sauter = false;
+    private boolean recharge =false;
     private Image img;
+    private Image imgVie;
     public boolean vue = true; // Vraie si le héro regarde à droite
 
     public Heros() throws SlickException{ // Constructeur du héros
@@ -34,7 +40,10 @@ public class Heros extends Personnage {
         x = 100;
         y = 0;
         x1 = x + img.getWidth();
-        y1 = y + img.getHeight();       
+        y1 = y + img.getHeight();
+        setVie(3);
+        chargeur = 30;
+        munitions = chargeur;
        }
 
     public Image getImg(){return img;}
@@ -43,8 +52,36 @@ public class Heros extends Personnage {
     public void affiche(GameContainer gc, Graphics g) throws SlickException {
        // herosAnimation.draw(x, y);
        g.drawImage(img, x, y);
+       g.drawImage(imgVie, 10, 10);
+       
+       g.drawString(munitions+"/"+chargeur,10,80);
+       
+       if (VieMort == false){
+           g.drawString("Tu es mort !", 200,200);
+       }
+       
+       if ( recharge == true){
+           rechargeAnimation.draw(x, y-40);
+       }
     }
-   
+    
+    public void vieHeros() throws SlickException{
+        if(getVie() == 3){
+            imgVie = new Image("ressources/images/vie3.png");
+        }
+        else if (getVie() ==2 ){
+            imgVie = new Image("ressources/images/vie2.png");
+        }
+        else if (getVie() ==1){
+            imgVie = new Image("ressources/images/vie1.png");
+        }
+        else if (getVie()<=0 ){
+            imgVie = new Image("ressources/images/vie0.png");
+            VieMort = false;
+        }
+    }
+
+
     
     public void déplacements(GameContainer gc, int temps, Plateforme plate){
         Input input = gc.getInput(); //Variable de type entrée
@@ -120,17 +157,44 @@ public class Heros extends Personnage {
 
 
 
-
-
-
     /* A VENIR LES METHODES POUR ATTAQUER... */
 
     public void tirer (GameContainer gc, ListeProjectile lp) throws SlickException{
          Input input = gc.getInput(); //Variable de type entrée
-           if (input.isKeyPressed(Input.KEY_SPACE)){  //input.isMousePressed(Input.MOUSE_LEFT_BUTTON)
-               lp.add(this);
-           }
+         
+             // Le joueur ne peut tirer si il recharge
+             if (input.isKeyPressed(Input.KEY_SPACE) && recharge != true){  //input.isMousePressed(Input.MOUSE_LEFT_BUTTON)
+                lp.add(this); //Ajout d'un projectile
+                munitions--;  //Enlève 1 munition / tir
+             }
+             
+             // Si le joueur appuie sur R et qu'il n'est pas déjà en train de recharger => rechargement du chargeur
+             // Si le joueur tombe à cours de munitions et qu'il n'est pas en train de recharger => rechargement du chargeur
+             // On ajoute une petite animation lors du rechargement du chargeur
+            if (input.isKeyPressed(Input.KEY_R) && recharge != true || munitions <=0 && recharge !=true){
+                timeRechargement = System.currentTimeMillis();
+                rechargeSheet = new SpriteSheet("ressources/images/barillet.png",30,30);
+                rechargeAnimation = new Animation(rechargeSheet, 200);
+     
+            }
+
+            if (input.isKeyPressed(Input.KEY_E)){
+                  this.setVie(getVie()-1);
+                  
+            }
+            
+            // Si il s'est écoulé 3 sec depuis le début du rechargement alors le joueur peut de nouveau tirer
+            if ( (System.currentTimeMillis() - timeRechargement) < 3000 ){
+                    recharge = true;
+                    // Attend 2.5sec avant d'afficher le chargeur rechargé => plus de réalisme
+                    if ( (System.currentTimeMillis() - timeRechargement) > 2500 )
+                        munitions = chargeur;
+                    
+                }
+                else
+                    recharge = false;
          }
-    
+         
+         
     
 }

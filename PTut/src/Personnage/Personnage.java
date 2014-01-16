@@ -14,6 +14,7 @@ public abstract class Personnage {
     protected int xp; //expérience du personnage
     protected int niveau; //Niveau du Personnage
     protected String nom; // Nom du personnage
+    protected boolean VieMort=true;
     private List<String> Objets = new ArrayList<>(); //On établit une liste d'objets que possède le Personnage
     
     

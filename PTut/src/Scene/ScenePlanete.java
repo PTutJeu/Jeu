@@ -40,7 +40,7 @@ public class ScenePlanete extends Scene
         @Override
 	protected void CustomRender(GameContainer gc, Graphics g) throws SlickException 
 	{
-             affiche(gc,g);
+            affiche(gc,g);
             heros.affiche(gc, g);
             plate.affiche(gc,g);
             MobList.affiche(gc,g);
@@ -54,6 +54,7 @@ public class ScenePlanete extends Scene
                 Input input = gc.getInput();
                 heros.déplacements(gc, t, plate);
                 heros.tirer(gc, listeProjectile);
+                heros.vieHeros();
                 MobList.apparition();
                 MobList.déplacements(gc, t, plate,heros);
                 
