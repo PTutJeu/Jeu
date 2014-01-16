@@ -26,7 +26,7 @@ public class Projectile {
    
     
     public Projectile (float x, float y, boolean mvt) throws SlickException{
-        img = new Image("ressources/images/projectile.png");
+        img = new Image("ressources/images/projectile2.png");
         this.x=x;
         this.y=y;
         x1 = x + img.getWidth();
