@@ -50,7 +50,7 @@ public class MobSpawner {
     public void MortMob () {
         for (Monstre m : MobList)
         {
-            if (m.getVie() <=0)
+            if (m.getVie() ==0)
             {
                 MortList.add(m);
             }

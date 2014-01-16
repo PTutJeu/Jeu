@@ -60,7 +60,7 @@ public class ScenePlanete extends Scene
                 heros.armeSelection(gc, listeArmes);
                 //MobList.apparition();
                 MobList.deplacements(gc, t, plate,heros);
-                
+                MobList.MortMob();
                 listeProjectile.deplacements(gc, heros);
                 listeProjectile.collisions(MobList.getMobList());
                 

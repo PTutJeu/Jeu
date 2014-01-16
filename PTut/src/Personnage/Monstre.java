@@ -60,9 +60,9 @@ public class Monstre {
     
     public void deplacements(GameContainer gc, int temps, Plateforme plate, Heros heros)
     {
-        boolean testCollision = collisions(plate);
+        boolean testCollisionPlate = collisionsPlate(plate);
         
-        if (!testCollision) {
+        if (!testCollisionPlate) {
             vitesseVertical += 0.01f * temps; // Même procédé que pour le saut mais fait en sorte de faire tomber le héros tout le temps
             y += vitesseVertical;
             //y1 = y + img.getHeight();
@@ -73,9 +73,13 @@ public class Monstre {
             }
         }
         
-        if (x > (heros.getX1() + 25)) x -= 2;
-        if (x + img.getWidth() < (heros.getX() - 25)) x += 2;
+        if (x > heros.getX()+ heros.getImg().getWidth()/2) x -= 2;
+        if (x+img.getWidth() < heros.getX()+ heros.getImg().getWidth()/2) x += 2;
         
+        if (collisionsHeros(heros))
+        {
+            heros.perdVie(1); 
+        }
          // Ici je met en place le deplacement du monstre vers le joueur, le -25 devra etre remplacé par la taille de la HITBOX
          // Sinon pour l'instant il me suit normalement
          /*if (x > (heros.getX1()+25)) {
@@ -87,12 +91,16 @@ public class Monstre {
              x1+=2;
          }*/
    }
-   public boolean collisions(Plateforme plate) {
+   public boolean collisionsPlate(Plateforme plate) {
         if ( y + img.getHeight() < plate.getY() ) return false;
         if ( x + img.getWidth() < plate.getX() ) return false;
         if ( y > plate.getY1() ) return false;
         if ( x > plate.getX1() ) return false;
         return true;
+   }
+   public boolean collisionsHeros(Heros heros)
+   {
+       return (getX1() >= heros.getX() && getX() <= heros.getX1() && getY1() >= heros.getY() && getY() <= heros.getY1());
    }
 
     //Getters
@@ -100,8 +108,8 @@ public class Monstre {
     public float getVitesseVertical() { return vitesseVertical; }
     public float getX() { return x; }
     public float getY() { return y; }
-    public float getX1() { return img.getWidth(); }
-    public float getY1() { return img.getHeight(); }
+    public float getX1() { return x+img.getWidth(); }
+    public float getY1() { return y+img.getHeight(); }
     public int getVie() { return vie; }
 
     //Setters

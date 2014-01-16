@@ -44,9 +44,11 @@ public class Projectile {
      public void deplacements(){
          if(mvt == false ){           
              x-=10;
+             x1-=10;
          }
          else if (mvt == true){
              x+=10;
+             x1+=10;
          }
      }
      
