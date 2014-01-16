@@ -55,7 +55,7 @@ public class ScenePlanete extends Scene
 	{
                 Input input = gc.getInput();
                 heros.déplacements(gc, t, plate);
-                heros.tirer(gc, listeProjectile, listeArmes);
+                heros.tirer(gc, listeProjectile, listeArmes, t);
                 heros.vieHeros();
                 heros.armeSelection(gc, listeArmes);
                 //MobList.apparition();

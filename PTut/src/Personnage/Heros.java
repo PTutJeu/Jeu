@@ -35,10 +35,10 @@ public class Heros extends Personnage {
     private boolean recharge =false;
     private Image img;
     private Image imgVie;
-    public boolean vue = true, enMarche=false; // Vraie si le héro regarde à droite
+    public boolean vue = true, enMarche=false, enTir=false; // Vraie si le héro regarde à droite
 
     public Heros() throws SlickException{ // Constructeur du héros
-        super();
+        super();/*
         herosD = new SpriteSheet("ressources/images/sprite_heros_arret_droite.png",48,59);
         herosG = new SpriteSheet("ressources/images/sprite_heros_arret_gauche.png",48,59);
         mvtD = new SpriteSheet("ressources/images/sprite_heros_droite.png",48,59);
@@ -48,14 +48,26 @@ public class Heros extends Personnage {
         herosMort = new SpriteSheet("ressources/images/heros_cadavre.png",48,44);
         sautD = new SpriteSheet("ressources/images/heros_saut_droite.png",48,51);
         sautG = new SpriteSheet("ressources/images/heros_saut_gauche.png",48,51);
+        */
+        herosD = new SpriteSheet("ressources/images/test/sprite_heros_arret_droite.png",30,30);
+        herosG = new SpriteSheet("ressources/images/test/sprite_heros_arret_gauche.png",30,30);
+        mvtD = new SpriteSheet("ressources/images/test/sprite_heros_droite.png",30,30);
+        mvtG = new SpriteSheet("ressources/images/test/sprite_heros_gauche.png",30,30);
+        tirD = new SpriteSheet("ressources/images/test/sprite_heros_tir_droite.png",30,30);
+        tirG = new SpriteSheet("ressources/images/test/sprite_heros_tir_gauche.png",30,30);
+        herosMort = new SpriteSheet("ressources/images/test/heros_cadavre.png",30,30);
+        sautD = new SpriteSheet("ressources/images/test/heros_saut_droite.png",30,30);
+        sautG = new SpriteSheet("ressources/images/test/heros_saut_gauche.png",30,30);
+        
+        
         droiteSaut = new Animation(sautD,200);
         gaucheSaut = new Animation(sautG,200);
         droite = new Animation(mvtD, 200);
         gauche = new Animation(mvtG, 200);
         droiteArret = new Animation(herosD, 200);
         gaucheArret = new Animation(herosG, 200);
-        droiteTir = new Animation(tirD,200);
-        gaucheTir = new Animation(tirG,200);
+        droiteTir = new Animation(tirD,500);
+        gaucheTir = new Animation(tirG,500);
         mort = new Animation(herosMort,200);
         herosAnimation = new Animation(herosD, 200);
         img = new Image("ressources/images/heros.png");
@@ -142,6 +154,14 @@ public class Heros extends Personnage {
             herosAnimation.update(temps);
         
         }
+        if (vue ==true && enTir==true){
+            herosAnimation = droiteTir;
+            herosAnimation.update(temps);
+        }
+        if (vue ==false && enTir==true){
+            herosAnimation = gaucheTir;
+            herosAnimation.update(temps);
+        }
             
             
         
@@ -151,8 +171,18 @@ public class Heros extends Personnage {
         
         if ( getY() == 570 || getY()== plate.getY()-30 && testCollision) // Si la position du joueur est en 570 sauter est faux
             sauter = false;
-        else                // Si la position du joueut n'est pas en 570 sauter est vrai
+        else{                // Si la position du joueut n'est pas en 570 sauter est vrai
             sauter = true;
+            if (vue == true){
+                herosAnimation = droiteSaut;
+                herosAnimation.update(temps);
+            }
+            else if ( vue ==false){
+                herosAnimation = gaucheSaut;
+                herosAnimation.update(temps);
+            }
+            
+        }
         
         // Changer la valeur avant le temps réduit la hauteur du saut.
         if( input.isKeyDown(Input.KEY_UP) && !sauter && VieMort ==true  ){// Si on presse ArrowUp et que sauter est faux le personnage peut sauter
@@ -203,14 +233,17 @@ public class Heros extends Personnage {
 
     /* A VENIR LES METHODES POUR ATTAQUER... */
 
-    public void tirer (GameContainer gc, ListeProjectile lp, ListeArme la) throws SlickException{
+    public void tirer (GameContainer gc, ListeProjectile lp, ListeArme la, int temps) throws SlickException{
          Input input = gc.getInput(); //Variable de type entrée
          
              // Le joueur ne peut tirer si il recharge
              if (input.isKeyPressed(Input.KEY_SPACE) && recharge != true && VieMort ==true ){  //input.isMousePressed(Input.MOUSE_LEFT_BUTTON)
                 lp.add(this,la.getArme()); //Ajout d'un projectile
                 munitions--;  //Enlève 1 munition / tir
+                enTir =true;
              }
+             else
+                 enTir = false;
              
              // Si le joueur appuie sur R et qu'il n'est pas déjà en train de recharger => rechargement du chargeur
              // Si le joueur tombe à cours de munitions et qu'il n'est pas en train de recharger => rechargement du chargeur
