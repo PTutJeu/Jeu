@@ -23,7 +23,7 @@ public class ListeArme {
     
     private List<Arme> listeArmes = new ArrayList<>();
     private List<Arme> listeArmes2 = new ArrayList<>();
-    private int index;
+    public int index;
     
     public ListeArme(){
         listeArmes.add(new Arme("Pistolet", 1, 12));
@@ -35,13 +35,11 @@ public class ListeArme {
     }
     
     public void selectionArme(){
-        for ( Arme a : listeArmes){  
-            listeArmes2.add(a);
-        } 
-        if(index >=listeArmes2.size())
+        if(index >=listeArmes.size()-1)
             index=0;
         else
             index++;
+        
     }
     
     public void affiche(GameContainer gc, Graphics g) throws SlickException{

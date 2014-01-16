@@ -207,6 +207,7 @@ public class Heros extends Personnage {
         if (input.isKeyPressed(Input.KEY_RSHIFT)){
             listeArmes.selectionArme();
             munitions = listeArmes.getArme().getChargeur();
+            System.out.println(listeArmes.index);
         }
         chargeur = listeArmes.getArme().getChargeur();
         
