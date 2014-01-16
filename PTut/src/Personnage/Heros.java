@@ -22,8 +22,8 @@ import org.newdawn.slick.SpriteSheet;
  */
 public class Heros extends Personnage {
     
-    private SpriteSheet herosD, herosG, mvtD, mvtG, tirD, tirG, herosMort, sautD, sautG;
-    private Animation herosAnimation, droite, gauche, droiteArret, gaucheArret, droiteTir, gaucheTir, mort, droiteSaut, gaucheSaut;
+    private SpriteSheet herosD, herosG, mvtD, mvtG, tirD, tirG, herosMort, sautD, sautG, gameOver;
+    private Animation herosAnimation, droite, gauche, droiteArret, gaucheArret, droiteTir, gaucheTir, mort, droiteSaut, gaucheSaut, gameOverAnimation;
     private SpriteSheet rechargeSheet;
     private Animation rechargeAnimation;
       
@@ -59,7 +59,8 @@ public class Heros extends Personnage {
         sautD = new SpriteSheet("ressources/images/test/heros_saut_droite.png",30,30);
         sautG = new SpriteSheet("ressources/images/test/heros_saut_gauche.png",30,30);
         
-        
+        gameOver = new SpriteSheet("ressources/images/gameOver.png",501,59);
+        gameOverAnimation= new Animation(gameOver,200);
         droiteSaut = new Animation(sautD,200);
         gaucheSaut = new Animation(sautG,200);
         droite = new Animation(mvtD, 200);
@@ -91,7 +92,8 @@ public class Heros extends Personnage {
        g.drawString(munitions+"/"+chargeur,10,80);
        
        if (VieMort == false){
-           g.drawString("Tu es mort !", 200,200);
+           //g.drawString("Tu es mort !", 200,200);
+           gameOverAnimation.draw(150,200);
        }
        
        if ( recharge == true){
@@ -173,15 +175,16 @@ public class Heros extends Personnage {
             sauter = false;
         else{                // Si la position du joueut n'est pas en 570 sauter est vrai
             sauter = true;
-            if (vue == true){
-                herosAnimation = droiteSaut;
-                herosAnimation.update(temps);
-            }
-            else if ( vue ==false){
-                herosAnimation = gaucheSaut;
-                herosAnimation.update(temps);
-            }
             
+        if (vue == true){
+            herosAnimation = droiteSaut;
+            herosAnimation.update(temps);
+        }
+        else if ( vue ==false){
+            herosAnimation = gaucheSaut;
+            herosAnimation.update(temps);
+        }
+
         }
         
         // Changer la valeur avant le temps réduit la hauteur du saut.
