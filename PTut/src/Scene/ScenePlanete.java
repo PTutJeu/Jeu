@@ -7,6 +7,7 @@ import Personnage.MobSpawner;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
@@ -23,20 +24,28 @@ public class ScenePlanete extends Scene
     private ListeProjectile listeProjectile;
     
     
-    
-        public ScenePlanete ()
+        private Image img;
+        public ScenePlanete () throws SlickException
 	{
             super();
             setPriority(1);
+            img = new Image("ressources/images/background.png");
 	}
-	
+        
+	public void affiche(GameContainer gc, Graphics g)
+         {
+            g.drawImage(img, 0, 0);
+         }
+        
         @Override
 	protected void CustomRender(GameContainer gc, Graphics g) throws SlickException 
 	{
+             affiche(gc,g);
             heros.affiche(gc, g);
             plate.affiche(gc,g);
             MobList.affiche(gc,g);
             listeProjectile.affiche(gc,g);
+           
 	}
 	
         @Override
