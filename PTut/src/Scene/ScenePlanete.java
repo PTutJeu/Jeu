@@ -5,6 +5,9 @@ import Armes.ListeProjectile;
 import CartePlateforme.Plateforme;
 import Personnage.Heros;
 import Personnage.MobSpawner;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -53,28 +56,34 @@ public class ScenePlanete extends Scene
         @Override
 	protected void CustomUpdate(GameContainer gc, int t) throws SlickException 
 	{
-                Input input = gc.getInput();
-                heros.déplacements(gc, t, plate);
-                heros.tirer(gc, listeProjectile, listeArmes, t);
-                heros.vieHeros();
-                heros.armeSelection(gc, listeArmes);
-                //MobList.apparition();
-                MobList.deplacements(gc, t, plate,heros);
-                MobList.MortMob();
-                listeProjectile.deplacements(gc, heros);
-                listeProjectile.collisions(MobList.getMobList());
-                
-                if(gc.getInput().isKeyDown(Input.KEY_ESCAPE))
-                {
-                    setState(STATE.FREEZE_NEXT);
-                    Main.Game.manager.addSence(new SceneMenu());
-                }
+        try {
+            Input input = gc.getInput();
+            heros.déplacements(gc, t, plate);
+            heros.tirer(gc, listeProjectile, listeArmes, t);
+            heros.vieHeros();
+            heros.armeSelection(gc, listeArmes);
+            MobList.apparition();
+            MobList.deplacements(gc, t, plate,heros);
+            MobList.MortMob();
+            listeProjectile.deplacements(gc, heros);
+            listeProjectile.collisions(MobList.getMobList());
             
-                    if( gc.getInput().isKeyPressed(Input.KEY_TAB) ) 
-                    {
-                            Main.Game.manager.removeSence(this);
-                            Main.Game.manager.getSence("Galaxie").setState(STATE.ON);
-                    }
+            if(gc.getInput().isKeyDown(Input.KEY_ESCAPE))
+            {
+                setState(STATE.FREEZE_NEXT);
+                Main.Game.manager.addSence(new SceneMenu());
+            }
+            
+            if( gc.getInput().isKeyPressed(Input.KEY_TAB) )
+            {
+                Main.Game.manager.removeSence(this);
+                Main.Game.manager.getSence("Galaxie").setState(STATE.ON);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ScenePlanete.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ScenePlanete.class.getName()).log(Level.SEVERE, null, ex);
+        }
 	}
 	
         @Override

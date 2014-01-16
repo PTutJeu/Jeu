@@ -24,7 +24,9 @@ public class PTut {
             rq.request("CREATE TABLE MOB(ID NUMBER, VIE NUMBER, IMG VARCHAR2(40), "
                     + "CONSTRAINT MOB PRIMARY KEY (ID));");
             rq.request("INSERT INTO MOB VALUES(1, 100, 'ressources/images/mob1.png');");
-            rq.request("INSERT INTO MOB VALUES(2, 80, 'ressources/images/mob2.png');");
+            rq.request("INSERT INTO MOB VALUES(2, 150, 'ressources/images/mob2.png');");
+            rq.request("INSERT INTO MOB VALUES(3, 200, 'ressources/images/VaisseauDroite.png');");
+            rq.request("INSERT INTO MOB VALUES(4, 500, 'ressources/images/sprite_heros_arret_gauche.png');");
             
             rq.request("DROP TABLE CARTE_GALAXIE;");
             rq.request("CREATE TABLE CARTE_GALAXIE(ID NUMBER, IMG VARCHAR2(40), NBPLANETE NUMBER, "
