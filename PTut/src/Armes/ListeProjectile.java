@@ -60,7 +60,11 @@ public class ListeProjectile {
                }
                for (Monstre m : MobList)
                {
-                   
+                   if (p.getX1() >= m.getX() && p.getX() <= m.getX1() && p.getY1() >= m.getY() && p.getY() <= m.getY1())
+                   {
+                       m.perdVie(50);
+                       suppression.add(p);
+                   }
                }
         //System.out.println(listeProjectile.size());
            }
