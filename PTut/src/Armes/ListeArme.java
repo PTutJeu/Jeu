@@ -26,8 +26,8 @@ public class ListeArme {
     public int index;
     
     public ListeArme(){
-        listeArmes.add(new Arme("Pistolet", 1, 12));
-        listeArmes.add(new Arme("Fusil", 3, 4));
+        listeArmes.add(new Arme("Pistolet", 20, 12));
+        listeArmes.add(new Arme("Fusil", 50, 4));
         //listeArmes.add(new Arme("Bazooka",50,1));
         index=0;
         for ( Arme a : listeArmes){  
