@@ -62,7 +62,7 @@ public class ListeProjectile {
                {
                    if (p.getX1() >= m.getX() && p.getX() <= m.getX1() && p.getY1() >= m.getY() && p.getY() <= m.getY1())
                    {
-                       m.perdVie(50);
+                       m.perdVie(p.getDegats());
                        suppression.add(p);
                    }
                }
