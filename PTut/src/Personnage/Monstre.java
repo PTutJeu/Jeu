@@ -35,7 +35,7 @@ public class Monstre {
         y = POPMOB_Y;
         vieMax = rs.getInt("VIE");
         vie = vieMax;
-        img = new Image(rs.getString("IMAGE"));
+        img = new Image(rs.getString("IMG"));
         
         rq.closeDB();
     }
@@ -49,7 +49,7 @@ public class Monstre {
         y = POPMOB_Y;
         vieMax = rs.getInt("VIE");
         vie = vieMax;
-        img = new Image(rs.getString("IMAGE"));
+        img = new Image(rs.getString("IMG"));
         
         rq.closeDB();
     }
@@ -68,16 +68,14 @@ public class Monstre {
             y += vitesseVertical;
             //y1 = y + img.getHeight();
 
-            if (y > plate.getY() - img.getWidth()) {                  //Si en tombant le heros sort de la map,
+            if (y > 600 - img.getHeight()) {                  //Si en tombant le heros sort de la map,
                 //setY( getY() - (getY() - 570)); // On le replace au bord.
-                y = plate.getY() - img.getWidth();
+                y = 600- img.getHeight();
             }
         }
         
-        float nextX = x;
-        
-        if (x > (heros.getX1() + 25)) nextX -= 2;
-        if (x < (heros.getX() - 25)) nextX += 2;
+        if (x > (heros.getX1() + 25)) x -= 2;
+        if (x + img.getWidth() < (heros.getX() - 25)) x += 2;
         
          // Ici je met en place le deplacement du monstre vers le joueur, le -25 devra etre remplacé par la taille de la HITBOX
          // Sinon pour l'instant il me suit normalement
