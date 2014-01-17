@@ -36,6 +36,8 @@ public class Heros extends Personnage {
     private boolean recharge =false;
     private Image img;
     private Image imgVie;
+    private Image imgXp, imgXpMax;
+    private int xpMax;
     public boolean vue = true, enMarche=false, enTir=false; // Vraie si le héro regarde à droite
 
     public Heros() throws SlickException{ // Constructeur du héros
@@ -81,6 +83,11 @@ public class Heros extends Personnage {
         setVie(3);
         munitions = 12;
         timeInvincible = System.currentTimeMillis();
+        imgXp = new Image("ressources/images/xp.png");
+        imgXpMax = new Image("ressources/images/barreXp.png");
+        
+        xp=0;
+        xpMax=100;
        }
 
     public Image getImg(){return img;}
@@ -300,5 +307,15 @@ public class Heros extends Personnage {
         chargeur = listeArmes.getArme().getChargeur();
         
     }
+
+    
+    public void afficheXp(GameContainer gc, Graphics g) throws SlickException {
+        g.drawImage(imgXpMax,148, 7);
+
+        for (int i=0; i < ( 187 / xpMax)*xp; i++){
+            g.drawImage(imgXp, 150+i, 10);
+        }
+    }
+    
     
 }

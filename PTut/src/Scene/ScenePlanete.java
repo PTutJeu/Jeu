@@ -56,6 +56,7 @@ public class ScenePlanete extends Scene
             MobList.affiche(gc,g);
             listeProjectile.affiche(gc,g);
             listeArmes.affiche(gc, g);
+            heros.afficheXp(gc,g);
            
 	}
 	
@@ -70,7 +71,7 @@ public class ScenePlanete extends Scene
             heros.armeSelection(gc, listeArmes);
             MobList.apparition();
             MobList.deplacements(gc, t, listePlateforme, heros);
-            MobList.MortMob();
+            MobList.MortMob(heros);
             listeProjectile.deplacements(gc, heros);
             listeProjectile.collisions(MobList.getMobList());
             
