@@ -12,7 +12,6 @@ import org.newdawn.slick.SlickException;
 /**
  *
  * @author Wazaa
- * C'est bon JE LE VOIS !
  * 
  */
 public class Monstre {
