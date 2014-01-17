@@ -81,6 +81,24 @@ public class ExecQuery {
             rq.request("INSERT INTO PLATEFORME VALUES (0, 0, 200, 450, 'ressources/images/plateforme.png', 0);");
             rq.request("INSERT INTO PLATEFORME VALUES (1, 0, 0, 580, 'ressources/images/sol.png', 0);");
             rq.request("INSERT INTO PLATEFORME VALUES (2, 0, 500, 200, 'ressources/images/plateforme.png', 0);");
+            rq.request("INSERT INTO PLATEFORME VALUES (3, 1, 400, 450, 'ressources/images/plateforme.png', 0);");
+            rq.request("INSERT INTO PLATEFORME VALUES (4, 1, 0, 580, 'ressources/images/sol.png', 0);");
+            rq.request("INSERT INTO PLATEFORME VALUES (5, 2, 300, 450, 'ressources/images/plateforme.png', 0);");
+            rq.request("INSERT INTO PLATEFORME VALUES (6, 2, 0, 580, 'ressources/images/sol.png', 0);");
+            rq.request("INSERT INTO PLATEFORME VALUES (7, 3, 250, 440, 'ressources/images/plateforme.png', 0);");
+            rq.request("INSERT INTO PLATEFORME VALUES (8, 3, 0, 580, 'ressources/images/sol.png', 0);");
+            rq.request("INSERT INTO PLATEFORME VALUES (9, 4, 0, 450, 'ressources/images/plateforme.png', 0);");
+            rq.request("INSERT INTO PLATEFORME VALUES (10, 4, 0, 580, 'ressources/images/sol.png', 0);");
+            rq.request("INSERT INTO PLATEFORME VALUES (11, 5, 50, 450, 'ressources/images/plateforme.png', 0);");
+            rq.request("INSERT INTO PLATEFORME VALUES (12, 5, 0, 580, 'ressources/images/sol.png', 0);");
+            rq.request("INSERT INTO PLATEFORME VALUES (13, 6, 650, 450, 'ressources/images/plateforme.png', 0);");
+            rq.request("INSERT INTO PLATEFORME VALUES (14, 6, 0, 580, 'ressources/images/sol.png', 0);");
+            rq.request("INSERT INTO PLATEFORME VALUES (15, 7, 700, 450, 'ressources/images/plateforme.png', 0);");
+            rq.request("INSERT INTO PLATEFORME VALUES (16, 7, 0, 580, 'ressources/images/sol.png', 0);");
+            rq.request("INSERT INTO PLATEFORME VALUES (17, 8, 590, 450, 'ressources/images/plateforme.png', 0);");
+            rq.request("INSERT INTO PLATEFORME VALUES (18, 8, 0, 580, 'ressources/images/sol.png', 0);");
+            rq.request("INSERT INTO PLATEFORME VALUES (19, 9, 5, 450, 'ressources/images/plateforme.png', 0);");
+            rq.request("INSERT INTO PLATEFORME VALUES (20, 9, 0, 580, 'ressources/images/sol.png', 0);");
             
             rq.closeDB();
         } catch (SQLException | ClassNotFoundException ex) {
