@@ -122,6 +122,7 @@ public class Heros extends Personnage {
 
 
     
+    
     public void deplacements(GameContainer gc, int temps, ListePlateforme listePlateforme){
         Input input = gc.getInput(); //Variable de type entrée
         Plateforme plate = listePlateforme.getListe().get(0); //A CHANGER
