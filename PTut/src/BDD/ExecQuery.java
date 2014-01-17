@@ -14,7 +14,7 @@ public class ExecQuery {
         try {
             Requete rq = new Requete();
                 
-            rq.request("DROP TABLE CARTE_GALAXIE;");
+            //rq.request("DROP TABLE CARTE_GALAXIE;");
             rq.request("CREATE TABLE CARTE_GALAXIE(ID NUMBER, IMG VARCHAR2(40), NBPLANETE NUMBER, "
                     + "CONSTRAINT PK_PLANETE PRIMARY KEY (ID));");
             rq.request("INSERT INTO CARTE_GALAXIE VALUES(0, 'ressources/images/fondcartegal0.jpg', 5);");
