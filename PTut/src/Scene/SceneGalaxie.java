@@ -40,25 +40,25 @@ public class SceneGalaxie extends Scene
 	protected void CustomUpdate(GameContainer gc, int t) throws SlickException 
 	{
             if(Vaisseau.isOnPlanete)
+            {
+                if( gc.getInput().isKeyDown(Input.KEY_A) ) 
                 {
-                        if( gc.getInput().isKeyDown(Input.KEY_A) ) 
-                        {
-                                Main.Game.manager.addSence( new ScenePlanete() );
-                                setState(STATE.INVISIBLE);
-                        }
+                        Main.Game.manager.addSence( new ScenePlanete() );
+                        setState(STATE.INVISIBLE);
                 }
-                v.deplace(gc, c);
-                for (Teleporteur te : c.getTelep()) {
-                    if (v.collisionTelep(te)) {
-                        try {
-                            c = new CarteGalaxie(te.getIdMapDest());
-                            v.setX(te.getXDest());
-                            v.setY(te.getYDest());
-                        } catch (SQLException | ClassNotFoundException ex) {
-                            Logger.getLogger(SceneGalaxie.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+            }
+            v.deplace(gc, c);
+            for (Teleporteur te : c.getTelep()) {
+                if (v.collisionTelep(te)) {
+                    try {
+                        c = new CarteGalaxie(te.getIdMapDest());
+                        v.setX(te.getXDest());
+                        v.setY(te.getYDest());
+                    } catch (SQLException | ClassNotFoundException ex) {
+                        Logger.getLogger(SceneGalaxie.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
+            }
             if(gc.getInput().isKeyDown(Input.KEY_ESCAPE))
             {
                 setState(STATE.FREEZE_NEXT);
