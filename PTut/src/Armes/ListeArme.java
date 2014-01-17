@@ -40,7 +40,7 @@ public class ListeArme {
             index=0;
         else
             index++;
-        
+       
     }
     
     public void affiche(GameContainer gc, Graphics g) throws SlickException{
