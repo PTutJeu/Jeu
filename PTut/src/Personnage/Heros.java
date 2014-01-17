@@ -37,7 +37,7 @@ public class Heros extends Personnage {
     private Image img;
     private Image imgVie;
     private Image imgXp, imgXpMax;
-    private int xpMax;
+    private int   xpMax;
     public boolean vue = true, enMarche=false, enTir=false; // Vraie si le héro regarde à droite
 
     public Heros() throws SlickException{ // Constructeur du héros
@@ -312,11 +312,15 @@ public class Heros extends Personnage {
 
     
     public void afficheXp(GameContainer gc, Graphics g) throws SlickException {
-        g.drawImage(imgXpMax,148, 7);
-      
-        for (int i=0; i < ( 187 / xpMax)*xp; i++){
-            g.drawImage(imgXp, 150+i, 10);
-        }
+        g.drawImage(imgXpMax,148, 7);// Image de fond de la barrexP
+        float coefXp = xpMax / 187f; // Entre la taille en px de la barre d'xp et l'xpMax
+        float iMax = xp / coefXp;    // iMax = la valeur en pixel de l'xp du personnage
+        
+        // On affiche jusqu'à la valeur en pixel du personnage
+        for (float i=0; i < iMax ; i++){
+            g.drawImage(imgXp, 150+i, 10); // Image de 1xp qui représente l'xp que le héros possède
+        }  
+        System.out.println(xp);
     }
     
     public void NiveauUp(){
