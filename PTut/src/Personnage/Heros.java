@@ -129,7 +129,7 @@ public class Heros extends Personnage {
         if( input.isKeyDown(Input.KEY_RIGHT) && VieMort ==true ){ // Si la variable pressée est flèche droite alors on déplace le héros à droite
             if ( getX1() < 799){
                 x += 4;
-                x1 = x + img.getWidth();;
+                x1 = x + img.getWidth();
                 vue = true;
                 herosAnimation = droite;
                 herosAnimation.update(temps);

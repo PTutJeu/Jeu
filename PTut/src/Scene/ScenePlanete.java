@@ -80,7 +80,7 @@ public class ScenePlanete extends Scene
                 Main.Game.manager.addSence(new SceneMenu());
             }
             
-            if( gc.getInput().isKeyPressed(Input.KEY_TAB) )
+            if( gc.getInput().isKeyDown(Input.KEY_TAB) )
             {
                 Main.Game.manager.removeSence(this);
                 Main.Game.manager.getSence("Galaxie").setState(STATE.ON);
