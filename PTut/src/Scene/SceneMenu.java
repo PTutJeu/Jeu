@@ -14,11 +14,11 @@ import org.newdawn.slick.SlickException;
  */
 public class SceneMenu extends Scene 
 {
-    private static int xFond = 250;
-    private static int yFond = 100;
+    private static int xFond = 267;
+    private static int yFond = 137;
     private static int xReprendre = 299;
     private static int yReprendre = 250;
-    private static int xQuit = 299;
+    private static int xQuit = 319;
     private static int yQuit = 320;
     private Image fond;
     private Image btnReprendre;
@@ -28,9 +28,9 @@ public class SceneMenu extends Scene
     {
         super();
         setPriority(2);
-        fond = new Image("ressources/images/menu.png");
-        btnReprendre = new Image("ressources/images/btnReprendre.png");
-        btnQuit = new Image("ressources/images/btnQuit.png");
+        fond = new Image("ressources/menuEchap/menuEchap.png");
+        btnReprendre = new Image("ressources/images/reprendreNeutre.png");
+        btnQuit = new Image("ressources/images/menuPrincipalNeutre.png");
     }
         
     @Override
@@ -45,8 +45,8 @@ public class SceneMenu extends Scene
     {
         if (gc.getInput().getMouseX() > xReprendre && gc.getInput().getMouseX() < xReprendre+btnReprendre.getWidth() && gc.getInput().getMouseY() > yReprendre && gc.getInput().getMouseY() < yReprendre+btnReprendre.getHeight())
         {
-            btnReprendre = new Image("ressources/images/btnReprendre_hover.png");
-            btnQuit = new Image("ressources/images/btnQuit.png");
+            btnReprendre = new Image("ressources/images/reprendreSelect.png");
+            btnQuit = new Image("ressources/images/menuPrincipalNeutre.png");
             if (gc.getInput().isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
                 Main.Game.manager.removeSence(this);
                 if(Main.Game.manager.getSence("Planète") != null)
@@ -59,8 +59,8 @@ public class SceneMenu extends Scene
         }
         else if (gc.getInput().getMouseX() > xQuit && gc.getInput().getMouseX() < xQuit+btnQuit.getWidth() && gc.getInput().getMouseY() > yQuit && gc.getInput().getMouseY() < yQuit+btnQuit.getHeight())
         {
-            btnReprendre = new Image("ressources/images/btnReprendre.png");
-            btnQuit = new Image("ressources/images/btnQuit_hover.png");
+            btnReprendre = new Image("ressources/images/reprendreNeutre.png");
+            btnQuit = new Image("ressources/images/menuPrincipalSelect.png");
             if (gc.getInput().isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
                 Main.Game.manager.removeAll();
                 Main.Game.manager.addSence(new SceneMenuPrincipal());
@@ -68,8 +68,8 @@ public class SceneMenu extends Scene
             }
         }
         else {
-            btnReprendre = new Image("ressources/images/btnReprendre.png");
-            btnQuit = new Image("ressources/images/btnQuit.png");
+            btnReprendre = new Image("ressources/images/reprendreNeutre.png");
+            btnQuit = new Image("ressources/images/menuPrincipalNeutre.png");
         }
         if(gc.getInput().isKeyPressed(Input.KEY_R))
         {

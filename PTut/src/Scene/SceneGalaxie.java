@@ -74,7 +74,7 @@ public class SceneGalaxie extends Scene
                     c = new CarteGalaxie();
                     v = new Vaisseau();
             }   
-            catch (    SQLException | ClassNotFoundException ex) {
+            catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
             }
 	}

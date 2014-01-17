@@ -18,7 +18,7 @@ import org.newdawn.slick.SlickException;
  *
  * @author Jérôme
  */
-public class SceneMenuPrincipal extends Scene implements Serializable{
+public class SceneMenuPrincipal extends Scene implements Serializable {
     
     private Image img;
     
@@ -62,7 +62,7 @@ public class SceneMenuPrincipal extends Scene implements Serializable{
                             + "CONSTRAINT PK_SAVE PRIMARY KEY (ID_PERSO));");
                     rq.request("INSERT INTO SAVE VALUES(1, "+ttime+", 0, 0);");
                  } 
-                catch (       SQLException | ClassNotFoundException ex) 
+                catch (SQLException | ClassNotFoundException ex) 
                 {
                 Logger.getLogger(SceneMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                  }
