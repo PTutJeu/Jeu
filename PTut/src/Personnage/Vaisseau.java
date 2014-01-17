@@ -4,6 +4,7 @@ package Personnage;
 import CarteGalaxie.CarteGalaxie;
 import CarteGalaxie.MenuInterface;
 import CarteGalaxie.Planete;
+import CarteGalaxie.Teleporteur;
 import java.sql.SQLException;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -139,5 +140,18 @@ public class Vaisseau extends Personnage{
         
         return b;
     }
-      
+    
+    public void setX(int x) { 
+        this.x = x;
+        this.x1 = this.x + img.getWidth();
+    } 
+    
+    public void setY(int y) {
+        this.y = y;
+        this.y1 = this.y + img.getHeight();
+    }
+    
+    public boolean collisionTelep(Teleporteur t) {
+        return (x1 >= t.getX() && x <= t.getX1() && y1 >= t.getY() && y <= t.getY1());
+    }
 }
