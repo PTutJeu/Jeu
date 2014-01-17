@@ -20,10 +20,17 @@ public class MenuInterface {
     private String itemNeed1;
     private String itemNeed2;
     
+    private float goldProd;
+    private float boisProd;
+    private float metalProd;
+    private int goldMax;
+    private int boisMax;
+    private int metalMax;
+    private int goldAct;
+    private int boisAct;
+    private int metalAct;
+    
     private Image imgFond;
-    private Image imgBouton;
-    private float xBouton;
-    private float yBouton;
     private float xFond;
     private float yFond;
     
@@ -44,6 +51,12 @@ public class MenuInterface {
             ox = rs.getFloat("OXYGENE");
             itemNeed1 = rs.getString("PITEMNEED");
             itemNeed2 = rs.getString("DITEMNEED");
+            goldMax = rs.getInt("GOLDMAX");
+            boisMax = rs.getInt("BOISMAX");
+            metalMax = rs.getInt("METALMAX");
+            goldProd = rs.getFloat("GOLDPROD");
+            boisProd = rs.getFloat("BOISPROD");
+            metalProd = rs.getFloat("METALPROD");
         }
         
         rq.closeDB();
@@ -66,22 +79,36 @@ public class MenuInterface {
         g.drawImage(imgFond, xFond, yFond);
         
         g.drawString(nom, xFond + 10, yFond + 10);
-        if (possedee)
-            g.drawString("Possédée : Oui", xFond + 10, yFond + 40);
-        else
-            g.drawString("Possédée : Non", xFond + 10, yFond + 40);
-        g.drawString("Température : " +temp+ "°C", xFond + 10, yFond + 60);
-        g.drawString("Oxygène : " +ox+ "%", xFond + 10, yFond + 80);
-        if (!itemNeed1.isEmpty()) {
-            g.drawString("Item nécessaire : ", xFond + 10, yFond + 100);
-            g.drawString(itemNeed1, xFond + 20, yFond + 120);
-            if (!itemNeed2.isEmpty())
-                g.drawString(itemNeed2, xFond + 20, yFond + 140);
+        
+        if (!possedee) {
+            g.drawString("Température : " +temp+ "°C", xFond + 10, yFond + 60);
+            g.drawString("Oxygène : " +ox+ "%", xFond + 10, yFond + 80);
+            if (!itemNeed1.isEmpty()) {
+                g.drawString("Item nécessaire : ", xFond + 10, yFond + 100);
+                g.drawString(itemNeed1, xFond + 20, yFond + 120);
+                if (!itemNeed2.isEmpty())
+                    g.drawString(itemNeed2, xFond + 20, yFond + 140);
+            }
+            else {
+                g.drawString("Item nécessaire :", xFond + 10, yFond + 100);
+                g.drawString("Aucun", xFond + 10, yFond + 120);
+            }
+            g.drawString("Attaquer (A)", xFond + 70, yFond + imgFond.getHeight() - 30);
         }
         else {
-            g.drawString("Item nécessaire :", xFond + 10, yFond + 100);
-            g.drawString("Aucun", xFond + 10, yFond + 120);
+            g.drawString("Production :", xFond + 10, yFond + 35);
+            g.drawString(goldProd+" or/minute", xFond + 20, yFond + 52);
+            g.drawString(boisProd+" bois/minute", xFond + 20, yFond + 69);
+            g.drawString(metalProd+" metal/minute", xFond + 20, yFond + 86);
+            g.drawString("Production maximale :", xFond + 10, yFond + 106);
+            g.drawString(""+goldMax, xFond + 20, yFond + 123);
+            g.drawString(""+boisMax, xFond + 20, yFond + 140);
+            g.drawString(""+metalMax, xFond + 20, yFond + 157);
+            g.drawString("Production actuelle :", xFond + 10, yFond + 177);
+            g.drawString(""+goldAct, xFond + 20, yFond + 194);
+            g.drawString(""+boisAct, xFond + 20, yFond + 211);
+            g.drawString(""+metalAct, xFond + 20, yFond + 228);
+            g.drawString("Collecter (C)", xFond + 70, yFond + imgFond.getHeight() - 30);
         }
-        g.drawString("Attaquer (A)", xFond + 70, yFond + imgFond.getHeight() - 30);
     }
 } 

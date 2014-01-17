@@ -40,17 +40,19 @@ public class ExecQuery {
             rq.request("DROP TABLE DETAILS_PLANETE;");
             rq.request("CREATE TABLE DETAILS_PLANETE(ID NUMBER, OXYGENE NUMBER, TEMPERATURE NUMBER, "
                     + "PITEMNEED VARCHAR2(40), DITEMNEED VARCHAR2(40), NOM VARCHAR2(40), POSSEDEE NUMBER, "
+                    + "GOLDMAX NUMBER, BOISMAX NUMBER, METALMAX NUMBER, GOLDPROD NUMBER, BOISPROD NUMBER, "
+                    + "METALPROD NUMBER, "
                     + "CONSTRAINT PK_DETAILSPLANETE PRIMARY KEY (ID));");
-            rq.request("INSERT INTO DETAILS_PLANETE VALUES(0, 23, 25, '', '', 'Cartez', 0);");
-            rq.request("INSERT INTO DETAILS_PLANETE VALUES(1, 23, 56, 'Combinaison Refroidissante', '', 'Chalr', 0);");
-            rq.request("INSERT INTO DETAILS_PLANETE VALUES(2, 23, -15, 'Combinaison Chauffante', '', 'Fraom', 0);");
-            rq.request("INSERT INTO DETAILS_PLANETE VALUES(3, 23, 25, '', '', 'Gorphei', 0);");
-            rq.request("INSERT INTO DETAILS_PLANETE VALUES(4, 2, 25, 'Masque à Oxygène', 'Bouteille d''Oxygène', 'Gazos', 0);");
-            rq.request("INSERT INTO DETAILS_PLANETE VALUES(5, 23, 25, '', '', 'Noidea', 0);");
-            rq.request("INSERT INTO DETAILS_PLANETE VALUES(6, 23, 25, '', '', 'Dontno', 0);");
-            rq.request("INSERT INTO DETAILS_PLANETE VALUES(7, 23, 25, '', '', 'Ouate', 0);");
-            rq.request("INSERT INTO DETAILS_PLANETE VALUES(8, 23, 25, '', '', 'Unnamed', 0);");
-            rq.request("INSERT INTO DETAILS_PLANETE VALUES(9, 23, 25, '', '', 'Unknown', 0);");
+            rq.request("INSERT INTO DETAILS_PLANETE VALUES(0, 23, 25, '', '', 'Cartez', 0, 20, 25, 25, 1, 1, 1);");
+            rq.request("INSERT INTO DETAILS_PLANETE VALUES(1, 23, 56, 'Combinaison Refroidissante', '', 'Chalr', 0, 25, 30, 30, 1, 1, 2);");
+            rq.request("INSERT INTO DETAILS_PLANETE VALUES(2, 23, -15, 'Combinaison Chauffante', '', 'Fraom', 0, 60, 0, 0, 3, 0, 0);");
+            rq.request("INSERT INTO DETAILS_PLANETE VALUES(3, 23, 25, '', '', 'Gorphei', 0, 0, 40, 40, 0, 2, 2);");
+            rq.request("INSERT INTO DETAILS_PLANETE VALUES(4, 2, 25, 'Masque à Oxygène', 'Bouteille d''Oxygène', 'Gazos', 0, 0, 0, 80, 0, 0, 4);");
+            rq.request("INSERT INTO DETAILS_PLANETE VALUES(5, 23, 25, '', '', 'Noidea', 0, 50, 50, 50, 2, 2, 2);");
+            rq.request("INSERT INTO DETAILS_PLANETE VALUES(6, 23, 25, '', '', 'Dontno', 0, 75, 75, 0, 3, 3, 0);");
+            rq.request("INSERT INTO DETAILS_PLANETE VALUES(7, 23, 25, '', '', 'Ouate', 0, 60, 60, 60, 3, 3, 3);");
+            rq.request("INSERT INTO DETAILS_PLANETE VALUES(8, 23, 25, '', '', 'Unnamed', 0, 80, 0, 80, 4, 0, 4);");
+            rq.request("INSERT INTO DETAILS_PLANETE VALUES(9, 23, 25, '', '', 'Unknown', 1, 100, 100, 100, 4, 4, 4);");
 
             rq.request("DROP TABLE TELEPORTEUR;");
             rq.request("CREATE TABLE TELEPORTEUR(ID NUMBER, IDMAP NUMBER, IDMAPDEST NUMBER, X NUMBER, Y NUMBER, "
