@@ -58,7 +58,7 @@ public class SceneMenuPrincipal extends Scene implements Serializable {
                     long ttime = Main.Game.manager.getTotalTime()+ timeBDD;
                     System.out.println(ttime);
                     rq.request("DROP TABLE SAVE");
-                    rq.request("CREATE TABLE SAVE(ID_PERSO NUMBER, TEMPS NUMBER, BOIS NUMBER, FER NUMBER, "
+                    rq.request("CREATE TABLE SAVE(ID_PERSO NUMBER, TEMPS NUMBER, GOLD NUMBER, BOIS NUMBER, FER NUMBER, "
                             + "CONSTRAINT PK_SAVE PRIMARY KEY (ID_PERSO));");
                     rq.request("INSERT INTO SAVE VALUES(1, "+ttime+", 0, 0);");
                  } 
