@@ -1,0 +1,33 @@
+Table CARTEGALAXIE:
+	ID NUMBER // Identifiant de la planete (primary key)
+	IMG VARCHAR2(40) // Chemin d'accès de l'image a afficher
+	NBPLANETE NUMBER // Nombre de planete que contient la map
+
+Table PLANETE:
+	ID NUMBER // Identifiant de la planete (primary key)
+	MAP NUMBER // Identifiant de la map sur laquelle elle se trouve (foreign key)
+	X NUMBER // Position en x sur la map
+	Y NUMBER // Position en y sur la map
+	IMG VARCHAR2(40) // Chemin d'accès de l'image a afficher
+
+Table DETAILS_PLANETE:
+	ID NUMBER // Identifiant de la planete (primary key)
+	OXYGENE NUMBER // Pourcentage d'oxygène
+	TEMPERATURE NUMBER // Temperature
+	PITEMNEED VARCHAR2(40) // Premier item nécessaire pour aller sur la planète
+	DITEMNEED VARCHAR2(40) // Deuxieme item nécessaire pour aller sur la planète
+	NOM VARCHAR2(40) // Nom de la planète
+
+Table MOB:
+	ID NUMBER // Identifiant du mob (primary key)
+	VIE NUMBER // Vie maximal du mob
+	IMG VARCHAR2(40) // Image du mob
+
+Table TELEPORTEUR:
+	ID NUMBER // Identifiant du teleporteur (primary key)
+	IDMAP NUMBER // Id de la map sur laquelle il se trouve (foreign key)
+	IDMAPDEST NUMBER // Id de la map sur laquelle il permet d'aller (foreign key)
+	X NUMBER // Position en x sur la map
+	Y NUMBER // Position en y sur la map
+	XDEST NUMBER // Position en x du vaisseau après teleportation
+	YDEST NUMBER // Position en y du vaisseau après teleportation

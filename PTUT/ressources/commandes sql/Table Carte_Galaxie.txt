@@ -1,0 +1,5 @@
+rq.request("CREATE TABLE CARTE_GALAXIE(ID NUMBER, IMG VARCHAR2(40), NBPLANETE NUMBER, "
+                    + "CONSTRAINT PK_PLANETE PRIMARY KEY (ID));");
+            rq.request("INSERT INTO CARTE_GALAXIE VALUES(0, 'ressources/images/fondcartegal0.jpg', 5);");
+            rq.request("INSERT INTO CARTE_GALAXIE VALUES(1, 'ressources/images/fondcartegal1.jpg', 3);");
+            rq.request("INSERT INTO CARTE_GALAXIE VALUES(2, 'ressources/images/fondcartegal2.jpg', 2);");
