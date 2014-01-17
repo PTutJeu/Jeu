@@ -8,6 +8,8 @@ package CartePlateforme;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -20,8 +22,12 @@ public class ListePlateforme {
     
     private List<Plateforme> listePlateforme = new ArrayList<>();
     
-    public ListePlateforme(){
-        
+    public ListePlateforme(int idPlanete) {
+        try {
+            listePlateforme.add(new Plateforme(0));
+        } catch (SlickException ex) {
+            Logger.getLogger(ListePlateforme.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public void affiche(GameContainer gc, Graphics g) throws SlickException {
@@ -30,4 +36,6 @@ public class ListePlateforme {
                 p.affiche(gc, g);
            }
     }
+    
+    public List<Plateforme> getListe() { return listePlateforme; }
 }

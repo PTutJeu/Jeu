@@ -11,6 +11,7 @@ import org.newdawn.slick.SlickException;
 import Armes.ListeProjectile;
 
 import Armes.Projectile;
+import CartePlateforme.ListePlateforme;
 import java.util.ArrayList;
 import java.util.List;
 import org.newdawn.slick.Animation;
@@ -121,8 +122,9 @@ public class Heros extends Personnage {
 
 
     
-    public void déplacements(GameContainer gc, int temps, Plateforme plate){
+    public void deplacements(GameContainer gc, int temps, ListePlateforme listePlateforme){
         Input input = gc.getInput(); //Variable de type entrée
+        Plateforme plate = listePlateforme.getListe().get(0); //A CHANGER
         
         if( input.isKeyDown(Input.KEY_RIGHT) && VieMort ==true ){ // Si la variable pressée est flèche droite alors on déplace le héros à droite
             if ( getX1() < 799){

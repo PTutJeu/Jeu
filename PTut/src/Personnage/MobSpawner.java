@@ -2,6 +2,7 @@
 
 package Personnage;
 
+import CartePlateforme.ListePlateforme;
 import CartePlateforme.Plateforme;
 import Personnage.Monstre;
 import java.sql.SQLException;
@@ -39,12 +40,13 @@ public class MobSpawner {
            m.affiche(gc,g);
        }
    }
-    public void deplacements (GameContainer gc, int t, Plateforme Plate, Heros heros ){
+    public void deplacements (GameContainer gc, int t, ListePlateforme listePlateforme, Heros heros ) {
+        Plateforme Plate = listePlateforme.getListe().get(0);
         for (Monstre m : MobList)
-       {
-           m.deplacements(gc, t , Plate , heros);
-       }
-   }
+        {
+            m.deplacements(gc, t , Plate , heros);
+        }
+    }
     
     public void apparition() throws SlickException, SQLException, ClassNotFoundException
     {

@@ -2,6 +2,7 @@ package Scene;
 
 import Armes.ListeArme;
 import Armes.ListeProjectile;
+import CartePlateforme.ListePlateforme;
 import CartePlateforme.Plateforme;
 import Personnage.Heros;
 import Personnage.MobSpawner;
@@ -22,18 +23,19 @@ public class ScenePlanete extends Scene
 
     private Heros heros;
     private SceneMenu menu;
-    private Plateforme plate;
+    private ListePlateforme listePlateforme;
     private MobSpawner MobList;
     private boolean b;
     private ListeProjectile listeProjectile;
     private ListeArme listeArmes;
     
         private Image img;
-        public ScenePlanete () throws SlickException
+        public ScenePlanete (int idPlanete) throws SlickException
 	{
             super();
             setPriority(1);
             img = new Image("ressources/images/background.png");
+            listePlateforme = new ListePlateforme(idPlanete);
 	}
         
 	public void affiche(GameContainer gc, Graphics g)
@@ -46,7 +48,7 @@ public class ScenePlanete extends Scene
 	{
             affiche(gc,g);
             heros.affiche(gc, g);
-            plate.affiche(gc,g);
+            listePlateforme.affiche(gc,g);
             MobList.affiche(gc,g);
             listeProjectile.affiche(gc,g);
             listeArmes.affiche(gc, g);
@@ -58,12 +60,12 @@ public class ScenePlanete extends Scene
 	{
         try {
             Input input = gc.getInput();
-            heros.déplacements(gc, t, plate);
+            heros.deplacements(gc, t, listePlateforme);
             heros.tirer(gc, listeProjectile, listeArmes, t);
             heros.vieHeros();
             heros.armeSelection(gc, listeArmes);
             MobList.apparition();
-            MobList.deplacements(gc, t, plate,heros);
+            MobList.deplacements(gc, t, listePlateforme, heros);
             MobList.MortMob();
             listeProjectile.deplacements(gc, heros);
             listeProjectile.collisions(MobList.getMobList());
@@ -79,9 +81,7 @@ public class ScenePlanete extends Scene
                 Main.Game.manager.removeSence(this);
                 Main.Game.manager.getSence("Galaxie").setState(STATE.ON);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(ScenePlanete.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
+        } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(ScenePlanete.class.getName()).log(Level.SEVERE, null, ex);
         }
 	}
@@ -90,7 +90,6 @@ public class ScenePlanete extends Scene
 	public void init(GameContainer gc) throws SlickException 
 	{
                     heros = new Heros();
-                    plate = new Plateforme("plateforme", 200, 450);
                     MobList = new MobSpawner();
                     listeProjectile = new ListeProjectile();
                     listeArmes = new ListeArme();
