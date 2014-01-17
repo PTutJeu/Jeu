@@ -1,6 +1,7 @@
 
 package Scene;
 
+import BDD.ExecQuery;
 import BDD.Requete;
 import java.io.Serializable;
 import java.sql.ResultSet;
@@ -66,6 +67,13 @@ public class SceneMenuPrincipal extends Scene implements Serializable{
                 Logger.getLogger(SceneMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                  }
                 gc.exit();
+           }
+           //On enlevera ça plus tard c'est juste pour mettre a jour la base de donnée,
+           //c'est pas censé etre présent dans le jeu mais ça me casse les couilles de faire
+           //tout a la main a chaque fois
+           if (gc.getInput().isKeyDown(Input.KEY_M)) {
+               ExecQuery ex = new ExecQuery();
+               ex.execQuery();
            }
 	}
 	

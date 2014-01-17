@@ -1,6 +1,7 @@
 package Scene;
 
 import CarteGalaxie.CarteGalaxie;
+import CarteGalaxie.Teleporteur;
 import Personnage.Vaisseau;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -46,8 +47,18 @@ public class SceneGalaxie extends Scene
                                 setState(STATE.INVISIBLE);
                         }
                 }
-                Input input = gc.getInput();
                 v.deplace(gc, c);
+                for (Teleporteur te : c.getTelep()) {
+                    if (v.collisionTelep(te)) {
+                        try {
+                            c = new CarteGalaxie(te.getIdMapDest());
+                            v.setX(te.getXDest());
+                            v.setY(te.getYDest());
+                        } catch (SQLException | ClassNotFoundException ex) {
+                            Logger.getLogger(SceneGalaxie.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                }
             if(gc.getInput().isKeyDown(Input.KEY_ESCAPE))
             {
                 setState(STATE.FREEZE_NEXT);

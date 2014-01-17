@@ -22,3 +22,12 @@ Table MOB:
 	ID NUMBER // Identifiant du mob (primary key)
 	VIE NUMBER // Vie maximal du mob
 	IMG VARCHAR2(40) // Image du mob
+
+Table TELEPORTEUR:
+	ID NUMBER // Identifiant du teleporteur (primary key)
+	IDMAP NUMBER // Id de la map sur laquelle il se trouve (foreign key)
+	IDMAPDEST NUMBER // Id de la map sur laquelle il permet d'aller (foreign key)
+	X NUMBER // Position en x sur la map
+	Y NUMBER // Position en y sur la map
+	XDEST NUMBER // Position en x du vaisseau après teleportation
+	YDEST NUMBER // Position en y du vaisseau après teleportation

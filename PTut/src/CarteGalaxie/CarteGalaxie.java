@@ -15,6 +15,7 @@ public class CarteGalaxie {
     private Image img; //Chemin d'acces de l'image du fond de la carte
     private int nbPlanete; //Nombre de planete se trouvant sur la carte
     private List<Planete> planetes = new ArrayList<>();
+    private List<Teleporteur> telep = new ArrayList<>();
     
     //Constructeur, par défaut on suppose qu'on est sur la map 0
     public CarteGalaxie() throws SQLException, ClassNotFoundException, SlickException {
@@ -41,6 +42,10 @@ public class CarteGalaxie {
             planetes.add(new Planete(idPlanete));
         }
         
+        //On ajoute les teleporteurs dans l'arraylist
+        rs = rq.select("SELECT ID FROM TELEPORTEUR WHERE IDMAP = " +id+ ";");
+        while (rs.next()) telep.add(new Teleporteur(rs.getInt("ID")));
+        
         //On ferme la BDD
         rq.closeDB();
     }
@@ -62,6 +67,10 @@ public class CarteGalaxie {
             idPlanete = rs.getInt("ID");
             planetes.add(new Planete(idPlanete));
         }
+        
+        rs = rq.select("SELECT ID FROM TELEPORTEUR WHERE IDMAP = " +id+ ";");
+        while (rs.next()) telep.add(new Teleporteur(rs.getInt("ID")));
+        
         rq.closeDB();
     }
     
@@ -70,6 +79,7 @@ public class CarteGalaxie {
     public Image getImg() { return img; }
     public int getNbPlanete() { return nbPlanete; }
     public List<Planete> getPlanetes() { return planetes; }
+    public List<Teleporteur> getTelep() { return telep; }
     
     //Méthode pour afficher
     public void affiche(GameContainer gc, Graphics g) throws SlickException {
@@ -79,6 +89,10 @@ public class CarteGalaxie {
         //On affiche toutes les planètes par dessus
         for (Planete p : planetes) {
             p.affiche(gc, g);
+        }
+        
+        for (Teleporteur t : telep) {
+            t.affiche(g);
         }
     }
 }

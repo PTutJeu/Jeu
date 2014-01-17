@@ -7,3 +7,8 @@ rq.request("CREATE TABLE PLANETE(ID NUMBER, MAP NUMBER, X NUMBER, Y NUMBER, "
             rq.request("INSERT INTO PLANETE VALUES(2, 0, 600, 100, 'ressources/images/p2.png');");
             rq.request("INSERT INTO PLANETE VALUES(3, 0, 300, 400, 'ressources/images/p3.png');");
             rq.request("INSERT INTO PLANETE VALUES(4, 0, 10, 500, 'ressources/images/p4.png');");
+            rq.request("INSERT INTO PLANETE VALUES(5, 1, 400, 50, 'ressources/images/p5.png');");
+            rq.request("INSERT INTO PLANETE VALUES(6, 1, 100, 500, 'ressources/images/p6.png');");
+            rq.request("INSERT INTO PLANETE VALUES(7, 1, 650, 280, 'ressources/images/p7.png');");
+            rq.request("INSERT INTO PLANETE VALUES(8, 2, 320, 400, 'ressources/images/p8.png');");
+            rq.request("INSERT INTO PLANETE VALUES(9, 2, 15, 15, 'ressources/images/p9.png');");
