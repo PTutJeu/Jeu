@@ -35,7 +35,11 @@ public class ScenePlanete extends Scene
             super();
             setPriority(1);
             img = new Image("ressources/images/background.png");
-            listePlateforme = new ListePlateforme(idPlanete);
+            try {
+                listePlateforme = new ListePlateforme(idPlanete);
+            } catch (SQLException | ClassNotFoundException ex) {
+                Logger.getLogger(ScenePlanete.class.getName()).log(Level.SEVERE, null, ex);
+            }
 	}
         
 	public void affiche(GameContainer gc, Graphics g)

@@ -6,6 +6,9 @@
 
 package CartePlateforme;
 
+import BDD.Requete;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -22,7 +25,10 @@ public class ListePlateforme {
     
     private List<Plateforme> listePlateforme = new ArrayList<>();
     
-    public ListePlateforme(int idPlanete) {
+    public ListePlateforme(int idPlanete) throws SQLException, ClassNotFoundException {
+        Requete rq = new Requete();
+        ResultSet rs = rq.select("SELECT ID FROM PLATEFORME WHERE IDPLANETE = " +idPlanete+ ";");
+        
         try {
             listePlateforme.add(new Plateforme(0));
         } catch (SlickException ex) {
