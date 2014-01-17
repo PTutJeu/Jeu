@@ -12,7 +12,7 @@ import org.newdawn.slick.SlickException;
 /**
  *
  * @author Wazaa
- * ATTENTION LUDO SI TU VOIS PAS CA CA MARCHE PAS !
+ * C'est bon JE LE VOIS !
  * 
  */
 public class Monstre {
