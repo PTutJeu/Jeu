@@ -80,6 +80,7 @@ public class Heros extends Personnage {
         y = 0;
         x1 = x + herosAnimation.getWidth();
         y1 = y + herosAnimation.getHeight();
+        niveau = 1;
         setVie(3);
         munitions = 12;
         timeInvincible = System.currentTimeMillis();
@@ -255,6 +256,7 @@ public class Heros extends Personnage {
                 lp.add(this,la.getArme()); //Ajout d'un projectile
                 munitions--;  //Enlève 1 munition / tir
                 enTir =true;
+                System.out.println(xp+"/"+xpMax+"      "+niveau);
              }
              else
                  enTir = false;
@@ -311,11 +313,20 @@ public class Heros extends Personnage {
     
     public void afficheXp(GameContainer gc, Graphics g) throws SlickException {
         g.drawImage(imgXpMax,148, 7);
-
-        for (int i=0; i < ( 187 / xpMax)*xp; i++){
+//( 187 / xpMax)*xp
+        for (int i=0; i < (xpMax*xp); i++){
             g.drawImage(imgXp, 150+i, 10);
         }
     }
+
+    public void NiveauUp(){
+        if( getXp() >= getXpMax() ){
+            setXp( getXp() - getXpMax());
+            setXpMax( getXpMax()+50);
+            setNiveau( getNiveau() +1 );
+        }
+    }
     
-    
+    public int getXpMax(){return xpMax;}
+    public void setXpMax(int xpMax){this.xpMax=xpMax;}
 }

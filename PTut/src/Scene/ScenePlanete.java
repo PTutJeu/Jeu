@@ -69,6 +69,7 @@ public class ScenePlanete extends Scene
             heros.tirer(gc, listeProjectile, listeArmes, t);
             heros.vieHeros();
             heros.armeSelection(gc, listeArmes);
+            heros.NiveauUp();
             MobList.apparition();
             MobList.deplacements(gc, t, listePlateforme, heros);
             MobList.MortMob(heros);
