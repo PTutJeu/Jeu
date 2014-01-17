@@ -255,8 +255,7 @@ public class Heros extends Personnage {
              if (input.isKeyPressed(Input.KEY_SPACE) && recharge != true && VieMort ==true ){  //input.isMousePressed(Input.MOUSE_LEFT_BUTTON)
                 lp.add(this,la.getArme()); //Ajout d'un projectile
                 munitions--;  //Enlève 1 munition / tir
-                enTir =true;
-                System.out.println(xp+"/"+xpMax+"      "+niveau);
+                enTir =true;   
              }
              else
                  enTir = false;
@@ -320,7 +319,6 @@ public class Heros extends Personnage {
         for (float i=0; i < iMax ; i++){
             g.drawImage(imgXp, 150+i, 10); // Image de 1xp qui représente l'xp que le héros possède
         }  
-        System.out.println(xp);
     }
     
     public void NiveauUp(){
