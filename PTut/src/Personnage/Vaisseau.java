@@ -105,6 +105,7 @@ public class Vaisseau extends Personnage{
                 idPlanete = p.getId();
             }
         }
+        if (!isOnPlanete) idPlanete = -1;
     }
     public boolean collisionW(Input input)
     {
@@ -150,6 +151,8 @@ public class Vaisseau extends Personnage{
         this.y = y;
         this.y1 = this.y + img.getHeight();
     }
+    
+    public int getIdPlanete() { return idPlanete; }
     
     public boolean collisionTelep(Teleporteur t) {
         return (x1 >= t.getX() && x <= t.getX1() && y1 >= t.getY() && y <= t.getY1());

@@ -43,7 +43,7 @@ public class SceneGalaxie extends Scene
             {
                 if( gc.getInput().isKeyDown(Input.KEY_A) ) 
                 {
-                        Main.Game.manager.addSence( new ScenePlanete(0) );
+                        Main.Game.manager.addSence( new ScenePlanete(v.getIdPlanete()) );
                         setState(STATE.INVISIBLE);
                 }
             }
