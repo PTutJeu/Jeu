@@ -52,8 +52,8 @@ public class Heros extends Personnage {
         */
         herosD = new SpriteSheet("ressources/images/test/sprite_heros_arret_droite.png",30,30);
         herosG = new SpriteSheet("ressources/images/test/sprite_heros_arret_gauche.png",30,30);
-        mvtD = new SpriteSheet("ressources/images/monstre1_droite.png",146,152);
-        mvtG = new SpriteSheet("ressources/images/monstre1_gauche.png",146,152);
+        mvtD = new SpriteSheet("ressources/images/test/sprite_heros_droite.png",30,30);
+        mvtG = new SpriteSheet("ressources/images/test/sprite_heros_gauche.png",30,30);
         tirD = new SpriteSheet("ressources/images/test/sprite_heros_tir_droite.png",30,30);
         tirG = new SpriteSheet("ressources/images/test/sprite_heros_tir_gauche.png",30,30);
         herosMort = new SpriteSheet("ressources/images/test/heros_cadavre.png",30,30);
