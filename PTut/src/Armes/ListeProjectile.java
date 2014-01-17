@@ -58,12 +58,14 @@ public class ListeProjectile {
                if(p.getX() >= 800 || p.getX() <=0 ){
                    suppression.add(p); //Ajout des projectiles à supprimer a l'Array de suppression
                }
+               boolean isActive = true;
                for (Monstre m : MobList)
                {
-                   if (p.getX1() >= m.getX() && p.getX() <= m.getX1() && p.getY1() >= m.getY() && p.getY() <= m.getY1())
+                   if (isActive && p.getX1() >= m.getX() && p.getX() <= m.getX1() && p.getY1() >= m.getY() && p.getY() <= m.getY1())
                    {
                        m.perdVie(p.getDegats());
                        suppression.add(p);
+                       isActive = false;
                    }
                }
         //System.out.println(listeProjectile.size());
