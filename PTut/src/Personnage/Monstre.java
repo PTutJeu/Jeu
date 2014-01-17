@@ -12,6 +12,7 @@ import org.newdawn.slick.SlickException;
 /**
  *
  * @author Wazaa
+ * 
  */
 public class Monstre {
     private int id;
