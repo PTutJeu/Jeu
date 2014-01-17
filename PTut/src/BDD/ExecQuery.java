@@ -63,6 +63,14 @@ public class ExecQuery {
             rq.request("INSERT INTO TELEPORTEUR VALUES(2, 1, 0, 550, 575, 535, 30);");
             rq.request("INSERT INTO TELEPORTEUR VALUES(3, 2, 0, 550, 5, 535, 520);");
             
+            rq.request("DROP TABLE MOB;");
+            rq.request("CREATE TABLE MOB(ID NUMBER, VIE NUMBER, IMG VARCHAR2(40), "
+                    + "CONSTRAINT MOB PRIMARY KEY (ID));");
+            rq.request("INSERT INTO MOB VALUES(1, 100, 'ressources/images/mob1.png');");
+            rq.request("INSERT INTO MOB VALUES(2, 150, 'ressources/images/mob2.png');");
+            rq.request("INSERT INTO MOB VALUES(3, 200, 'ressources/images/fantome.png');");
+            rq.request("INSERT INTO MOB VALUES(4, 500, 'ressources/images/sprite_heros_arret_gauche.png');");
+            
             rq.closeDB();
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(ExecQuery.class.getName()).log(Level.SEVERE, null, ex);

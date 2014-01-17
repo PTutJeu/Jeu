@@ -44,6 +44,7 @@ public class Monstre {
         Requete rq = new Requete();
         ResultSet rs = rq.select("SELECT * FROM MOB WHERE ID = " +id+ ";");
         
+        this.id = id;
         vitesseVertical = 0;
         x = POPMOB_X;
         y = POPMOB_Y;
@@ -61,25 +62,37 @@ public class Monstre {
     public void deplacements(GameContainer gc, int temps, Plateforme plate, Heros heros)
     {
         boolean testCollisionPlate = collisionsPlate(plate);
-        
-        if (!testCollisionPlate) {
+        if (id == 3)
+        {
+            if (x > heros.getX()+ heros.getImg().getWidth()/2) x -= 2;
+            if (x+img.getWidth() < heros.getX()+ heros.getImg().getWidth()/2) x += 2;
+            if (y > heros.getY()+ heros.getImg().getHeight()/2) y -= 2;
+            if (y+img.getWidth() < heros.getY()+ heros.getImg().getHeight()/2) y += 2;
+            if (collisionsHeros(heros))
+            {
+                heros.perdVie(1); 
+            }
+        }
+        else
+        {
+           if (!testCollisionPlate) {
             vitesseVertical += 0.01f * temps; // Même procédé que pour le saut mais fait en sorte de faire tomber le héros tout le temps
             y += vitesseVertical;
             //y1 = y + img.getHeight();
 
-            if (y > 600 - img.getHeight()) {                  //Si en tombant le heros sort de la map,
+                if (y > 600 - img.getHeight()) {                  //Si en tombant le heros sort de la map,
                 //setY( getY() - (getY() - 570)); // On le replace au bord.
                 y = 600- img.getHeight();
+                    }
+                   }
+        
+            if (x > heros.getX()+ heros.getImg().getWidth()/2) x -= 2;
+            if (x+img.getWidth() < heros.getX()+ heros.getImg().getWidth()/2) x += 2;
+        
+            if (collisionsHeros(heros))
+            {
+                heros.perdVie(1); 
             }
-        }
-        
-        if (x > heros.getX()+ heros.getImg().getWidth()/2) x -= 2;
-        if (x+img.getWidth() < heros.getX()+ heros.getImg().getWidth()/2) x += 2;
-        
-        if (collisionsHeros(heros))
-        {
-            heros.perdVie(1); 
-        }
          // Ici je met en place le deplacement du monstre vers le joueur, le -25 devra etre remplacé par la taille de la HITBOX
          // Sinon pour l'instant il me suit normalement
          /*if (x > (heros.getX1()+25)) {
@@ -89,7 +102,9 @@ public class Monstre {
          /*if (x1 < (heros.getX()-25)) {
              x+=2;
              x1+=2;
-         }*/
+         }*/ 
+        }
+        
    }
    public boolean collisionsPlate(Plateforme plate) {
         if ( y + img.getHeight() < plate.getY() ) return false;
