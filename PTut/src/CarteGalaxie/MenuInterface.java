@@ -74,7 +74,7 @@ public class MenuInterface {
             yFond = 600 - imgFond.getHeight();
     }
     
-    public void affiche(Graphics g, Vaisseau v) {        
+    public void affiche(Graphics g, Vaisseau v) throws SlickException {        
         setCoordFond(v);
         g.drawImage(imgFond, xFond, yFond);
         
@@ -96,18 +96,30 @@ public class MenuInterface {
             g.drawString("Attaquer (A)", xFond + 70, yFond + imgFond.getHeight() - 30);
         }
         else {
+            Image or = new Image("ressources/images/icone_or.png");
+            Image bois = new Image("ressources/images/icone_bois.png");
+            Image metal = new Image("ressources/images/icone_metal.png");
             g.drawString("Production :", xFond + 10, yFond + 35);
-            g.drawString(goldProd+" or/minute", xFond + 20, yFond + 52);
-            g.drawString(boisProd+" bois/minute", xFond + 20, yFond + 69);
-            g.drawString(metalProd+" metal/minute", xFond + 20, yFond + 86);
+            g.drawImage(or, xFond + 15, yFond + 52);
+            g.drawImage(bois, xFond + 15, yFond + 69);
+            g.drawImage(metal, xFond + 15, yFond + 86);
+            g.drawString(goldProd+" or/minute", xFond + 40, yFond + 52);
+            g.drawString(boisProd+" bois/minute", xFond + 40, yFond + 69);
+            g.drawString(metalProd+" metal/minute", xFond + 40, yFond + 86);
             g.drawString("Production maximale :", xFond + 10, yFond + 106);
-            g.drawString(""+goldMax, xFond + 20, yFond + 123);
-            g.drawString(""+boisMax, xFond + 20, yFond + 140);
-            g.drawString(""+metalMax, xFond + 20, yFond + 157);
+            g.drawImage(or, xFond + 15, yFond + 123);
+            g.drawImage(bois, xFond + 15, yFond + 140);
+            g.drawImage(metal, xFond + 15, yFond + 157);
+            g.drawString(""+goldMax, xFond + 40, yFond + 123);
+            g.drawString(""+boisMax, xFond + 40, yFond + 140);
+            g.drawString(""+metalMax, xFond + 40, yFond + 157);
             g.drawString("Production actuelle :", xFond + 10, yFond + 177);
-            g.drawString(""+goldAct, xFond + 20, yFond + 194);
-            g.drawString(""+boisAct, xFond + 20, yFond + 211);
-            g.drawString(""+metalAct, xFond + 20, yFond + 228);
+            g.drawImage(or, xFond + 15, yFond + 194);
+            g.drawImage(bois, xFond + 15, yFond + 211);
+            g.drawImage(metal, xFond + 15, yFond + 228);
+            g.drawString(""+goldAct, xFond + 40, yFond + 194);
+            g.drawString(""+boisAct, xFond + 40, yFond + 211);
+            g.drawString(""+metalAct, xFond + 40, yFond + 228);
             g.drawString("Collecter (C)", xFond + 70, yFond + imgFond.getHeight() - 30);
         }
     }
