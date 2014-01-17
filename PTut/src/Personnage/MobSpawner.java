@@ -97,12 +97,13 @@ public class MobSpawner {
             waveNumber = 4;
         }
     }
-    public void MortMob () {
+    public void MortMob (Heros heros) {
         for (Monstre m : MobList)
         {
             if (m.getVie() ==0)
             {
                 MortList.add(m);
+                heros.setXp(heros.getXp()+10);
             }
         }
         for (Monstre m : MortList)

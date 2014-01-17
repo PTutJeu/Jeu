@@ -36,6 +36,8 @@ public class Heros extends Personnage {
     private boolean recharge =false;
     private Image img;
     private Image imgVie;
+    private Image imgXp, imgXpMax;
+    private int xpMax;
     public boolean vue = true, enMarche=false, enTir=false; // Vraie si le héro regarde à droite
 
     public Heros() throws SlickException{ // Constructeur du héros
@@ -78,9 +80,15 @@ public class Heros extends Personnage {
         y = 0;
         x1 = x + herosAnimation.getWidth();
         y1 = y + herosAnimation.getHeight();
+        niveau = 1;
         setVie(3);
         munitions = 12;
         timeInvincible = System.currentTimeMillis();
+        imgXp = new Image("ressources/images/xp.png");
+        imgXpMax = new Image("ressources/images/barreXp.png");
+        
+        xp=0;
+        xpMax=100;
        }
 
     public Image getImg(){return img;}
@@ -121,6 +129,7 @@ public class Heros extends Personnage {
     }
 
 
+    
     
     public void deplacements(GameContainer gc, int temps, ListePlateforme listePlateforme){
         Input input = gc.getInput(); //Variable de type entrée
@@ -247,6 +256,7 @@ public class Heros extends Personnage {
                 lp.add(this,la.getArme()); //Ajout d'un projectile
                 munitions--;  //Enlève 1 munition / tir
                 enTir =true;
+                System.out.println(xp+"/"+xpMax+"      "+niveau);
              }
              else
                  enTir = false;
@@ -299,5 +309,24 @@ public class Heros extends Personnage {
         chargeur = listeArmes.getArme().getChargeur();
         
     }
+
     
+    public void afficheXp(GameContainer gc, Graphics g) throws SlickException {
+        g.drawImage(imgXpMax,148, 7);
+      
+        for (int i=0; i < ( 187 / xpMax)*xp; i++){
+            g.drawImage(imgXp, 150+i, 10);
+        }
+    }
+    
+    public void NiveauUp(){
+        if( getXp() >= getXpMax() ){
+            setXp( getXp() - getXpMax());
+            setXpMax( getXpMax()+50);
+            setNiveau( getNiveau() +1 );
+        }
+    }
+    
+    public int getXpMax(){return xpMax;}
+    public void setXpMax(int xpMax){this.xpMax=xpMax;}
 }
