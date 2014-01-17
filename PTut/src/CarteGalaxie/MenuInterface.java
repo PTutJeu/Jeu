@@ -78,49 +78,49 @@ public class MenuInterface {
         setCoordFond(v);
         g.drawImage(imgFond, xFond, yFond);
         
-        g.drawString(nom, xFond + 10, yFond + 10);
+        g.drawString(nom, xFond + 15, yFond + 15);
         
         if (!possedee) {
-            g.drawString("Température : " +temp+ "°C", xFond + 10, yFond + 60);
-            g.drawString("Oxygène : " +ox+ "%", xFond + 10, yFond + 80);
+            g.drawString("Température : " +temp+ "°C", xFond + 15, yFond + 60);
+            g.drawString("Oxygène : " +ox+ "%", xFond + 15, yFond + 80);
             if (!itemNeed1.isEmpty()) {
-                g.drawString("Item nécessaire : ", xFond + 10, yFond + 100);
-                g.drawString(itemNeed1, xFond + 20, yFond + 120);
+                g.drawString("Item nécessaire : ", xFond + 15, yFond + 100);
+                g.drawString(itemNeed1, xFond + 25, yFond + 120);
                 if (!itemNeed2.isEmpty())
-                    g.drawString(itemNeed2, xFond + 20, yFond + 140);
+                    g.drawString(itemNeed2, xFond + 25, yFond + 140);
             }
             else {
-                g.drawString("Item nécessaire :", xFond + 10, yFond + 100);
-                g.drawString("Aucun", xFond + 10, yFond + 120);
+                g.drawString("Item nécessaire :", xFond + 15, yFond + 100);
+                g.drawString("Aucun", xFond + 25, yFond + 120);
             }
-            g.drawString("Attaquer (A)", xFond + 70, yFond + imgFond.getHeight() - 30);
+            g.drawString("Attaquer (A)", xFond + 85, yFond + imgFond.getHeight() - 35);
         }
         else {
             Image or = new Image("ressources/images/icone_or.png");
             Image bois = new Image("ressources/images/icone_bois.png");
             Image metal = new Image("ressources/images/icone_metal.png");
-            g.drawString("Production :", xFond + 10, yFond + 35);
-            g.drawImage(or, xFond + 15, yFond + 52);
-            g.drawImage(bois, xFond + 15, yFond + 69);
-            g.drawImage(metal, xFond + 15, yFond + 86);
-            g.drawString(goldProd+" or/minute", xFond + 40, yFond + 52);
-            g.drawString(boisProd+" bois/minute", xFond + 40, yFond + 69);
-            g.drawString(metalProd+" metal/minute", xFond + 40, yFond + 86);
-            g.drawString("Production maximale :", xFond + 10, yFond + 106);
-            g.drawImage(or, xFond + 15, yFond + 123);
-            g.drawImage(bois, xFond + 15, yFond + 140);
-            g.drawImage(metal, xFond + 15, yFond + 157);
-            g.drawString(""+goldMax, xFond + 40, yFond + 123);
-            g.drawString(""+boisMax, xFond + 40, yFond + 140);
-            g.drawString(""+metalMax, xFond + 40, yFond + 157);
-            g.drawString("Production actuelle :", xFond + 10, yFond + 177);
-            g.drawImage(or, xFond + 15, yFond + 194);
-            g.drawImage(bois, xFond + 15, yFond + 211);
-            g.drawImage(metal, xFond + 15, yFond + 228);
-            g.drawString(""+goldAct, xFond + 40, yFond + 194);
-            g.drawString(""+boisAct, xFond + 40, yFond + 211);
-            g.drawString(""+metalAct, xFond + 40, yFond + 228);
-            g.drawString("Collecter (C)", xFond + 70, yFond + imgFond.getHeight() - 30);
+            g.drawString("Production :", xFond + 15, yFond + 35);
+            g.drawImage(or, xFond + 20, yFond + 52);
+            g.drawImage(bois, xFond + 20, yFond + 69);
+            g.drawImage(metal, xFond + 20, yFond + 86);
+            g.drawString(goldProd+" or/minute", xFond + 45, yFond + 52);
+            g.drawString(boisProd+" bois/minute", xFond + 45, yFond + 69);
+            g.drawString(metalProd+" metal/minute", xFond + 45, yFond + 86);
+            g.drawString("Production maximale :", xFond + 15, yFond + 106);
+            g.drawImage(or, xFond + 20, yFond + 123);
+            g.drawImage(bois, xFond + 20, yFond + 140);
+            g.drawImage(metal, xFond + 20, yFond + 157);
+            g.drawString(""+goldMax, xFond + 45, yFond + 123);
+            g.drawString(""+boisMax, xFond + 45, yFond + 140);
+            g.drawString(""+metalMax, xFond + 45, yFond + 157);
+            g.drawString("Production actuelle :", xFond + 15, yFond + 177);
+            g.drawImage(or, xFond + 20, yFond + 194);
+            g.drawImage(bois, xFond + 20, yFond + 211);
+            g.drawImage(metal, xFond + 20, yFond + 228);
+            g.drawString(""+goldAct, xFond + 45, yFond + 194);
+            g.drawString(""+boisAct, xFond + 45, yFond + 211);
+            g.drawString(""+metalAct, xFond + 45, yFond + 228);
+            g.drawString("Collecter (C)", xFond + 85, yFond + imgFond.getHeight() - 30);
         }
     }
 } 
