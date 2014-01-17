@@ -313,12 +313,12 @@ public class Heros extends Personnage {
     
     public void afficheXp(GameContainer gc, Graphics g) throws SlickException {
         g.drawImage(imgXpMax,148, 7);
-//( 187 / xpMax)*xp
-        for (int i=0; i < (xpMax*xp); i++){
+      
+        for (int i=0; i < ( 187 / xpMax)*xp; i++){
             g.drawImage(imgXp, 150+i, 10);
         }
     }
-
+    
     public void NiveauUp(){
         if( getXp() >= getXpMax() ){
             setXp( getXp() - getXpMax());
