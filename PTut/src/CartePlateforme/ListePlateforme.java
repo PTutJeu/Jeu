@@ -29,11 +29,15 @@ public class ListePlateforme {
         Requete rq = new Requete();
         ResultSet rs = rq.select("SELECT ID FROM PLATEFORME WHERE IDPLANETE = " +idPlanete+ ";");
         
-        try {
-            listePlateforme.add(new Plateforme(0));
-        } catch (SlickException ex) {
-            Logger.getLogger(ListePlateforme.class.getName()).log(Level.SEVERE, null, ex);
+        while (rs.next()) {
+            try {
+                listePlateforme.add(new Plateforme(rs.getInt("ID")));
+            } catch (SlickException ex) {
+                Logger.getLogger(ListePlateforme.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+        
+        rq.closeDB();
     }
     
     public void affiche(GameContainer gc, Graphics g) throws SlickException {

@@ -79,7 +79,7 @@ public class ExecQuery {
                     + "CONSTRAINT PK_PLATEFORME PRIMARY KEY (ID), "
                     + "CONSTRAINT FK_PLATEFORME FOREIGN KEY (IDPLANETE) REFERENCES PLANETE(ID));");
             rq.request("INSERT INTO PLATEFORME VALUES (0, 0, 200, 450, 'ressources/images/plateforme.png', 0);");
-            rq.request("INSERT INTO PLATEFORME VALUES (1, 0, 0, 579, 'ressources/images/sol.png', 0);");
+            rq.request("INSERT INTO PLATEFORME VALUES (1, 0, 0, 580, 'ressources/images/sol.png', 0);");
             rq.request("INSERT INTO PLATEFORME VALUES (2, 0, 500, 200, 'ressources/images/plateforme.png', 0);");
             
             rq.closeDB();
