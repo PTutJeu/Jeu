@@ -138,9 +138,8 @@ public class Heros extends Personnage {
     
     public void deplacements(GameContainer gc, int temps, ListePlateforme listePlateforme){
         Input input = gc.getInput(); //Variable de type entrée
-        Plateforme plate = listePlateforme.getListe().get(0); //A CHANGER
         
-        if( input.isKeyDown(Input.KEY_RIGHT) && VieMort ==true ){ // Si la variable pressée est flèche droite alors on déplace le héros à droite
+        if( input.isKeyDown(Input.KEY_RIGHT) && VieMort){ // Si la variable pressée est flèche droite alors on déplace le héros à droite
             if ( getX1() < 799){
                 x += 4;
                 x1 = x + img.getWidth();
@@ -151,7 +150,7 @@ public class Heros extends Personnage {
             }
         }
         
-        else if( input.isKeyDown(Input.KEY_LEFT) && VieMort ==true  ){ // Si la variable pressée est flèche gauche alors on déplace le héros à gauche
+        else if( input.isKeyDown(Input.KEY_LEFT) && VieMort){ // Si la variable pressée est flèche gauche alors on déplace le héros à gauche
             if ( getX() > 1){
                 x -= 4;
                 x1 = x + img.getWidth();
@@ -182,60 +181,50 @@ public class Heros extends Personnage {
             herosAnimation.update(temps);
         }
             
-            
-        
-        
         // PHASE DE SAUT
-        boolean testCollision = collisions(plate);
-        
-        if ( getY() == 570 || getY()== plate.getY()-30 && testCollision) // Si la position du joueur est en 570 sauter est faux
-            sauter = false;
-        else{                // Si la position du joueut n'est pas en 570 sauter est vrai
-            sauter = true;
-            
-        if (vue == true){
-            herosAnimation = droiteSaut;
-            herosAnimation.update(temps);
+        sauter = true;
+        for (Plateforme p : listePlateforme.getListe()) {
+            if (collisionBas(p)) sauter = false;
         }
-        else if ( vue ==false){
-            herosAnimation = gaucheSaut;
-            herosAnimation.update(temps);
-        }
-
+        if (sauter) {  
+            if (vue == true){
+                herosAnimation = droiteSaut;
+                herosAnimation.update(temps);
+            }
+            else {
+                herosAnimation = gaucheSaut;
+                herosAnimation.update(temps);
+            }
         }
         
         // Changer la valeur avant le temps réduit la hauteur du saut.
-        if( input.isKeyDown(Input.KEY_UP) && !sauter && VieMort ==true  ){// Si on presse ArrowUp et que sauter est faux le personnage peut sauter
+        if( input.isKeyDown(Input.KEY_UP) && !sauter && VieMort) {// Si on presse ArrowUp et que sauter est faux le personnage peut sauter
             vitesseVertical = -0.5f * temps;     // Donc on créer une "Vitesse de déplacement" en fonction du temps
             y += vitesseVertical;                // Et la position de notre héros prend la valeur de la vitesse de déplacement
             y1 = y + img.getHeight();
         }
     
-        if ( !testCollision ){
+        if (sauter){
             vitesseVertical += 0.01f * temps; // Même procédé que pour le saut mais fait en sorte de faire tomber le héros tout le temps
             y += vitesseVertical;
             y1 = y + img.getHeight();
-            
-            if (getY() > 570){                  //Si en tombant le heros sort de la map,
-                setY( getY() - (getY() - 570)); // On le replace au bord.
-            }
-          
         }
        
-        if ( testCollision && plate.getY1() >= getY1() && getY1() >= plate.getY() ){ //Recalibration
-            setY( getY() - ( getY() - plate.getY() ) - 30);
-        }
-        
-        // Empêche de passer au milieu de la plateforme
-        if ( testCollision && plate.getX() <= getX1() && getX() <= plate.getX1() && getY() < plate.getY() && getY1() > plate.getY1()){ //Recalibration
-            setY( plate.getY1() +1);
-        }
-        
-        if ( testCollision && getY() >= plate.getY() && getY() <= plate.getY1() || testCollision && getY() >= plate.getY1() ){
-            setY( plate.getY1() + 01 );
-        }   
-        // A SAVOIR QUE CETTE FONCTION SAUT MARCHE POUR LE MOMENT UNIQUEMENT POUR LE BAS DE LA FENETRE
-        // IL ME RESTE A IMPLEMENTER CA POUR QUE CA MARCHE AVEC UNE PLATEFORME UNIVERSELLE           
+        for (Plateforme p : listePlateforme.getListe()) {
+            if (y < 0) {
+                y = 0;
+                vitesseVertical = 0;
+            }            
+            if (collisionHaut(p)) {
+                setY(p.getY1());
+                y1 = y + img.getHeight();
+                vitesseVertical = 0;
+            }
+            if (collisionBas(p)) {
+                setY(p.getY() - img.getHeight());
+                y1 = y + img.getHeight();
+            }
+        }         
       }
     
     
@@ -246,10 +235,16 @@ public class Heros extends Personnage {
         if ( x > plate.getX1() ) return false; 
         vitesseVertical=0;
         return true;
-
     }
 
-
+    //Return true si le bas du personnage est en collision avec une plateforme
+    public boolean collisionBas(Plateforme p) {
+        return (y1 >= p.getY() && y < p.getY()) && (!(x1 < p.getX() || x > p.getX1()));
+    }
+    //Return true si le haut du personnage est en collision avec une plateforme
+    public boolean collisionHaut(Plateforme p) {
+        return (y <= p.getY1() && y1 > p.getY1()) && (!(x1 < p.getX() || x > p.getX1()));
+    }
 
     /* A VENIR LES METHODES POUR ATTAQUER... */
 
