@@ -44,7 +44,7 @@ public class MobSpawner {
         Plateforme Plate = listePlateforme.getListe().get(0);
         for (Monstre m : MobList)
         {
-            m.deplacements(gc, t , Plate , heros);
+            m.deplacements(gc, t , listePlateforme , heros);
         }
     }
     

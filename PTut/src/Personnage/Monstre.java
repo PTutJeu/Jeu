@@ -1,6 +1,7 @@
 package Personnage;
 
 import BDD.Requete;
+import CartePlateforme.ListePlateforme;
 import CartePlateforme.Plateforme;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -63,9 +64,9 @@ public class Monstre {
         g.drawImage(img, x, y);
     }
     
-    public void deplacements(GameContainer gc, int temps, Plateforme plate, Heros heros)
+    public void deplacements(GameContainer gc, int temps, ListePlateforme lp, Heros heros)
     {
-        boolean testCollisionPlate = collisionsPlate(plate);
+        boolean testCollisionPlate = collisionsPlate(lp);
         if (id == 3)
         {
             if (x > heros.getX()+ heros.getImg().getWidth()/2) x -= 2;
@@ -165,12 +166,22 @@ public class Monstre {
             distance = (int)( Math.random()*( 600 - 300 + 1 ) ) + 300;
         }
    }
-   public boolean collisionsPlate(Plateforme plate) {
-        if ( y + img.getHeight() < plate.getY() ) return false;
-        if ( x + img.getWidth() < plate.getX() ) return false;
-        if ( y > plate.getY1() ) return false;
-        if ( x > plate.getX1() ) return false;
-        return true;
+   public boolean collisionsPlate(ListePlateforme lp) {
+       boolean collision = false; 
+       
+       for (Plateforme p : lp.getListe()) {
+           boolean col;
+           
+            if ( y + img.getHeight() < p.getY() ) col = false;
+            else if ( x + img.getWidth() < p.getX() ) col = false;
+            else if ( y > p.getY1() ) col = false;
+            else if ( x > p.getX1() ) col = false;
+            else col = true;
+            
+            collision = collision || col;
+       }
+       
+       return collision;
    }
    public boolean collisionsHeros(Heros heros)
    {
