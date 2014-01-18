@@ -22,7 +22,7 @@ public class MobSpawner {
     private List<Monstre> MobList = new ArrayList<>();
     private List<Monstre> MortList = new ArrayList<>();
     private long waveTime = System.currentTimeMillis();
-    private int monstrePop = 1;
+    private int monstrePop = 0;
     private int monstreAlive = 0;
     private int waveNumber = 1;
     
