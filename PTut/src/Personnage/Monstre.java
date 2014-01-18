@@ -85,7 +85,7 @@ public class Monstre {
                 vitesseVertical += 0.01f * temps; // Même procédé que pour le saut mais fait en sorte de faire tomber le héros tout le temps
                 y += vitesseVertical;
                 for (Plateforme p : lp.getListe()) {
-                    if (getY1() > p.getY() && (!(getX() > p.getX1() || getX1() < p.getX())))
+                    if (getY1() > p.getY() && getY() < p.getY() && (!(getX() > p.getX1() || getX1() < p.getX())))
                         setY(p.getY() - img.getHeight());
                 }
            }
