@@ -31,7 +31,7 @@ public class Heros extends Personnage {
     private Animation levelUpAnimation;
       
     private int munitions, chargeur;
-    private long timeRechargement, timeInvincible, timeLevelUp;
+    private long tempsRechargement, tempsInvincible, tempsLevelUp, tempsTir;
     private float vitesseVertical = 0.0f;
     private boolean sauter = false;
     private boolean recharge =false, enLevelUp=false;
@@ -84,7 +84,7 @@ public class Heros extends Personnage {
         niveau = 1;
         setVie(3);
         munitions = 12;
-        timeInvincible = System.currentTimeMillis();
+        tempsInvincible = System.currentTimeMillis();
         imgXp = new Image("ressources/images/xp.png");
         imgXpMax = new Image("ressources/images/barreXp.png");
         
@@ -271,7 +271,7 @@ public class Heros extends Personnage {
                 if (munitions == chargeur){                                  
                 }
                 else{
-                    timeRechargement = System.currentTimeMillis();
+                    tempsRechargement = System.currentTimeMillis();
                     rechargeSheet = new SpriteSheet("ressources/images/barillet.png",30,30);
                     rechargeAnimation = new Animation(rechargeSheet, 200);
                 }
@@ -283,10 +283,10 @@ public class Heros extends Personnage {
             }
             
             // Si il s'est écoulé 3 sec depuis le début du rechargement alors le joueur peut de nouveau tirer
-            if ( (System.currentTimeMillis() - timeRechargement) < 3000 ){
+            if ( (System.currentTimeMillis() - tempsRechargement) < 3000 ){
                     recharge = true;
                     // Attend 2.5sec avant d'afficher le chargeur rechargé => plus de réalisme
-                    if ( (System.currentTimeMillis() - timeRechargement) > 2500 )
+                    if ( (System.currentTimeMillis() - tempsRechargement) > 2500 )
                         munitions = chargeur;
                     
                 }
@@ -296,10 +296,10 @@ public class Heros extends Personnage {
      
     public void perdVie(int degats)
     {
-        if (System.currentTimeMillis() - timeInvincible > 3000)
+        if (System.currentTimeMillis() - tempsInvincible > 3000)
         {
             setVie(getVie() -1);
-            timeInvincible = System.currentTimeMillis();
+            tempsInvincible = System.currentTimeMillis();
         }
     }
     public void armeSelection(GameContainer gc, ListeArme listeArmes){
@@ -327,7 +327,7 @@ public class Heros extends Personnage {
     
     public void NiveauUp() throws SlickException{
         if( getXp() >= getXpMax() ){
-            timeLevelUp = System.currentTimeMillis();
+            tempsLevelUp = System.currentTimeMillis();
             levelUp = new SpriteSheet("ressources/images/sprite_levelUp.png",60,60);
             levelUpAnimation = new Animation(levelUp,150);
             setXp( getXp() - getXpMax());
@@ -335,7 +335,7 @@ public class Heros extends Personnage {
             setNiveau( getNiveau() +1 );
         }
         
-        if ( (System.currentTimeMillis() - timeLevelUp) < 2000)
+        if ( (System.currentTimeMillis() - tempsLevelUp) < 2000)
             enLevelUp=true;
         else
             enLevelUp=false;
