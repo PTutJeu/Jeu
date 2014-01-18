@@ -8,6 +8,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import java.lang.Math; 
 
 /**
  *
@@ -21,6 +22,9 @@ public class Monstre {
     private Image img;
     private int vie;
     private int vieMax;
+    private boolean move = true;
+    private int direction = (int)( Math.random()*( 30 - 0 + 1 ) ) + 0;
+    private int distance = (int)( Math.random()*( 300 - 200 + 1 ) ) + 200;
     private float vitesseVertical;
     public static final float POPMOB_X = 500;
     public static final float POPMOB_Y = 500;
@@ -37,7 +41,6 @@ public class Monstre {
         vieMax = rs.getInt("VIE");
         vie = vieMax;
         img = new Image(rs.getString("IMG"));
-        
         rq.closeDB();
     }
     
@@ -52,7 +55,6 @@ public class Monstre {
         vieMax = rs.getInt("VIE");
         vie = vieMax;
         img = new Image(rs.getString("IMG"));
-        
         rq.closeDB();
     }
     
@@ -76,19 +78,57 @@ public class Monstre {
         }
         else
         {
-           if (!testCollisionPlate) {
-            vitesseVertical += 0.01f * temps; // Même procédé que pour le saut mais fait en sorte de faire tomber le héros tout le temps
-            y += vitesseVertical;
-            //y1 = y + img.getHeight();
+           if (!testCollisionPlate) 
+           {
+                vitesseVertical += 0.01f * temps; // Même procédé que pour le saut mais fait en sorte de faire tomber le héros tout le temps
+                y += vitesseVertical;
+                //y1 = y + img.getHeight();
 
-                if (y > 600 - img.getHeight()) {                  //Si en tombant le heros sort de la map,
-                //setY( getY() - (getY() - 570)); // On le replace au bord.
-                y = 600- img.getHeight();
+                    if (y > 600 - img.getHeight()) 
+                    {   //Si en tombant le heros sort de la map,
+                        //setY( getY() - (getY() - 570)); // On le replace au bord.
+                        y = 600- img.getHeight();
                     }
+           }
+           
+           if (direction <= 15 && move == true)
+           {
+               if ((x <= (x - distance)) || (x < 0))
+               {    
+                   if (x < 0)
+                   {
+                     x = 0; 
                    }
-        
-            if (x > heros.getX()+ heros.getImg().getWidth()/2) x -= 2;
-            if (x+img.getWidth() < heros.getX()+ heros.getImg().getWidth()/2) x += 2;
+                     move = false;
+               }
+               else 
+                   x -=2;
+                    
+           }
+           if((direction > 15 )&& (move == true))
+           {
+               if ((x >= (x + distance)) || ((x + img.getWidth()) > 800))
+               {
+                   if ((x + img.getWidth()) > 800)
+                   {
+                       x = 800 - img.getWidth();
+                   }
+                   move = false;
+               }
+               else
+                   x += 2;
+           }
+           else
+           {
+               ChoixDirection();
+           }
+           /*if (collisionChampVision(cv))
+           {
+                if (x > heros.getX()+ heros.getImg().getWidth()/2) x -= 2;
+                if (x+img.getWidth() < heros.getX()+ heros.getImg().getWidth()/2) x += 2;
+           }*/
+           
+            
         
             if (collisionsHeros(heros))
             {
@@ -107,6 +147,22 @@ public class Monstre {
         }
         
    }
+   public void ChoixDirection()
+   {    
+        if (move == false)
+        {
+            move = true;
+            if (direction <= 15)
+            {
+                direction = 17;
+            }
+            else if (direction > 15)
+            {
+                direction = 13;
+            }
+            distance = (int)( Math.random()*( 100 - 50 + 1 ) ) + 50;
+        }
+   }
    public boolean collisionsPlate(Plateforme plate) {
         if ( y + img.getHeight() < plate.getY() ) return false;
         if ( x + img.getWidth() < plate.getX() ) return false;
@@ -118,7 +174,10 @@ public class Monstre {
    {
        return (getX1() >= heros.getX() && getX() <= heros.getX1() && getY1() >= heros.getY() && getY() <= heros.getY1());
    }
-
+   /*public boolean collisionsChampVision(ChampVision cv)
+   {
+       
+   }*/
     //Getters
     public Image getImg() { return img; }
     public float getVitesseVertical() { return vitesseVertical; }
