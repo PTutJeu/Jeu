@@ -331,7 +331,7 @@ public class Heros extends Personnage {
             levelUp = new SpriteSheet("ressources/images/sprite_levelUp.png",60,60);
             levelUpAnimation = new Animation(levelUp,150);
             setXp( getXp() - getXpMax());
-            setXpMax( getXpMax()+50);
+            setXpMax( getXpMax()+100);
             setNiveau( getNiveau() +1 );
         }
         
