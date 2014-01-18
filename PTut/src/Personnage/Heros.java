@@ -266,30 +266,27 @@ public class Heros extends Personnage {
              // Si le joueur tombe à cours de munitions et qu'il n'est pas en train de recharger => rechargement du chargeur
              // On ajoute une petite animation lors du rechargement du chargeur
             if (input.isKeyPressed(Input.KEY_R) && recharge != true || munitions <=0 && recharge !=true){
-                if (munitions == chargeur){                                  
+                if (munitions == chargeur){       // Cette condition empêche de recharger lorsque les munitions sont au max                           
                 }
                 else{
                     tempsRechargement = System.currentTimeMillis();
                     rechargeSheet = new SpriteSheet("ressources/images/barillet.png",30,30);
                     rechargeAnimation = new Animation(rechargeSheet, 200);
                 }
-     
             }
-
             if (input.isKeyPressed(Input.KEY_E)){
                   this.setVie(getVie()-1);      
             }
             
             // Si il s'est écoulé 3 sec depuis le début du rechargement alors le joueur peut de nouveau tirer
             if ( (System.currentTimeMillis() - tempsRechargement) < 3000 ){
-                    recharge = true;
-                    // Attend 2.5sec avant d'afficher le chargeur rechargé => plus de réalisme
-                    if ( (System.currentTimeMillis() - tempsRechargement) > 2500 )
-                        munitions = chargeur;
-                    
-                }
-                else
-                    recharge = false;
+                recharge = true;
+                // Attend 2.5sec avant d'afficher le chargeur rechargé => plus de réalisme
+                if ( (System.currentTimeMillis() - tempsRechargement) > 2500 )
+                    munitions = chargeur;     
+            }
+            else
+                recharge = false;
          }
      
     public void perdVie(int degats)
