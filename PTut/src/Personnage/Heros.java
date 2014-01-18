@@ -9,10 +9,13 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import Armes.ListeProjectile;
+import java.text.DateFormat;
 
 import Armes.Projectile;
 import CartePlateforme.ListePlateforme;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.SpriteSheet;
@@ -99,9 +102,13 @@ public class Heros extends Personnage {
         herosAnimation.draw(x, y);
        //g.drawImage(img, x, y);
        g.drawImage(imgVie, 10, 10);
-       
        g.drawString(munitions+"/"+chargeur,10,80);
-       
+       /*
+       String txtDate=new SimpleDateFormat("HH:mm").format(new Date() );
+       g.drawString(txtDate,10,150);
+       import java.util.Date;
+       import java.text.DateFormat;
+       */
        if (VieMort == false){
            //g.drawString("Tu es mort !", 200,200);
            gameOverAnimation.draw(150,200);
@@ -246,17 +253,17 @@ public class Heros extends Personnage {
         return (y <= p.getY1() && y1 > p.getY1()) && (!(x1 < p.getX() || x > p.getX1()));
     }
 
-    /* A VENIR LES METHODES POUR ATTAQUER... */
-
+    //METHODES pour ATTAQUER
     public void tirer (GameContainer gc, ListeProjectile lp, ListeArme la, int temps) throws SlickException{
          Input input = gc.getInput(); //Variable de type entrée
+         munitions = la.getArme().getMunition();
              if ( (System.currentTimeMillis() - tempsTir) < la.getArme().getTempsTir() )
                  enTir = true;
              // Le joueur ne peut tirer si il recharge
              if (input.isKeyDown(Input.KEY_SPACE) && recharge != true && VieMort ==true && enTir != true ){  //input.isMousePressed(Input.MOUSE_LEFT_BUTTON)
                 tempsTir = System.currentTimeMillis();  
-                    lp.add(this,la.getArme()); //Ajout d'un projectile
-                munitions--;  //Enlève 1 munition / tir
+                lp.add(this,la.getArme()); //Ajout d'un projectile
+                la.getArme().setMunition( la.getArme().getMunition()-1);
                 enTir =true;   
              }
              else
@@ -265,8 +272,8 @@ public class Heros extends Personnage {
              // Si le joueur appuie sur R et qu'il n'est pas déjà en train de recharger => rechargement du chargeur
              // Si le joueur tombe à cours de munitions et qu'il n'est pas en train de recharger => rechargement du chargeur
              // On ajoute une petite animation lors du rechargement du chargeur
-            if (input.isKeyPressed(Input.KEY_R) && recharge != true || munitions <=0 && recharge !=true){
-                if (munitions == chargeur){       // Cette condition empêche de recharger lorsque les munitions sont au max                           
+            if (input.isKeyPressed(Input.KEY_R) && recharge != true || la.getArme().getMunition() <=0 && recharge !=true){
+                if (la.getArme().getMunition() == chargeur){       // Cette condition empêche de recharger lorsque les munitions sont au max                           
                 }
                 else{
                     tempsRechargement = System.currentTimeMillis();
@@ -279,15 +286,15 @@ public class Heros extends Personnage {
             }
             
             // Si il s'est écoulé 3 sec depuis le début du rechargement alors le joueur peut de nouveau tirer
-            if ( (System.currentTimeMillis() - tempsRechargement) < 3000 ){
+            if ( (System.currentTimeMillis() - tempsRechargement) < la.getArme().getTempsRechargement() ){
                 recharge = true;
                 // Attend 2.5sec avant d'afficher le chargeur rechargé => plus de réalisme
-                if ( (System.currentTimeMillis() - tempsRechargement) > 2500 )
-                    munitions = chargeur;     
+                if ( (System.currentTimeMillis() - tempsRechargement) > la.getArme().getTempsRechargement() -500 )
+                    la.getArme().setMunition(la.getArme().getChargeur());   
             }
             else
-                recharge = false;
-         }
+                recharge = false; 
+    }
      
     public void perdVie(int degats)
     {
