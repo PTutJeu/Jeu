@@ -27,13 +27,14 @@ public class Heros extends Personnage {
     private Animation herosAnimation, droite, gauche, droiteArret, gaucheArret, droiteTir, gaucheTir, mort, droiteSaut, gaucheSaut, gameOverAnimation;
     private SpriteSheet rechargeSheet;
     private Animation rechargeAnimation;
+    private SpriteSheet levelUp;
+    private Animation levelUpAnimation;
       
     private int munitions, chargeur;
-    private long timeRechargement;  
-    private long timeInvincible;
+    private long timeRechargement, timeInvincible, timeLevelUp;
     private float vitesseVertical = 0.0f;
     private boolean sauter = false;
-    private boolean recharge =false;
+    private boolean recharge =false, enLevelUp=false;
     private Image img;
     private Image imgVie;
     private Image imgXp, imgXpMax;
@@ -108,7 +109,10 @@ public class Heros extends Personnage {
        
        if ( recharge == true){
            rechargeAnimation.draw(x, y-40);
-       }  
+       }
+       if ( enLevelUp == true){
+           levelUpAnimation.draw(x-10,y-60);
+       }
     }
     
     public void vieHeros() throws SlickException{
@@ -321,12 +325,21 @@ public class Heros extends Personnage {
         }  
     }
     
-    public void NiveauUp(){
+    public void NiveauUp() throws SlickException{
         if( getXp() >= getXpMax() ){
+            timeLevelUp = System.currentTimeMillis();
+            levelUp = new SpriteSheet("ressources/images/sprite_levelUp.png",60,60);
+            levelUpAnimation = new Animation(levelUp,150);
             setXp( getXp() - getXpMax());
             setXpMax( getXpMax()+50);
             setNiveau( getNiveau() +1 );
         }
+        
+        if ( (System.currentTimeMillis() - timeLevelUp) < 2000)
+            enLevelUp=true;
+        else
+            enLevelUp=false;
+        
     }
     
     public int getXpMax(){return xpMax;}
