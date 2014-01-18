@@ -84,13 +84,10 @@ public class Monstre {
            {
                 vitesseVertical += 0.01f * temps; // Même procédé que pour le saut mais fait en sorte de faire tomber le héros tout le temps
                 y += vitesseVertical;
-                //y1 = y + img.getHeight();
-
-                    if (y > 600 - img.getHeight()) 
-                    {   //Si en tombant le heros sort de la map,
-                        //setY( getY() - (getY() - 570)); // On le replace au bord.
-                        y = 600- img.getHeight();
-                    }
+                for (Plateforme p : lp.getListe()) {
+                    if (getY1() > p.getY() && (!(getX() > p.getX1() || getX1() < p.getX())))
+                        setY(p.getY() - img.getHeight());
+                }
            }
            
            if (direction <= 15 && move == true)
