@@ -23,8 +23,9 @@ public class Monstre {
     private int vie;
     private int vieMax;
     private boolean move = true;
+    private float posActuelle = 500;
     private int direction = (int)( Math.random()*( 30 - 0 + 1 ) ) + 0;
-    private int distance = (int)( Math.random()*( 300 - 200 + 1 ) ) + 200;
+    private int distance = (int)( Math.random()*( 600 - 300 + 1 ) ) + 300;
     private float vitesseVertical;
     public static final float POPMOB_X = 500;
     public static final float POPMOB_Y = 500;
@@ -93,7 +94,7 @@ public class Monstre {
            
            if (direction <= 15 && move == true)
            {
-               if ((x <= (x - distance)) || (x < 0))
+               if ((x <= (posActuelle - distance)) || (x < 0))
                {    
                    if (x < 0)
                    {
@@ -107,7 +108,7 @@ public class Monstre {
            }
            if((direction > 15 )&& (move == true))
            {
-               if ((x >= (x + distance)) || ((x + img.getWidth()) > 800))
+               if ((x >= (posActuelle + distance)) || ((x + img.getWidth()) > 800))
                {
                    if ((x + img.getWidth()) > 800)
                    {
@@ -152,6 +153,7 @@ public class Monstre {
         if (move == false)
         {
             move = true;
+            posActuelle = x;
             if (direction <= 15)
             {
                 direction = 17;
@@ -160,7 +162,7 @@ public class Monstre {
             {
                 direction = 13;
             }
-            distance = (int)( Math.random()*( 100 - 50 + 1 ) ) + 50;
+            distance = (int)( Math.random()*( 600 - 300 + 1 ) ) + 300;
         }
    }
    public boolean collisionsPlate(Plateforme plate) {
