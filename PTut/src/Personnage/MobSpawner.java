@@ -103,7 +103,7 @@ public class MobSpawner {
             if (m.getVie() ==0)
             {
                 MortList.add(m);
-                heros.setXp(heros.getXp()+10);
+                heros.setXp(heros.getXp()+100);
             }
         }
         for (Monstre m : MortList)
