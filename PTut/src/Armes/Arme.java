@@ -21,11 +21,13 @@ public class Arme {
     private int degats;
     private Image img;
     private int chargeur;
+    private int tempsTir; // temps en millisecondes
     
-    public Arme(String nom, int degats, int chargeur){
+    public Arme(String nom, int degats, int chargeur, int tempsTir){
         this.nom=nom;
         this.degats=degats;
         this.chargeur=chargeur;
+        this.tempsTir=tempsTir;
     }
     
      public void affiche(GameContainer gc, Graphics g) throws SlickException{
@@ -33,9 +35,11 @@ public class Arme {
     }
      
     public void setNom(String nom){this.nom = nom;}
+    public void setTempsTir(int tempsTir){this.tempsTir = tempsTir;}
     
     public String getNom(){return nom;}  
     public int getChargeur(){return chargeur;}
     public int getDegats(){return degats;}
+    public int getTempsTir(){return tempsTir;}
     
 }

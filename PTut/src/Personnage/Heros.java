@@ -27,13 +27,14 @@ public class Heros extends Personnage {
     private Animation herosAnimation, droite, gauche, droiteArret, gaucheArret, droiteTir, gaucheTir, mort, droiteSaut, gaucheSaut, gameOverAnimation;
     private SpriteSheet rechargeSheet;
     private Animation rechargeAnimation;
+    private SpriteSheet levelUp;
+    private Animation levelUpAnimation;
       
     private int munitions, chargeur;
-    private long timeRechargement;  
-    private long timeInvincible;
+    private long tempsRechargement, tempsInvincible, tempsLevelUp, tempsTir;
     private float vitesseVertical = 0.0f;
     private boolean sauter = false;
-    private boolean recharge =false;
+    private boolean recharge =false, enLevelUp=false;
     private Image img;
     private Image imgVie;
     private Image imgXp, imgXpMax;
@@ -83,7 +84,7 @@ public class Heros extends Personnage {
         niveau = 1;
         setVie(3);
         munitions = 12;
-        timeInvincible = System.currentTimeMillis();
+        tempsInvincible = System.currentTimeMillis();
         imgXp = new Image("ressources/images/xp.png");
         imgXpMax = new Image("ressources/images/barreXp.png");
         
@@ -108,12 +109,16 @@ public class Heros extends Personnage {
        
        if ( recharge == true){
            rechargeAnimation.draw(x, y-40);
-       }  
+       }
+       if ( enLevelUp == true){
+           levelUpAnimation.draw(x-10,y-60);
+       }
     }
     
     public void vieHeros() throws SlickException{
-        if(getVie() == 3){
+        if(getVie() >= 3){
             imgVie = new Image("ressources/images/vie3.png");
+            setVie(3);
         }
         else if (getVie() ==2 ){
             imgVie = new Image("ressources/images/vie2.png");
@@ -250,10 +255,12 @@ public class Heros extends Personnage {
 
     public void tirer (GameContainer gc, ListeProjectile lp, ListeArme la, int temps) throws SlickException{
          Input input = gc.getInput(); //Variable de type entrée
-         
+             if ( (System.currentTimeMillis() - tempsTir) < la.getArme().getTempsTir() )
+                 enTir = true;
              // Le joueur ne peut tirer si il recharge
-             if (input.isKeyPressed(Input.KEY_SPACE) && recharge != true && VieMort ==true ){  //input.isMousePressed(Input.MOUSE_LEFT_BUTTON)
-                lp.add(this,la.getArme()); //Ajout d'un projectile
+             if (input.isKeyDown(Input.KEY_SPACE) && recharge != true && VieMort ==true && enTir != true ){  //input.isMousePressed(Input.MOUSE_LEFT_BUTTON)
+                tempsTir = System.currentTimeMillis();  
+                    lp.add(this,la.getArme()); //Ajout d'un projectile
                 munitions--;  //Enlève 1 munition / tir
                 enTir =true;   
              }
@@ -267,7 +274,7 @@ public class Heros extends Personnage {
                 if (munitions == chargeur){                                  
                 }
                 else{
-                    timeRechargement = System.currentTimeMillis();
+                    tempsRechargement = System.currentTimeMillis();
                     rechargeSheet = new SpriteSheet("ressources/images/barillet.png",30,30);
                     rechargeAnimation = new Animation(rechargeSheet, 200);
                 }
@@ -279,10 +286,10 @@ public class Heros extends Personnage {
             }
             
             // Si il s'est écoulé 3 sec depuis le début du rechargement alors le joueur peut de nouveau tirer
-            if ( (System.currentTimeMillis() - timeRechargement) < 3000 ){
+            if ( (System.currentTimeMillis() - tempsRechargement) < 3000 ){
                     recharge = true;
                     // Attend 2.5sec avant d'afficher le chargeur rechargé => plus de réalisme
-                    if ( (System.currentTimeMillis() - timeRechargement) > 2500 )
+                    if ( (System.currentTimeMillis() - tempsRechargement) > 2500 )
                         munitions = chargeur;
                     
                 }
@@ -292,10 +299,10 @@ public class Heros extends Personnage {
      
     public void perdVie(int degats)
     {
-        if (System.currentTimeMillis() - timeInvincible > 3000)
+        if (System.currentTimeMillis() - tempsInvincible > 3000)
         {
             setVie(getVie() -1);
-            timeInvincible = System.currentTimeMillis();
+            tempsInvincible = System.currentTimeMillis();
         }
     }
     public void armeSelection(GameContainer gc, ListeArme listeArmes){
@@ -321,12 +328,22 @@ public class Heros extends Personnage {
         }  
     }
     
-    public void NiveauUp(){
+    public void NiveauUp() throws SlickException{
         if( getXp() >= getXpMax() ){
+            tempsLevelUp = System.currentTimeMillis();
+            levelUp = new SpriteSheet("ressources/images/sprite_levelUp.png",60,60);
+            levelUpAnimation = new Animation(levelUp,150);
             setXp( getXp() - getXpMax());
-            setXpMax( getXpMax()+50);
+            setXpMax( getXpMax()+100);
             setNiveau( getNiveau() +1 );
+            setVie(getVie()+1);
         }
+        
+        if ( (System.currentTimeMillis() - tempsLevelUp) < 2000)
+            enLevelUp=true;
+        else
+            enLevelUp=false;
+        
     }
     
     public int getXpMax(){return xpMax;}
