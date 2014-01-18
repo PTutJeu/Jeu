@@ -50,13 +50,13 @@ public class ScenePlanete extends Scene
         @Override
 	protected void CustomRender(GameContainer gc, Graphics g) throws SlickException 
 	{
-            affiche(gc,g);
-            heros.affiche(gc, g);
+            affiche(gc,g);           
             listePlateforme.affiche(gc,g);
             MobList.affiche(gc,g);
             listeProjectile.affiche(gc,g);
             listeArmes.affiche(gc, g);
             heros.afficheXp(gc,g);
+            heros.affiche(gc, g);
            
 	}
 	
