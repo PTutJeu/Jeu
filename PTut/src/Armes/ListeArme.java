@@ -31,7 +31,7 @@ public class ListeArme {
         listeArmes.add(new Arme("Fusil", 60, 8, 600, 2000));
         listeArmes.add(new Arme("Bazooka", 200, 2, 2000, 3000));
         index=0;
-        for ( Arme a : listeArmes){  
+        for ( Arme a : listeArmes){
             listeArmes2.add(a);
         }
     }
