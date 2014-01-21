@@ -13,6 +13,7 @@ public class PTut {
         // /!\Pas très bonnes explication, voir tuto au pire/!\
         //On crée une application qui contiendra le jeu
         AppGameContainer app = new AppGameContainer(new Game());
+        //app.setMouseGrabbed(true);
         app.setDisplayMode(800, 600, false); //Affichage d'une fenetre de 800 pixel par 600 pixel
         app.setTargetFrameRate(60); //On fixe le max fps a 60
         app.setShowFPS(false); //On affiche pas les fps a l'ecran
