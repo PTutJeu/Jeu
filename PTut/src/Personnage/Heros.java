@@ -103,11 +103,12 @@ public class Heros extends Personnage {
        //g.drawImage(img, x, y);
        g.drawImage(imgVie, 10, 10);
        g.drawString(munitions+"/"+chargeur,10,80);
+       g.drawString(niveau+"",235,5);
        /*
        String txtDate=new SimpleDateFormat("HH:mm").format(new Date() );
        g.drawString(txtDate,10,150);
        import java.util.Date;
-       import java.text.DateFormat;
+       import java.text.SimpleDateFormat;
        */
        if (VieMort == false){
            //g.drawString("Tu es mort !", 200,200);
