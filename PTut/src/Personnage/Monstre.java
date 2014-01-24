@@ -19,8 +19,11 @@ import java.lang.Math;
 public class Monstre {
     private int id;
     private float x;
+    private float xChampDeVision;
     private float y;
+    private float yChampDeVision;
     private Image img;
+    private Image champDeVision;
     private int vie;
     private int vieMax;
     private boolean move = true;
@@ -43,6 +46,8 @@ public class Monstre {
         vieMax = rs.getInt("VIE");
         vie = vieMax;
         img = new Image(rs.getString("IMG"));
+        champDeVision= new Image("ressources/images/champVision.png");
+        champDeVision.setAlpha(0);
         rq.closeDB();
     }
     
@@ -57,11 +62,24 @@ public class Monstre {
         vieMax = rs.getInt("VIE");
         vie = vieMax;
         img = new Image(rs.getString("IMG"));
+        champDeVision= new Image("ressources/images/champVision.png");
+        champDeVision.setAlpha(0);
         rq.closeDB();
     }
     
     public void affiche(GameContainer gc, Graphics g) throws SlickException {
         g.drawImage(img, x, y);
+        if (direction <= 15)
+        {
+            xChampDeVision = x - champDeVision.getWidth()+img.getWidth()+20;
+            yChampDeVision = getY1()-champDeVision.getHeight();
+            g.drawImage(champDeVision,xChampDeVision,yChampDeVision);    
+        }
+        else 
+            xChampDeVision = x-20;
+            yChampDeVision = getY1()-champDeVision.getHeight();
+            g.drawImage(champDeVision,xChampDeVision,yChampDeVision);
+        
     }
     
     public void deplacements(GameContainer gc, int temps, ListePlateforme lp, Heros heros)
@@ -90,59 +108,60 @@ public class Monstre {
                 }
            }
            
-           if (direction <= 15 && move == true)
+           if (collisionsChampDeVision(heros))
            {
-               if ((x <= (posActuelle - distance)) || (x < 0))
-               {    
-                   if (x < 0)
-                   {
-                     x = 0; 
-                   }
-                     move = false;
-               }
-               else 
-                   x -=2;
-                    
-           }
-           if((direction > 15 )&& (move == true))
-           {
-               if ((x >= (posActuelle + distance)) || ((x + img.getWidth()) > 800))
+               //EN CAS DE COLLISION AVEC LE CHAMP DE VISION, ALORS DEPLACEMENTS VERS LE HEROS
+               if (x > heros.getX()+ heros.getImg().getWidth()/2) 
                {
-                   if ((x + img.getWidth()) > 800)
-                   {
-                       x = 800 - img.getWidth();
-                   }
-                   move = false;
+                   direction = 13;
+                   x -= 2;
                }
-               else
+               if (x+img.getWidth() < heros.getX()+ heros.getImg().getWidth()/2)
+               {
+                   direction = 17;
                    x += 2;
+               }
            }
            else
            {
-               ChoixDirection();
+               //SI IL N'Y A PAS DE COLLISION, ALORS DEPLACEMENTS ALEATOIRES
+                if (direction <= 15 && move == true)
+                {
+                    if ((x <= (posActuelle - distance)) || (x < 0))
+                    {    
+                        if (x < 0)
+                        {
+                            x = 0; 
+                        }
+                            move = false;
+                    }
+                        else 
+                            x -=2;
+                    
+                }
+                if((direction > 15 )&& (move == true))
+                {
+                    if ((x >= (posActuelle + distance)) || ((x + img.getWidth()) > 800))
+                    {
+                        if ((x + img.getWidth()) > 800)
+                        {
+                            x = 800 - img.getWidth();
+                        }
+                        move = false;
+                    }
+                    else
+                        x += 2;
+                }
+                else
+                {
+                    ChoixDirection();
+                }
            }
-           /*if (collisionChampVision(cv))
-           {
-                if (x > heros.getX()+ heros.getImg().getWidth()/2) x -= 2;
-                if (x+img.getWidth() < heros.getX()+ heros.getImg().getWidth()/2) x += 2;
-           }*/
            
-            
-        
             if (collisionsHeros(heros))
             {
                 heros.perdVie(1); 
             }
-         // Ici je met en place le deplacement du monstre vers le joueur, le -25 devra etre remplacé par la taille de la HITBOX
-         // Sinon pour l'instant il me suit normalement
-         /*if (x > (heros.getX1()+25)) {
-             x-=2;
-             x1-=2;
-         }*/
-         /*if (x1 < (heros.getX()-25)) {
-             x+=2;
-             x1+=2;
-         }*/ 
         }
         
    }
@@ -162,6 +181,10 @@ public class Monstre {
             }
             distance = (int)( Math.random()*( 600 - 300 + 1 ) ) + 300;
         }
+   }
+   public boolean collisionsChampDeVision(Heros heros)
+   {
+       return ( heros.getX1() >= xChampDeVision  && heros.getX() <= xChampDeVision+champDeVision.getWidth() && heros.getY1() >= yChampDeVision && heros.getY()<= yChampDeVision+champDeVision.getHeight());
    }
    public boolean collisionsPlate(ListePlateforme lp) {
        boolean collision = false; 
