@@ -100,6 +100,32 @@ public class ExecQuery {
             rq.request("INSERT INTO PLATEFORME VALUES (19, 9, 5, 450, 'ressources/images/plateforme.png', 0);");
             rq.request("INSERT INTO PLATEFORME VALUES (20, 9, 0, 580, 'ressources/images/sol.png', 0);");
             
+            rq.request("DROP TABLE CORRESPPLANETEMOB;");
+            rq.request("CREATE TABLE CORRESPPLANETEMOB (IDPLANETE NUMBER, IDWAVE NUMBER, TAILLEWAVE NUMBER, IDMOB NUMBER, "
+                    + "CONSTRAINT PK_CORRESP PRIMARY KEY (IDPLANETE, IDWAVE), "
+                    + "CONSTRAINT FK_CORRESP_PLANETE FOREIGN KEY (IDPLANETE) REFERENCES PLANETE(ID), "
+                    + "CONSTRAINT FK_CORRESP_MOB FOREIGN KEY (IDMOB) REFERENCES MOB(ID));");
+            rq.request("INSERT INTO CORRESPPLANETEMOB VALUES (1, 1, 5, 1);");
+            rq.request("INSERT INTO CORRESPPLANETEMOB VALUES (1, 2, 5, 2);");
+            rq.request("INSERT INTO CORRESPPLANETEMOB VALUES (1, 3, 3, 3);");
+            rq.request("INSERT INTO CORRESPPLANETEMOB VALUES (1, 4, 1, 4);");
+            rq.request("INSERT INTO CORRESPPLANETEMOB VALUES (2, 1, 4, 2);");
+            rq.request("INSERT INTO CORRESPPLANETEMOB VALUES (2, 4, 1, 4);");
+            rq.request("INSERT INTO CORRESPPLANETEMOB VALUES (3, 1, 4, 2);");
+            rq.request("INSERT INTO CORRESPPLANETEMOB VALUES (3, 4, 1, 4);");
+            rq.request("INSERT INTO CORRESPPLANETEMOB VALUES (4, 1, 4, 2);");
+            rq.request("INSERT INTO CORRESPPLANETEMOB VALUES (4, 4, 1, 4);");
+            rq.request("INSERT INTO CORRESPPLANETEMOB VALUES (5, 1, 4, 2);");
+            rq.request("INSERT INTO CORRESPPLANETEMOB VALUES (5, 4, 1, 4);");
+            rq.request("INSERT INTO CORRESPPLANETEMOB VALUES (6, 1, 4, 2);");
+            rq.request("INSERT INTO CORRESPPLANETEMOB VALUES (6, 4, 1, 4);");
+            rq.request("INSERT INTO CORRESPPLANETEMOB VALUES (7, 1, 4, 2);");
+            rq.request("INSERT INTO CORRESPPLANETEMOB VALUES (7, 4, 1, 4);");
+            rq.request("INSERT INTO CORRESPPLANETEMOB VALUES (8, 1, 4, 2);");
+            rq.request("INSERT INTO CORRESPPLANETEMOB VALUES (8, 4, 1, 4);");
+            rq.request("INSERT INTO CORRESPPLANETEMOB VALUES (9, 1, 4, 2);");
+            rq.request("INSERT INTO CORRESPPLANETEMOB VALUES (9, 4, 1, 4);");
+            
             rq.closeDB();
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(ExecQuery.class.getName()).log(Level.SEVERE, null, ex);
