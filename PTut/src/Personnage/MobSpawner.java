@@ -68,7 +68,7 @@ public class MobSpawner {
                 initWave();
 
             if (monstrePop < nbMobWave) {
-                if (System.currentTimeMillis()- waveTime > 500)
+                if (System.currentTimeMillis()- waveTime > 3000)
                 {
                      MobList.add(new Monstre(idMobAPop));
                      monstrePop++;
