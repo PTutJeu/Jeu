@@ -37,6 +37,8 @@ public class ScenePlanete extends Scene
             img = new Image("ressources/images/background.png");
             try {
                 listePlateforme = new ListePlateforme(idPlanete);
+                //MobList = new MobSpawner();
+                MobList = new MobSpawner(idPlanete);
             } catch (SQLException | ClassNotFoundException ex) {
                 Logger.getLogger(ScenePlanete.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -96,7 +98,6 @@ public class ScenePlanete extends Scene
 	public void init(GameContainer gc) throws SlickException 
 	{
                     heros = new Heros();
-                    MobList = new MobSpawner();
                     listeProjectile = new ListeProjectile();
                     listeArmes = new ListeArme();
                     b = false;
