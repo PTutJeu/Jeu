@@ -60,7 +60,7 @@ public class MobSpawner {
         }
     }
     
-    public void apparition() throws SlickException, SQLException, ClassNotFoundException
+    public boolean apparition() throws SlickException, SQLException, ClassNotFoundException
     {
         //System.out.println(waveNumber+"");
         if (waveNumber <= maxWave) {
@@ -81,7 +81,9 @@ public class MobSpawner {
                 monstrePop = 0;
                 waveNumber++;
             }
+            return true;
         }
+        else return false;
       /*if (monstrePop < 5 && System.currentTimeMillis()- waveTime > 3000 && waveNumber == 1)
       {
            MobList.add(new Monstre(waveNumber));
@@ -127,9 +129,6 @@ public class MobSpawner {
             
             nbMobWave = rs.getInt("TAILLEWAVE");
             idMobAPop = rs.getInt("IDMOB");
-        System.out.println("taillewave ="+nbMobWave);
-        System.out.println("wave = "+waveNumber);
-        System.out.println("id = "+id);
             
             rq.closeDB();
         } catch (SQLException | ClassNotFoundException ex) {
@@ -137,7 +136,7 @@ public class MobSpawner {
         }
     }
     
-    public void TestWave()
+    /*public void TestWave()
     {
         if (monstrePop == 5 && monstreAlive == 0)
         {
@@ -151,7 +150,7 @@ public class MobSpawner {
         {
             waveNumber = 4;
         }
-    }
+    }*/
     public void MortMob (Heros heros) {
         for (Monstre m : MobList)
         {

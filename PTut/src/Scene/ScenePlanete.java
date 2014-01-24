@@ -72,7 +72,10 @@ public class ScenePlanete extends Scene
             heros.vieHeros();
             heros.armeSelection(gc, listeArmes);
             heros.NiveauUp();
-            MobList.apparition();
+            if (!MobList.apparition()){
+                Main.Game.manager.removeSence(this);
+                Main.Game.manager.getSence("Galaxie").setState(STATE.ON);
+            }
             MobList.deplacements(gc, t, listePlateforme, heros);
             MobList.MortMob(heros);
             listeProjectile.deplacements(gc, heros);
