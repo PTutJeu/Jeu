@@ -52,7 +52,7 @@ public class ExecQuery {
             rq.request("INSERT INTO DETAILS_PLANETE VALUES(6, 23, 25, '', '', 'Dontno', 0, 75, 75, 0, 3, 3, 0);");
             rq.request("INSERT INTO DETAILS_PLANETE VALUES(7, 23, 25, '', '', 'Ouate', 0, 60, 60, 60, 3, 3, 3);");
             rq.request("INSERT INTO DETAILS_PLANETE VALUES(8, 23, 25, '', '', 'Unnamed', 0, 80, 0, 80, 4, 0, 4);");
-            rq.request("INSERT INTO DETAILS_PLANETE VALUES(9, 23, 25, '', '', 'Unknown', 1, 100, 100, 100, 4, 4, 4);");
+            rq.request("INSERT INTO DETAILS_PLANETE VALUES(9, 23, 25, '', '', 'Unknown', 0, 100, 100, 100, 4, 4, 4);");
 
             rq.request("DROP TABLE TELEPORTEUR;");
             rq.request("CREATE TABLE TELEPORTEUR(ID NUMBER, IDMAP NUMBER, IDMAPDEST NUMBER, X NUMBER, Y NUMBER, "
