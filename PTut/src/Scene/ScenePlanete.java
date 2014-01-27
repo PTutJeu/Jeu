@@ -7,6 +7,7 @@ import CartePlateforme.ListePlateforme;
 import CartePlateforme.Plateforme;
 import Personnage.Heros;
 import Personnage.MobSpawner;
+import Personnage.Vaisseau;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,6 +24,7 @@ public class ScenePlanete extends Scene
 {
 
     private Heros heros;
+    private Vaisseau vaisseau;
     private SceneMenu menu;
     private ListePlateforme listePlateforme;
     private MobSpawner MobList;
@@ -33,7 +35,7 @@ public class ScenePlanete extends Scene
     private long tempsFinPlanete;
     
         private Image img;
-        public ScenePlanete (int idPlanete) throws SlickException
+        public ScenePlanete (int idPlanete, Vaisseau v) throws SlickException
 	{
             super();
             setPriority(1);
@@ -44,6 +46,7 @@ public class ScenePlanete extends Scene
                 //MobList = new MobSpawner();
                 MobList = new MobSpawner(idPlanete);
                 planeteFinie = false;
+                vaisseau = v;
             } catch (SQLException | ClassNotFoundException ex) {
                 Logger.getLogger(ScenePlanete.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -87,6 +90,7 @@ public class ScenePlanete extends Scene
             if (System.currentTimeMillis() - tempsFinPlanete > 3000) {
                 Main.Game.manager.removeSence(this);
                 Main.Game.manager.getSence("Galaxie").setState(STATE.ON);
+                updateVaisseau();
             }
             MobList.deplacements(gc, t, listePlateforme, heros);
             MobList.MortMob(heros);
@@ -121,7 +125,7 @@ public class ScenePlanete extends Scene
         @Override
 	public void init(GameContainer gc) throws SlickException 
 	{
-                    heros = new Heros();
+                    heros = new Heros(vaisseau);
                     listeProjectile = new ListeProjectile();
                     listeArmes = new ListeArme();
                     planeteFinie = false;
@@ -142,6 +146,12 @@ public class ScenePlanete extends Scene
             } catch (SQLException | ClassNotFoundException ex) {
                 Logger.getLogger(ScenePlanete.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
+        
+        public void updateVaisseau() {
+            vaisseau.setNiveau(heros.getNiveau());
+            vaisseau.setXp(heros.getXp());
+            vaisseau.setXpMax(heros.getXpMax());
         }
 }
 

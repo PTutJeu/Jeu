@@ -41,11 +41,10 @@ public class Heros extends Personnage {
     private Image img;
     private Image imgVie;
     private Image imgXp, imgXpMax;
-    private int   xpMax;
     public boolean vue = true, enMarche=false, enTir=false; // Vraie si le héro regarde à droite
 
-    public Heros() throws SlickException{ // Constructeur du héros
-        super();
+    public Heros(Vaisseau v) throws SlickException{ // Constructeur du héros
+        super(v);
         /*
         herosD = new SpriteSheet("ressources/images/sprite_heros_arret_droite.png",48,59);
         herosG = new SpriteSheet("ressources/images/sprite_heros_arret_gauche.png",48,59);
@@ -84,15 +83,10 @@ public class Heros extends Personnage {
         y = 0;
         x1 = x + herosAnimation.getWidth();
         y1 = y + herosAnimation.getHeight();
-        niveau = 1;
-        setVie(3);
         munitions = 12;
         tempsInvincible = System.currentTimeMillis();
         imgXp = new Image("ressources/images/xp.png");
         imgXpMax = new Image("ressources/images/barreXp.png");
-        
-        xp=0;
-        xpMax=100;
        }
 
     public Image getImg(){return img;}
@@ -319,8 +313,8 @@ public class Heros extends Personnage {
     
     public void afficheXp(GameContainer gc, Graphics g) throws SlickException {
         g.drawImage(imgXpMax,148, 7);// Image de fond de la barrexP
-        float coefXp = xpMax / 187f; // Entre la taille en px de la barre d'xp et l'xpMax
-        float iMax = xp / coefXp;    // iMax = la valeur en pixel de l'xp du personnage
+        float coefXp = getXpMax() / 187f; // Entre la taille en px de la barre d'xp et l'xpMax
+        float iMax = getXp() / coefXp;    // iMax = la valeur en pixel de l'xp du personnage
         
         // On affiche jusqu'à la valeur en pixel du personnage
         for (float i=0; i < iMax ; i++){
@@ -334,8 +328,8 @@ public class Heros extends Personnage {
             levelUp = new SpriteSheet("ressources/images/sprite_levelUp.png",60,60);
             levelUpAnimation = new Animation(levelUp,150);
             setXp( getXp() - getXpMax());
-            setXpMax( getXpMax()+100);
             setNiveau( getNiveau() +1 );
+            setXpMax( getNiveau() * 100);
             setVie(getVie()+1);
         }
         
@@ -345,7 +339,4 @@ public class Heros extends Personnage {
             enLevelUp=false;
         
     }
-    
-    public int getXpMax(){return xpMax;}
-    public void setXpMax(int xpMax){this.xpMax=xpMax;}
 }

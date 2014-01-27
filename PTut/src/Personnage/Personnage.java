@@ -12,6 +12,7 @@ public abstract class Personnage {
     protected float y1; //coordonnée du coin inférieur de l'image
     protected int vie; //Vie actuelle du personnage
     protected int xp; //expérience du personnage
+    protected int xpMax;
     protected int niveau; //Niveau du Personnage
     protected String nom; // Nom du personnage
     protected boolean VieMort=true;
@@ -24,13 +25,21 @@ public abstract class Personnage {
         vie=100;
         xp=0;
         niveau=1;
+        xpMax = niveau * 100;
     }
     
     public Personnage(int v, int x, int n){
         vie=v;
         xp=x;
         niveau=n;
-        
+        xpMax = niveau * 100;
+    }
+    
+    public Personnage(Vaisseau v) {
+        vie = 3;
+        xp = v.getXp();
+        niveau = v.getNiveau();
+        xpMax = niveau * 100;
     }
     
     //Getters
@@ -42,6 +51,7 @@ public abstract class Personnage {
     public float getX1(){ return x1; }
     public float getY1(){ return y1;}
     public boolean getVieMort() { return VieMort; }
+    public int getXpMax() { return xpMax; }
     
     //Setters
     public void setVie(int v){ vie=v; }
@@ -50,6 +60,7 @@ public abstract class Personnage {
     public void setX(float x){ this.x=x;}
     public void setY(float y){ this.y=y;}
     public void setNom(String nom){ this.nom = nom;}
+    public void setXpMax(int xpMax) { this.xpMax = xpMax; }
     
 
     

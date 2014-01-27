@@ -13,7 +13,7 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 
-public class Vaisseau extends Personnage{
+public class Vaisseau extends Personnage {
         private Image img;
         public static boolean isOnPlanete;
         private int idPlanete;
