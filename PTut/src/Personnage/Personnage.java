@@ -41,6 +41,7 @@ public abstract class Personnage {
     public float getY(){ return y;}
     public float getX1(){ return x1; }
     public float getY1(){ return y1;}
+    public boolean getVieMort() { return VieMort; }
     
     //Setters
     public void setVie(int v){ vie=v; }

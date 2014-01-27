@@ -31,6 +31,7 @@ public class MobSpawner {
     private int nbMobWave;
     private int idPlanete;
     private int idMobAPop = 1;
+    private boolean finie = false;
     
     public MobSpawner(int idPlanete) throws SlickException{
         try {
@@ -60,9 +61,8 @@ public class MobSpawner {
         }
     }
     
-    public boolean apparition() throws SlickException, SQLException, ClassNotFoundException
+    public void apparition() throws SlickException, SQLException, ClassNotFoundException
     {
-        //System.out.println(waveNumber+"");
         if (waveNumber <= maxWave) {
             if (monstrePop == 0)
                 initWave();
@@ -81,9 +81,8 @@ public class MobSpawner {
                 monstrePop = 0;
                 waveNumber++;
             }
-            return true;
         }
-        else return false;
+        else finie = true;
       /*if (monstrePop < 5 && System.currentTimeMillis()- waveTime > 3000 && waveNumber == 1)
       {
            MobList.add(new Monstre(waveNumber));
@@ -180,4 +179,5 @@ public class MobSpawner {
         return waveTime;
     }
     
+    public boolean isFinie() { return finie; }
 }

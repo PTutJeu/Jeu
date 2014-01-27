@@ -26,10 +26,11 @@ public class ScenePlanete extends Scene
     private SceneMenu menu;
     private ListePlateforme listePlateforme;
     private MobSpawner MobList;
-    private boolean b;
+    private boolean planeteFinie;
     private ListeProjectile listeProjectile;
     private ListeArme listeArmes;
     private int idPlanete;
+    private long tempsFinPlanete;
     
         private Image img;
         public ScenePlanete (int idPlanete) throws SlickException
@@ -42,6 +43,7 @@ public class ScenePlanete extends Scene
                 listePlateforme = new ListePlateforme(idPlanete);
                 //MobList = new MobSpawner();
                 MobList = new MobSpawner(idPlanete);
+                planeteFinie = false;
             } catch (SQLException | ClassNotFoundException ex) {
                 Logger.getLogger(ScenePlanete.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -75,9 +77,14 @@ public class ScenePlanete extends Scene
             heros.vieHeros();
             heros.armeSelection(gc, listeArmes);
             heros.NiveauUp();
-            if (!MobList.apparition()){
-                
+            MobList.apparition();
+            if (!planeteFinie) tempsFinPlanete = System.currentTimeMillis();
+            if (MobList.isFinie() && !planeteFinie) {
                 updatePlanetePossedee(idPlanete);
+                planeteFinie = true;
+                //IMAGE DE FIN - VICTOIRE
+            }
+            if (System.currentTimeMillis() - tempsFinPlanete > 3000) {
                 Main.Game.manager.removeSence(this);
                 Main.Game.manager.getSence("Galaxie").setState(STATE.ON);
             }
@@ -85,6 +92,15 @@ public class ScenePlanete extends Scene
             MobList.MortMob(heros);
             listeProjectile.deplacements(gc, heros);
             listeProjectile.collisions(MobList.getMobList());
+            if (!heros.getVieMort()) {
+                //AFFICHER GAME OVER
+                
+                planeteFinie = true;
+                if (System.currentTimeMillis() - tempsFinPlanete > 3000) {
+                    Main.Game.manager.removeSence(this);
+                    Main.Game.manager.getSence("Galaxie").setState(STATE.ON);
+                }
+            }
             
             if(gc.getInput().isKeyDown(Input.KEY_ESCAPE))
             {
@@ -108,7 +124,8 @@ public class ScenePlanete extends Scene
                     heros = new Heros();
                     listeProjectile = new ListeProjectile();
                     listeArmes = new ListeArme();
-                    b = false;
+                    planeteFinie = false;
+                    tempsFinPlanete = System.currentTimeMillis();
 	}
 	
         @Override
