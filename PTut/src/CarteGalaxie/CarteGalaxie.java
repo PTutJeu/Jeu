@@ -4,6 +4,7 @@ import BDD.Requete;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -41,6 +42,7 @@ public class CarteGalaxie {
             idPlanete = rs.getInt("ID");
             planetes.add(new Planete(idPlanete));
         }
+        Collections.sort(planetes);
         
         //On ajoute les teleporteurs dans l'arraylist
         rs = rq.select("SELECT ID FROM TELEPORTEUR WHERE IDMAP = " +id+ ";");
@@ -67,6 +69,7 @@ public class CarteGalaxie {
             idPlanete = rs.getInt("ID");
             planetes.add(new Planete(idPlanete));
         }
+        Collections.sort(planetes);
         
         rs = rq.select("SELECT ID FROM TELEPORTEUR WHERE IDMAP = " +id+ ";");
         while (rs.next()) telep.add(new Teleporteur(rs.getInt("ID")));
@@ -94,5 +97,13 @@ public class CarteGalaxie {
         for (Teleporteur t : telep) {
             t.affiche(g);
         }
+    }
+    
+    public Planete getPlanete(int idPlanete) {
+        for (Planete p : planetes) {
+            if (p.getId() == idPlanete)
+                return p;
+        }
+        return null;
     }
 }

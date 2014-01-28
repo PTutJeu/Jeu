@@ -123,4 +123,15 @@ public class MenuInterface {
             g.drawString("Collecter (C)", xFond + 85, yFond + imgFond.getHeight() - 30);
         }
     }
+    
+    public float getGoldProd() { return goldProd; }
+    public float getBoisProd() { return boisProd; }
+    public float getMetalProd() { return metalProd; }
+    public int getGoldMax() { return goldMax; }
+    public int getBoisMax() { return boisMax; }
+    public int getMetalMax() { return metalMax; }
+    public int getGoldAct() { return goldAct; }
+    public int getBoisAct() { return boisAct; }
+    public int getMetalAct() { return metalAct; }
+    public boolean isPossedee() { return possedee; }
 } 

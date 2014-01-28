@@ -8,7 +8,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-public class Planete {
+public class Planete implements Comparable<Planete> {
     private int id; //Identifiant de la planete
     private int idMap; //Identifiant de la map sur laquelle elle se trouve
     private int x; //Position en x de la planete sur la map
@@ -70,5 +70,12 @@ public class Planete {
     //Méthode d'affichage
     public void affiche(GameContainer gc, Graphics g) throws SlickException {
         g.drawImage(img, x, y);
+    }
+    
+    @Override
+    public int compareTo(Planete comp) {
+        if (id < comp.getId()) return -1;
+        else if (id == comp.getId()) return 0;
+        else return 1;
     }
 }

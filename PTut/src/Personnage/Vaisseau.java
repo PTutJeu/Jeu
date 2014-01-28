@@ -17,6 +17,7 @@ public class Vaisseau extends Personnage {
         private Image img;
         public static boolean isOnPlanete;
         private int idPlanete;
+        private MenuInterface menu;
         
         public Vaisseau() throws SlickException{
             super();
@@ -33,7 +34,7 @@ public class Vaisseau extends Personnage {
         
         //On affiche l'image à la position voulue
         g.drawImage(img, x, y);
-        MenuInterface menu = new MenuInterface(idPlanete);
+        menu = new MenuInterface(idPlanete);
         if (isOnPlanete) {
             menu.affiche(g, this);
         }
@@ -153,6 +154,8 @@ public class Vaisseau extends Personnage {
     }
     
     public int getIdPlanete() { return idPlanete; }
+    public boolean isOnPlanete() { return isOnPlanete; }
+    public boolean planeteIsPossedee() { return menu.isPossedee(); }
     
     public boolean collisionTelep(Teleporteur t) {
         return (x1 >= t.getX() && x <= t.getX1() && y1 >= t.getY() && y <= t.getY1());

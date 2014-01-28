@@ -43,8 +43,11 @@ public class SceneGalaxie extends Scene
             {
                 if( gc.getInput().isKeyDown(Input.KEY_A) ) 
                 {
+                    //Test planete possedee
+                    if (v.isOnPlanete() && !v.planeteIsPossedee()) {
                         Main.Game.manager.addSence( new ScenePlanete(v.getIdPlanete(), v) );
                         setState(STATE.INVISIBLE);
+                    }
                 }
             }
             v.deplace(gc, c);
