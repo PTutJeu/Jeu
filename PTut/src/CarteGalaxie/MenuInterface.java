@@ -29,6 +29,7 @@ public class MenuInterface {
     private int goldAct;
     private int boisAct;
     private int metalAct;
+    private long lastCollect;
     
     private Image imgFond;
     private float xFond;
@@ -57,6 +58,7 @@ public class MenuInterface {
             goldProd = rs.getFloat("GOLDPROD");
             boisProd = rs.getFloat("BOISPROD");
             metalProd = rs.getFloat("METALPROD");
+            lastCollect = rs.getLong("LASTCOLLECT");
         }
         
         rq.closeDB();
@@ -134,8 +136,15 @@ public class MenuInterface {
     public int getBoisAct() { return boisAct; }
     public int getMetalAct() { return metalAct; }
     public boolean isPossedee() { return possedee; }
+    public long getLastCollect() { return lastCollect; }
     
     public void majRessources() {
-        
+        int min = (int) ((lastCollect - System.currentTimeMillis()) / 60000);
+        goldAct += min*goldProd;
+        if (goldAct > goldMax) goldAct = goldMax;
+        boisAct += min*boisProd;
+        if (boisAct > boisMax) boisAct = boisMax;
+        metalAct += min*metalProd;
+        if (metalAct > metalMax) metalAct = metalMax;
     }
 } 

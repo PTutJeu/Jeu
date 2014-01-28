@@ -147,6 +147,7 @@ public class ScenePlanete extends Scene
             try {
                 Requete rq = new Requete();
                 rq.request("UPDATE DETAILS_PLANETE SET POSSEDEE = 1 WHERE ID = "+idPlanete+";");
+                rq.request("UPDATE DETAILS_PLANETE SET LASTCOLLECT = " +System.currentTimeMillis()+ " WHERE ID = "+idPlanete+";");
                 rq.closeDB();
             } catch (SQLException | ClassNotFoundException ex) {
                 Logger.getLogger(ScenePlanete.class.getName()).log(Level.SEVERE, null, ex);
