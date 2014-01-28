@@ -28,16 +28,18 @@ public class ScenePlanete extends Scene
     private SceneMenu menu;
     private ListePlateforme listePlateforme;
     private MobSpawner MobList;
-    private boolean planeteFinie;
+    private boolean planeteFinie, victoire;
     private ListeProjectile listeProjectile;
     private ListeArme listeArmes;
     private int idPlanete;
     private long tempsFinPlanete;
+    private Image imgVictoire;
+    private Image img;
     
-        private Image img;
         public ScenePlanete (int idPlanete, Vaisseau v) throws SlickException
 	{
             super();
+            victoire = false;
             setPriority(1);
             img = new Image("ressources/images/background.png");
             try {
@@ -67,7 +69,8 @@ public class ScenePlanete extends Scene
             listeArmes.affiche(gc, g);
             heros.afficheXp(gc,g);
             heros.affiche(gc, g);
-           
+            if (victoire == true)
+                g.drawImage(imgVictoire,150,200);
 	}
 	
         @Override
@@ -85,6 +88,8 @@ public class ScenePlanete extends Scene
             if (MobList.isFinie() && !planeteFinie) {
                 updatePlanetePossedee(idPlanete);
                 planeteFinie = true;
+                victoire = true;
+                imgVictoire = new Image("ressources/images/victoire.png");
                 //IMAGE DE FIN - VICTOIRE
             }
             if (System.currentTimeMillis() - tempsFinPlanete > 3000) {
