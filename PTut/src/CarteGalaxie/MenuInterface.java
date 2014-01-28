@@ -134,4 +134,8 @@ public class MenuInterface {
     public int getBoisAct() { return boisAct; }
     public int getMetalAct() { return metalAct; }
     public boolean isPossedee() { return possedee; }
+    
+    public void majRessources() {
+        
+    }
 } 
