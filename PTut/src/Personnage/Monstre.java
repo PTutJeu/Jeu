@@ -24,9 +24,11 @@ public class Monstre {
     private float yChampDeVision;
     private Image img;
     private Image champDeVision;
+    private Image imgVision;
     private int vie;
     private int vieMax;
     private boolean move = true;
+    private boolean vue = false;
     private float posActuelle = 500;
     private int direction = (int)( Math.random()*( 30 - 0 + 1 ) ) + 0;
     private int distance = (int)( Math.random()*( 600 - 300 + 1 ) ) + 300;
@@ -48,6 +50,7 @@ public class Monstre {
         img = new Image(rs.getString("IMG"));
         champDeVision= new Image("ressources/images/champVision.png");
         champDeVision.setAlpha(0);
+        imgVision = new Image("ressources/images/vision.png");
         rq.closeDB();
     }
     
@@ -64,11 +67,14 @@ public class Monstre {
         img = new Image(rs.getString("IMG"));
         champDeVision= new Image("ressources/images/champVision.png");
         champDeVision.setAlpha(0);
+        imgVision = new Image("ressources/images/vision.png");
         rq.closeDB();
     }
     
     public void affiche(GameContainer gc, Graphics g) throws SlickException {
         g.drawImage(img, x, y);
+        if (vue == true)
+            g.drawImage(imgVision, x, y-20);
         if (direction <= 15)
         {
             xChampDeVision = x - champDeVision.getWidth()+img.getWidth()+20;
@@ -110,6 +116,7 @@ public class Monstre {
            
            if (collisionsChampDeVision(heros))
            {
+               vue = true;
                //EN CAS DE COLLISION AVEC LE CHAMP DE VISION, ALORS DEPLACEMENTS VERS LE HEROS
                if (x > heros.getX()+ heros.getImg().getWidth()/2) 
                {
@@ -124,6 +131,7 @@ public class Monstre {
            }
            else
            {
+               vue = false;
                //SI IL N'Y A PAS DE COLLISION, ALORS DEPLACEMENTS ALEATOIRES
                 if (direction <= 15 && move == true)
                 {
