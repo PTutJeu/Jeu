@@ -43,8 +43,17 @@ public class SceneGalaxie extends Scene
             {
                 if( gc.getInput().isKeyDown(Input.KEY_A) ) 
                 {
+                    //Test planete possedee
+                    if (!v.planeteIsPossedee()) {
                         Main.Game.manager.addSence( new ScenePlanete(v.getIdPlanete(), v) );
                         setState(STATE.INVISIBLE);
+                    }
+                }
+                if (v.planeteIsPossedee()) {
+                    v.getMenu().majRessources();
+                    if (gc.getInput().isKeyPressed(Input.KEY_C)) {
+                    
+                    }
                 }
             }
             v.deplace(gc, c);
@@ -73,6 +82,7 @@ public class SceneGalaxie extends Scene
             try {
                     c = new CarteGalaxie();
                     v = new Vaisseau();
+                    gc.getInput().clearKeyPressedRecord();
             }   
             catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);

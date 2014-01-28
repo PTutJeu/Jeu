@@ -27,7 +27,7 @@ public class ListeArme {
     
     public ListeArme(){
         listeArmes.add(new Arme("Pistolet", 20, 12, 200, 1000));
-        listeArmes.add(new Arme("Mitraillette", 60, 60, 70, 1500));
+        listeArmes.add(new Arme("Mitraillette", 10, 60, 70, 1500));
         listeArmes.add(new Arme("Fusil", 60, 8, 600, 2000));
         listeArmes.add(new Arme("Bazooka", 200, 2, 2000, 3000));
         index=0;
