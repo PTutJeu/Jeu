@@ -21,17 +21,27 @@ import org.newdawn.slick.SlickException;
 public class SceneMenuPrincipal extends Scene implements Serializable {
     
     private Image img;
+    private Image newPartie;
+    private Image continuer;
+    private Image quitter;
     
      public SceneMenuPrincipal() throws SlickException
     {
         super();
-        img = new Image("ressources/images/menuPrinc.jpg");
+        img = new Image("ressources/Menu/fondMenu.png");
+        newPartie = new Image("ressources/Menu/nouvelleNeutre.png");
+        continuer = new Image("ressources/Menu/continuerneutre.png");
+        quitter = new Image("ressources/Menu/quitterNeutre.png");
+        
         setPriority(1);
     }
      
      public void affiche(GameContainer gc, Graphics g)
      {
          g.drawImage(img, 0, 0);
+         g.drawImage(newPartie, 50, 300);
+         g.drawImage(continuer, 50, 350);
+         g.drawImage(quitter, 50, 500);
      }
      
       @Override
@@ -43,7 +53,8 @@ public class SceneMenuPrincipal extends Scene implements Serializable {
         @Override
 	protected void CustomUpdate(GameContainer gc, int t) throws SlickException 
 	{
-           if(gc.getInput().isKeyDown(Input.KEY_ENTER))
+           //if(gc.getInput().isKeyDown(Input.KEY_ENTER))
+           if(gc.getInput().getMouseX() > 50 && gc.getInput().getMouseX() < 50 + newPartie.getWidth() && gc.getInput().getMouseY() > 300 && gc.getInput().getMouseY() < 300 + newPartie.getHeight())
            {
                Main.Game.manager.addSence( new SceneGalaxie() );
                Main.Game.manager.removeSence(this);
@@ -57,10 +68,8 @@ public class SceneMenuPrincipal extends Scene implements Serializable {
                     Main.Game.manager.setTotalTime(System.currentTimeMillis());
                     long ttime = Main.Game.manager.getTotalTime()+ timeBDD;
                     System.out.println(ttime);
-                    rq.request("DROP TABLE SAVE");
-                    rq.request("CREATE TABLE SAVE(ID_PERSO NUMBER, TEMPS NUMBER, GOLD NUMBER, BOIS NUMBER, FER NUMBER, "
-                            + "CONSTRAINT PK_SAVE PRIMARY KEY (ID_PERSO));");
-                    rq.request("INSERT INTO SAVE VALUES(1, "+ttime+", 0, 0);");
+                    rq.request("UPDATE SAVE SET TEMPS = "+ttime+";");
+                    rq.closeDB();
                  } 
                 catch (SQLException | ClassNotFoundException ex) 
                 {
@@ -71,7 +80,7 @@ public class SceneMenuPrincipal extends Scene implements Serializable {
            //On enlevera ça plus tard c'est juste pour mettre a jour la base de donnée,
            //c'est pas censé etre présent dans le jeu mais ça me casse les couilles de faire
            //tout a la main a chaque fois
-           if (gc.getInput().isKeyDown(Input.KEY_M)) {
+           if (gc.getInput().isKeyDown(Input.KEY_N)) {
                ExecQuery ex = new ExecQuery();
                ex.execQuery();
            }
