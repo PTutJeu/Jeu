@@ -225,6 +225,7 @@ public class Heros extends Personnage {
             if (collisionBas(p)) {
                 setY(p.getY() - img.getHeight());
                 y1 = y + img.getHeight();
+                vitesseVertical =0;
             }
         }         
       }
@@ -275,11 +276,7 @@ public class Heros extends Personnage {
                     rechargeSheet = new SpriteSheet("ressources/images/barillet.png",30,30);
                     rechargeAnimation = new Animation(rechargeSheet, 200);
                 }
-            }
-            if (input.isKeyPressed(Input.KEY_E)){
-                  this.setVie(getVie()-1);      
-            }
-            
+            }          
             // Si il s'est écoulé 3 sec depuis le début du rechargement alors le joueur peut de nouveau tirer
             if ( (System.currentTimeMillis() - tempsRechargement) < la.getArme().getTempsRechargement() ){
                 recharge = true;
@@ -293,7 +290,7 @@ public class Heros extends Personnage {
      
     public void perdVie(int degats)
     {
-        if (System.currentTimeMillis() - tempsInvincible > 3000)
+        if (System.currentTimeMillis() - tempsInvincible > 1500)
         {
             setVie(getVie() -1);
             tempsInvincible = System.currentTimeMillis();

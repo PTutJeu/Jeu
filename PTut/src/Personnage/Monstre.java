@@ -30,11 +30,10 @@ public class Monstre {
     private boolean move = true;
     private boolean vue = false;
     private float posActuelle = 500;
-    private int direction = (int)( Math.random()*( 30 - 0 + 1 ) ) + 0;
+    private int direction = (int)( Math.random()*( 30 - 0 + 1 ) ) + 0; //direction <= 15 gauche
+                                                                       //direction > 15 droite
     private int distance = (int)( Math.random()*( 600 - 300 + 1 ) ) + 300;
     private float vitesseVertical;
-    public static final float POPMOB_X = 500;
-    public static final float POPMOB_Y = 500;
     
     public Monstre() throws SlickException, SQLException, ClassNotFoundException { 
         id = 1;
@@ -43,8 +42,8 @@ public class Monstre {
         ResultSet rs = rq.select("SELECT * FROM MOB WHERE ID = " +id+ ";");
         
         vitesseVertical = 0;
-        x = POPMOB_X;
-        y = POPMOB_Y;
+        x = (float)( Math.random()*( 769 - 1 + 1 ) ) + 1;
+        y = (float)( Math.random()*( 569 - 1 + 1 ) ) + 1;
         vieMax = rs.getInt("VIE");
         vie = vieMax;
         img = new Image(rs.getString("IMG"));
@@ -60,8 +59,8 @@ public class Monstre {
         
         this.id = id;
         vitesseVertical = 0;
-        x = POPMOB_X;
-        y = POPMOB_Y;
+        x = (float)( Math.random()*( 769 - 1 + 1 ) ) + 1;
+        y = (float)( Math.random()*( 569 - 1 + 1 ) ) + 1;
         vieMax = rs.getInt("VIE");
         vie = vieMax;
         img = new Image(rs.getString("IMG"));
