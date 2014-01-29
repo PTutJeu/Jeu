@@ -168,6 +168,9 @@ public class Vaisseau extends Personnage {
     public boolean isOnPlanete() { return isOnPlanete; }
     public boolean planeteIsPossedee() { return menu.isPossedee(); }
     public MenuInterface getMenu() { return menu; }
+    public int getGold() { return gold; }
+    public int getMetal() { return metal; }
+    public int getBois() { return bois; }
     
     public boolean collisionTelep(Teleporteur t) {
         return (x1 >= t.getX() && x <= t.getX1() && y1 >= t.getY() && y <= t.getY1());
