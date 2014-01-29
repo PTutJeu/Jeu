@@ -78,6 +78,7 @@ public class MenuInterface {
     
     public void affiche(Graphics g, Vaisseau v) throws SlickException {        
         setCoordFond(v);
+        majRessources();
         g.drawImage(imgFond, xFond, yFond);
         
         g.drawString(nom, xFond + 15, yFond + 15);
@@ -139,7 +140,10 @@ public class MenuInterface {
     public long getLastCollect() { return lastCollect; }
     
     public void majRessources() {
-        int min = (int) ((lastCollect - System.currentTimeMillis()) / 60000);
+        int min = (int) ((System.currentTimeMillis() - lastCollect) / 60000);
+        System.out.println("lastCollect : "+lastCollect);
+        System.out.println("temps actuel : "+System.currentTimeMillis());
+        System.out.println("minute : "+min);
         goldAct += min*goldProd;
         if (goldAct > goldMax) goldAct = goldMax;
         boisAct += min*boisProd;

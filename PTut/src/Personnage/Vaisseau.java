@@ -1,11 +1,14 @@
 
 package Personnage;
 
+import BDD.Requete;
 import CarteGalaxie.CarteGalaxie;
 import CarteGalaxie.MenuInterface;
 import CarteGalaxie.Planete;
 import CarteGalaxie.Teleporteur;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -18,6 +21,7 @@ public class Vaisseau extends Personnage {
         public static boolean isOnPlanete;
         private int idPlanete;
         private MenuInterface menu;
+        private int gold, bois, metal;
         
         public Vaisseau() throws SlickException{
             super();
@@ -28,6 +32,13 @@ public class Vaisseau extends Personnage {
             y1 = y + img.getHeight();
             isOnPlanete = false;
             idPlanete = -1;
+            try {
+                Requete rq = new Requete();
+                
+                rq.closeDB();
+            } catch (SQLException | ClassNotFoundException ex) {
+                Logger.getLogger(Vaisseau.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
         public void affiche(GameContainer gc, Graphics g) throws SlickException, SQLException, ClassNotFoundException {
@@ -160,5 +171,9 @@ public class Vaisseau extends Personnage {
     
     public boolean collisionTelep(Teleporteur t) {
         return (x1 >= t.getX() && x <= t.getX1() && y1 >= t.getY() && y <= t.getY1());
+    }
+    
+    public void collect() {
+        ;
     }
 }

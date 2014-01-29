@@ -126,6 +126,11 @@ public class ExecQuery {
             rq.request("INSERT INTO CORRESPPLANETEMOB VALUES (19, 8, 1, 4, 2);");
             rq.request("INSERT INTO CORRESPPLANETEMOB VALUES (20, 8, 2, 1, 4);");
             
+            rq.request("DROP TABLE SAVE");
+            rq.request("CREATE TABLE SAVE(ID_PERSO NUMBER, TEMPS NUMBER, GOLD NUMBER, BOIS NUMBER, FER NUMBER, "
+            + "CONSTRAINT PK_SAVE PRIMARY KEY (ID_PERSO));");
+            rq.request("INSERT INTO SAVE VALUES(1,0,0,0,0);");
+            
             rq.closeDB();
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(ExecQuery.class.getName()).log(Level.SEVERE, null, ex);

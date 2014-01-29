@@ -50,9 +50,8 @@ public class SceneGalaxie extends Scene
                     }
                 }
                 if (v.planeteIsPossedee()) {
-                    v.getMenu().majRessources();
                     if (gc.getInput().isKeyPressed(Input.KEY_C)) {
-                    
+                        v.collect();
                     }
                 }
             }
