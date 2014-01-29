@@ -53,10 +53,9 @@ public class SceneMenuPrincipal extends Scene implements Serializable {
         @Override
 	protected void CustomUpdate(GameContainer gc, int t) throws SlickException 
 	{
-           //if(gc.getInput().isKeyDown(Input.KEY_ENTER))
-           if(gc.getInput().getMouseX() > 50 && gc.getInput().getMouseX() < 50 + newPartie.getWidth() && gc.getInput().getMouseY() > 300 && gc.getInput().getMouseY() < 300 + newPartie.getHeight())
+           if(gc.getInput().getMouseX() > 50 && gc.getInput().getMouseX() < 50 + continuer.getWidth() && gc.getInput().getMouseY() > 350 && gc.getInput().getMouseY() < 350 + continuer.getHeight())
            {
-               newPartie = new Image("ressources/Menu/nouvelleSelect.png");
+               continuer = new Image("ressources/Menu/continuerSelect.png");
                if(gc.getInput().isMousePressed(Input.MOUSE_LEFT_BUTTON ))
                {
                Main.Game.manager.addSence( new SceneGalaxie() );
@@ -85,15 +84,17 @@ public class SceneMenuPrincipal extends Scene implements Serializable {
                  gc.exit();
                }
            }
-           else if(gc.getInput().getMouseX() > 50 && gc.getInput().getMouseX() < 50 + continuer.getWidth() && gc.getInput().getMouseY() > 350 && gc.getInput().getMouseY() < 350 + continuer.getHeight())
+           else if(gc.getInput().getMouseX() > 50 && gc.getInput().getMouseX() < 50 + newPartie.getWidth() && gc.getInput().getMouseY() > 300 && gc.getInput().getMouseY() < 300 + newPartie.getHeight())
            {
-               continuer = new Image("ressources/Menu/continuerSelect.png");
+               newPartie = new Image("ressources/Menu/nouvelleSelect.png");
                if(gc.getInput().isMousePressed(Input.MOUSE_LEFT_BUTTON ))
                {
+                   ExecQuery ex = new ExecQuery();
+                   ex.execQuery();
                    Main.Game.manager.addSence( new SceneGalaxie() );
                }
            }
-           else
+           else 
            {
                newPartie = new Image("ressources/Menu/nouvelleNeutre.png");
                continuer = new Image("ressources/Menu/continuerneutre.png");
@@ -103,8 +104,7 @@ public class SceneMenuPrincipal extends Scene implements Serializable {
            //c'est pas censé etre présent dans le jeu mais ça me casse les couilles de faire
            //tout a la main a chaque fois
            if (gc.getInput().isKeyDown(Input.KEY_N)) {
-               ExecQuery ex = new ExecQuery();
-               ex.execQuery();
+              
            }
 	}
 	
