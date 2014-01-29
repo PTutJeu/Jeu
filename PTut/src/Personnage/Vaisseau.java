@@ -177,6 +177,19 @@ public class Vaisseau extends Personnage {
     }
     
     public void collect() {
-        ;
+        if (isOnPlanete && menu.isPossedee()) {
+            gold += menu.getGoldAct();
+            bois += menu.getBoisAct();
+            metal += menu.getMetalAct();
+            try {
+                Requete rq = new Requete();
+                rq.request("UPDATE DETAILS_PLANETE SET LASTCOLLECT = " 
+                        +System.currentTimeMillis()+ " WHERE ID = "+idPlanete+";");
+                rq.closeDB();
+            } catch (SQLException | ClassNotFoundException ex) {
+                Logger.getLogger(Vaisseau.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        };
     }
 }
