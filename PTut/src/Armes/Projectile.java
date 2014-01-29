@@ -33,8 +33,7 @@ public class Projectile {
         this.y=y;
         x1 = x + img.getWidth();
         y1 = y + img.getHeight();
-        this.mvt=mvt;
-    
+        this.mvt=mvt;    
     }
     
      public void affiche(GameContainer gc, Graphics g) throws SlickException{

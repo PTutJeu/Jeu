@@ -53,36 +53,58 @@ public class SceneMenuPrincipal extends Scene implements Serializable {
         @Override
 	protected void CustomUpdate(GameContainer gc, int t) throws SlickException 
 	{
-           //if(gc.getInput().isKeyDown(Input.KEY_ENTER))
-           if(gc.getInput().getMouseX() > 50 && gc.getInput().getMouseX() < 50 + newPartie.getWidth() && gc.getInput().getMouseY() > 300 && gc.getInput().getMouseY() < 300 + newPartie.getHeight())
+           if(gc.getInput().getMouseX() > 50 && gc.getInput().getMouseX() < 50 + continuer.getWidth() && gc.getInput().getMouseY() > 350 && gc.getInput().getMouseY() < 350 + continuer.getHeight())
            {
+               continuer = new Image("ressources/Menu/continuerSelect.png");
+               if(gc.getInput().isMousePressed(Input.MOUSE_LEFT_BUTTON ))
+               {
                Main.Game.manager.addSence( new SceneGalaxie() );
                Main.Game.manager.removeSence(this);
+               }
            }
-           if(gc.getInput().isKeyDown(Input.KEY_ESCAPE))
+           else if(gc.getInput().getMouseX() > 50 && gc.getInput().getMouseX() < 50 + quitter.getWidth() && gc.getInput().getMouseY() > 500 && gc.getInput().getMouseY() < 500 + quitter.getHeight())
            {
-               try {
-                    Requete rq = new Requete();
-                    ResultSet rs = rq.select("SELECT * FROM SAVE WHERE ID_PERSO = 1;");
-                    long timeBDD = rs.getLong("TEMPS");
-                    Main.Game.manager.setTotalTime(System.currentTimeMillis());
-                    long ttime = Main.Game.manager.getTotalTime()+ timeBDD;
-                    System.out.println(ttime);
-                    rq.request("UPDATE SAVE SET TEMPS = "+ttime+";");
-                    rq.closeDB();
-                 } 
-                catch (SQLException | ClassNotFoundException ex) 
-                {
-                Logger.getLogger(SceneMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                 }
-                gc.exit();
+               quitter = new Image("ressources/Menu/quitterSelect.png");
+               if(gc.getInput().isMousePressed(Input.MOUSE_LEFT_BUTTON ))
+               {
+                try {
+                     Requete rq = new Requete();
+                     ResultSet rs = rq.select("SELECT * FROM SAVE WHERE ID_PERSO = 1;");
+                     long timeBDD = rs.getLong("TEMPS");
+                     Main.Game.manager.setTotalTime(System.currentTimeMillis());
+                     long ttime = Main.Game.manager.getTotalTime()+ timeBDD;
+                     System.out.println(ttime);
+                     rq.request("UPDATE SAVE SET TEMPS = "+ttime+";");
+                     rq.closeDB();
+                  } 
+                 catch (SQLException | ClassNotFoundException ex) 
+                 {
+                 Logger.getLogger(SceneMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                  }
+                 gc.exit();
+               }
+           }
+           else if(gc.getInput().getMouseX() > 50 && gc.getInput().getMouseX() < 50 + newPartie.getWidth() && gc.getInput().getMouseY() > 300 && gc.getInput().getMouseY() < 300 + newPartie.getHeight())
+           {
+               newPartie = new Image("ressources/Menu/nouvelleSelect.png");
+               if(gc.getInput().isMousePressed(Input.MOUSE_LEFT_BUTTON ))
+               {
+                   ExecQuery ex = new ExecQuery();
+                   ex.execQuery();
+                   Main.Game.manager.addSence( new SceneGalaxie() );
+               }
+           }
+           else 
+           {
+               newPartie = new Image("ressources/Menu/nouvelleNeutre.png");
+               continuer = new Image("ressources/Menu/continuerneutre.png");
+               quitter = new Image("ressources/Menu/quitterNeutre.png");
            }
            //On enlevera ça plus tard c'est juste pour mettre a jour la base de donnée,
            //c'est pas censé etre présent dans le jeu mais ça me casse les couilles de faire
            //tout a la main a chaque fois
            if (gc.getInput().isKeyDown(Input.KEY_N)) {
-               ExecQuery ex = new ExecQuery();
-               ex.execQuery();
+              
            }
 	}
 	
