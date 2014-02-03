@@ -189,7 +189,6 @@ public class Vaisseau extends Personnage {
             } catch (SQLException | ClassNotFoundException ex) {
                 Logger.getLogger(Vaisseau.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
         };
     }
 }
